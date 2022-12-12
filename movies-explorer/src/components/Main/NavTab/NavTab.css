@@ -1,0 +1,24 @@
+.nav-tab__background {
+    width: 100%;
+    height: 66px;
+    background-color: #272727;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.nav-tab__link {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    text-decoration-line: underline;
+    color: #FFFFFF;
+    margin-left: 40px;
+}
+
+.nav-tab__link:first-child {
+    margin-left: 0;
+}
