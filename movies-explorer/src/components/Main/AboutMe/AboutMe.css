@@ -1,0 +1,49 @@
+.aboutMe__background {
+    max-width: 1280px;
+    padding: 110px 70px 100px;
+    background-color: #202020;
+
+    font-family: 'Inter';
+    font-style: normal;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+.aboutMe__content-box {
+    display: flex;
+    gap: 270px;
+    margin: 66px 0 0;
+}
+
+.aboutMe__name {
+    margin: 0;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    letter-spacing: -0.04em;
+}
+
+.aboutMe__name-subtitle {
+    margin: 18px 0 0;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.aboutMe__about-student {
+    margin: 26px 0 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.aboutMe__github {
+    margin: 99px 0 0;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.aboutMe__portrait {
+    border-radius: 10px;
+    width: 270px;
+    height: 327px;
+}

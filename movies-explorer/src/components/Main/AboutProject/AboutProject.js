@@ -3,8 +3,8 @@
 function AboutProject() {
     return (
         <div className="aboutProject__background">
-            <div className="aboutProject__title-border">
-                <h2 className="aboutProject__title">О проекте</h2>
+            <div className="title-border">
+                <h3 className="title">О проекте</h3>
             </div>
             <div className="aboutProject__lists-wrapper">
                 <ul className="aboutProject__list">

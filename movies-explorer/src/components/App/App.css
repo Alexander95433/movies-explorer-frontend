@@ -16,3 +16,9 @@ body {
 /*О проекте*/
 @import url(../Main/AboutProject/AboutProject.css);
 
+/*Технологии*/
+@import url(../Main/Techs/Techs.css);
+
+/*О студенте*/
+@import url(../Main/AboutMe/AboutMe.css);
+
