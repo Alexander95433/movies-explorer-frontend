@@ -6,19 +6,17 @@ body {
     background-color: black;
 }
 
+/*Header*/
+@import url(../Sandbox/Header/Header.css);
+
 /*main*/
 @import url(../Main/Main.css);
-
-/*Promo*/
 @import url(../Main/Promo/Promo.css);
 @import url(../Main/NavTab/NavTab.css);
-
-/*О проекте*/
 @import url(../Main/AboutProject/AboutProject.css);
-
-/*Технологии*/
 @import url(../Main/Techs/Techs.css);
-
-/*О студенте*/
 @import url(../Main/AboutMe/AboutMe.css);
+@import url(../Main/Portfolio/Portfolio.css);
 
+/*Footer*/
+@import url(../Sandbox/Footer/Footer.css);

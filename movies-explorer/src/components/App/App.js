@@ -4,11 +4,14 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 //import { useHistory } from 'react-router-dom';
 
+import Header from '../Sandbox/Header/Header';
 import Main from '../Main/Main'
+import Footer from '../Sandbox/Footer/Footer';
 
 function App() {
   return (
     <BrowserRouter>
+    <Header />
     <Switch>
       <Route exact  path='/'>
         <Main />
@@ -19,6 +22,7 @@ function App() {
       <React path='/signin'></React>
       <React path='/signup'></React>
     </Switch>
+    <Footer />
     </BrowserRouter>
   );
 }
