@@ -2,7 +2,7 @@
 
 function AboutProject() {
     return (
-        <div className="aboutProject__background">
+        <section id="aboutProject" className="aboutProject__background">
             <div className="title-border">
                 <h3 className="title">О проекте</h3>
             </div>
@@ -35,7 +35,7 @@ function AboutProject() {
                     <p className="aboutProject__plan-subtitle-bottom">Front-end</p>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 export default AboutProject

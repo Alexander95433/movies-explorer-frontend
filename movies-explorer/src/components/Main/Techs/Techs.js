@@ -1,7 +1,7 @@
 
 function Techs() {
     return (
-        <div className="techs__background">
+        <section id="techs" className="techs__background">
             <div className="title-border">
                 <h3 className="title">Технологии</h3>
             </div>
@@ -16,7 +16,7 @@ function Techs() {
                 <li className="techs__technologie">Express.js</li>
                 <li className="techs__technologie">mongoDB</li>
             </ul>
-        </div>
+        </section>
     );
 };
 

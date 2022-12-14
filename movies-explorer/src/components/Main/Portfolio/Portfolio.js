@@ -2,7 +2,7 @@ import arrow from '../../../image/image_link.png'
 
 function Portfolio() {
     return (
-        <div className="portfolio__background">
+        <section className="portfolio__background">
             <h4 className="portfolio__title">Портфолио</h4>
 
             <nav className="portfolio__links">
@@ -16,7 +16,7 @@ function Portfolio() {
                     <a className='portfolio__link' href='https://alex-mesto.nomoredomains.icu' target='_blank'>Одностраничное приложение</a>
                     <img className='portfolio__image' src={arrow} /></li>
             </nav>
-        </div>
+        </section>
     );
 };
 
