@@ -9,6 +9,7 @@
 
     font-family: 'Inter';
     font-style: normal;
+    font-weight: 500;
 }
 
 .header__icon {
@@ -27,7 +28,7 @@
 
 .header__link-box {}
 
-.header__link-box:last-child {
+.header__link-box-grin {
     width: 76px;
     height: 32px;
     margin: 0 0 0 30px;
@@ -40,7 +41,6 @@
 }
 
 .header__link-registration {
-    font-weight: 500;
     font-size: 12px;
     line-height: 16px;
     color: #FFFFFF;
@@ -48,9 +48,58 @@
 }
 
 .header__link-entrance {
-    font-weight: 500;
     font-size: 12px;
     line-height: 16px;
     text-decoration: none;
     color: #000000;
+}
+
+/*movies*/
+
+.header__movies {
+    display: flex;
+
+    align-items: center;
+    vertical-align: baseline;
+    list-style-type: none;
+}
+
+.header__link-movies {
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+
+.header__link-box-movies:first-child {
+    margin-right: 20px;
+}
+
+.header__link-movies_save-film {
+    font-weight: 400;
+}
+
+.header__link-account {
+    display: flex;
+    gap: 7px;
+    margin: 0 70px 0 50px;
+    align-items: baseline;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 12px;
+    color: #FFFFFF;
+}
+
+.header__movies-icon-box {
+    display: flex;
+    width: 26px;
+    height: 26px;
+    background-color: #313131;
+    border-radius: 50px;
+}
+
+.header__movies-icon {
+    width: 10.38px;
+    height: 10.67px;
+    margin: auto;
 }

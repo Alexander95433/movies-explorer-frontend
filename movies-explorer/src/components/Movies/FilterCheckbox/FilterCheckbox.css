@@ -1,0 +1,14 @@
+.filterCheckbox__checkbox-wrapper {
+    display: flex;
+    gap: 14px;
+    margin: 33px 0 48px;
+}
+
+.filterCheckbox__checkbox {
+margin: 0;
+
+}
+
+.filterCheckbox__checkbox-subtitle {
+margin: 0;
+}

@@ -1,0 +1,63 @@
+@import url(../FilterCheckbox/FilterCheckbox.css);
+
+.searchForm__form {
+    width: 100%;
+    padding-top: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.searchForm__fildset {
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.searchForm__input-wrapper {
+    display: flex;
+    align-self: auto;
+    align-items: self-end;
+    border-bottom: solid 1px #424242;
+    padding-bottom: 13px;
+}
+
+.searchForm__input {
+    width: 100%;
+    background-color: #202020;
+    border: none;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 34px;
+    color: #FFFFFF;
+    outline: none;
+}
+
+.searchForm__input::placeholder {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 34px;
+    color: #8B8B8B;
+}
+
+.searchForm__button {
+    /* position: absolute;
+    top: 87px;
+    right: 0; */
+
+    width: 80px;
+    height: 34px;
+    background-color: #4285F4;
+    border-radius: 48px;
+}
+
+.searchForm__button-icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: text-top;
+}

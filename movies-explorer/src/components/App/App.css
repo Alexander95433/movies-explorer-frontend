@@ -1,7 +1,7 @@
 html {
     scroll-behavior: smooth;
   }
-  
+
 body {
     max-width: 1280px;
     margin: auto;
@@ -21,6 +21,10 @@ body {
 @import url(../Main/Techs/Techs.css);
 @import url(../Main/AboutMe/AboutMe.css);
 @import url(../Main/Portfolio/Portfolio.css);
+
+/*Movies*/
+@import url(../Movies/Movies.css);
+@import url(../Movies/SearchForm/SearchForm.css);
 
 /*Footer*/
 @import url(../Sandbox/Footer/Footer.css);
