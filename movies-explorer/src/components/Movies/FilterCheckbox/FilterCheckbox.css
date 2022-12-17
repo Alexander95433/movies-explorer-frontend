@@ -1,14 +1,42 @@
+@import url(../../Sandbox/SandboxCss/animation.css);
+
 .filterCheckbox__checkbox-wrapper {
     display: flex;
+    align-items: center;
     gap: 14px;
-    margin: 33px 0 48px;
+    margin: 33px 0 48px 20px;
 }
 
-.filterCheckbox__checkbox {
-margin: 0;
 
+.filterCheckbox__checkbox {
+    position: absolute;
+    opacity: 0;
+    display: none;
+}
+
+.filterCheckbox__checkbox+label::before {
+    content: '';
+    display: flex;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 16px;
+    height: 16px;
+    background-color: gray;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+.filterCheckbox__checkbox:checked+label::before {
+    animation: click-to-checked-on .3s ease-in-out;
+    transform: scale(1.05);
+    background-color: #3ddc84;
+}
+
+.filterCheckbox__checkbox:not(checked)+label::before {
+    animation: click-to-checked-of .3s ease-in-out;
 }
 
 .filterCheckbox__checkbox-subtitle {
-margin: 0;
+    margin: 0;
 }

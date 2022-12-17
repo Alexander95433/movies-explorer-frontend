@@ -46,14 +46,24 @@
 }
 
 .searchForm__button {
-    /* position: absolute;
-    top: 87px;
-    right: 0; */
-
     width: 80px;
     height: 34px;
-    background-color: #4285F4;
     border-radius: 48px;
+    cursor: pointer;
+    transition: .15s linear;
+    background-color: #4285F4;
+    animation: standard-animation-of .15s ease, fade-out 0.15s linear; 
+}
+
+.searchForm__button:hover {
+    opacity: .65;
+}
+
+.searchForm__button:active {
+    background-color: #3ddc84;
+    animation: standard-animation .15s ease, fade-out 0.15s linear; 
+    transform: scale(.92);
+    transition: .15s linear;
 }
 
 .searchForm__button-icon {

@@ -15,16 +15,11 @@ body {
 
 /*main*/
 @import url(../Main/Main.css);
-@import url(../Main/Promo/Promo.css);
-@import url(../Main/NavTab/NavTab.css);
-@import url(../Main/AboutProject/AboutProject.css);
-@import url(../Main/Techs/Techs.css);
-@import url(../Main/AboutMe/AboutMe.css);
-@import url(../Main/Portfolio/Portfolio.css);
+
 
 /*Movies*/
 @import url(../Movies/Movies.css);
-@import url(../Movies/SearchForm/SearchForm.css);
+
 
 /*Footer*/
 @import url(../Sandbox/Footer/Footer.css);

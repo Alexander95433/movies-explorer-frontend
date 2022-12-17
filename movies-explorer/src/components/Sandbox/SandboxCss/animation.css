@@ -1,0 +1,30 @@
+@keyframes click-to-checked-on {
+  from { transform: scale(1); }
+  50% { transform: scale(.8); }
+  to { transform: scale(1.05); }
+}
+
+@keyframes click-to-checked-of {
+  from { transform: scale(1.05); }
+  50% { transform: scale(.8); }
+  to { transform: scale(1);  }
+}
+
+@keyframes standard-animation {
+  from { transform: scale(1); }
+  to { transform: scale(.92); 
+       background-color: #3ddc84; 
+      }
+}
+
+@keyframes standard-animation-of {
+  from { background-color: #3ddc84;
+         transform: scale(.92);
+  }
+  to { transform: scale(1); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

@@ -1,9 +1,16 @@
 
-function FilterCheckbox() {
+function FilterCheckbox({value, onChange}) {
     return (
-        <div className="filterCheckbox__checkbox-wrapper">
-            <input className="filterCheckbox__checkbox" type="checkbox"/>
-            <p className="filterCheckbox__checkbox-subtitle">Короткометражки</p>
+        <div className="filterCheckbox__checkbox-wrapper" >
+            <input 
+            className="filterCheckbox__checkbox" type="checkbox"
+            name="shortsCheckbox"
+            id="shortsCheckbox" 
+            checked={value}
+            onChange={onChange}
+            />
+            <label for='shortsCheckbox'></label>
+            <span className="filterCheckbox__checkbox-subtitle">Короткометражки</span>
         </div>
     );
 };

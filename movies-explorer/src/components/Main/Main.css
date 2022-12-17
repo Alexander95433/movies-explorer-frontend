@@ -1,2 +1,6 @@
-.main-page {
-}
+@import url(../Main/Promo/Promo.css);
+@import url(../Main/NavTab/NavTab.css);
+@import url(../Main/AboutProject/AboutProject.css);
+@import url(../Main/Techs/Techs.css);
+@import url(../Main/AboutMe/AboutMe.css);
+@import url(../Main/Portfolio/Portfolio.css);
