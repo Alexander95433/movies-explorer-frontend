@@ -1,0 +1,5 @@
+.moviesCardList__elements-box{
+    display: grid;
+    grid-template-columns: repeat(3, min-content);
+    gap: 24px;
+}

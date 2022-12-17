@@ -1,10 +1,15 @@
+import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList() {
+
+function MoviesCardList({ cards }) {
     return (
-        <section>
-
+        // <section className="element">
+        //     {cards.map((item) => (<MoviesCard card={item} />))}
+        // </section>
+    <section className="moviesCardList__elements-box">
+            <MoviesCard />
         </section>
-    );
+    )
 };
 
 export default MoviesCardList;

@@ -11,9 +11,9 @@
 }
 
 @keyframes standard-animation {
-  from { transform: scale(1); }
+  from { background-color: #3ddc84;
+    transform: scale(1); }
   to { transform: scale(.92); 
-       background-color: #3ddc84; 
       }
 }
 
@@ -27,4 +27,18 @@
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+@keyframes standard-like-on {
+  from {  transform: scale(1); }
+    25% { transform: scale(.6); }
+    50% { transform: scale(1); }
+    75% { transform: scale(.75);}
+  to { transform: scale(1);  }
+}
+
+@keyframes standard-like-of {
+  from {  transform: scale(1); }
+    25% { transform: scale(.75); }
+  to { transform: scale(1);  }
 }

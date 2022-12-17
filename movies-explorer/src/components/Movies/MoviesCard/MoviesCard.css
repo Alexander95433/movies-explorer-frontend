@@ -1,0 +1,62 @@
+@import url(../../Sandbox/SandboxCss/animation.css);
+
+.moniesCard__element {
+    width: 364px;
+    min-height: 281px;
+    background-color: #222222;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+}
+
+.moniesCard__image {
+    width: 364px;
+    height: 203px;
+}
+
+.moniesCard__subtitle-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 16px 0;
+}
+
+.moniesCard__title {
+    margin: 0;
+    font-size: 13px;
+    line-height: 16px;
+    color: #FFFFFF;
+}
+
+.moniesCard__button-like-of {
+    margin: 0;
+    width: 16px;
+    height: 14px;
+    background-image: url(../../../image/like-of.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: #222222;
+    border: none;
+    transition: .15s linear;
+    animation: standard-like-of .2s linear; 
+    
+}
+
+.moniesCard__button-like_on {
+    background-image: url(../../../image/like-on.png);
+    animation: standard-like-on .5s linear; 
+}
+
+
+.moniesCard__time {
+    margin: 17px 0 0 16px;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    display: flex;
+    align-items: center;
+
+    color: #8B8B8B;
+}

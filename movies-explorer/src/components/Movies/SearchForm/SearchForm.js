@@ -6,8 +6,10 @@ function SearchForm() {
         <form className='searchForm__form'>
             <fieldset className='searchForm__fildset'>
                 <div className='searchForm__input-wrapper'>
-                    <input className='searchForm__input' placeholder="Фильмы"></input>
-                    <button className='searchForm__button'><img className='searchForm__button-icon' src={buttonIcon} /></button>
+                    <input className='searchForm__input' placeholder="Фильмы"
+                      id="inputSearchMovieId" name="inputSearchMovieName" type="text"
+                    ></input>
+                    <button className='searchForm__button' type="submit"><img className='searchForm__button-icon' src={buttonIcon} /></button>
                 </div>
                 <FilterCheckbox />
             </fieldset>
