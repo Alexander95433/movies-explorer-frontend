@@ -17,10 +17,11 @@ body {
 /*main*/
 @import url(../Main/Main.css);
 
-
 /*Movies*/
 @import url(../Movies/Movies.css);
 
+/*SavedMovies*/
+@import url(../SavedMovies/SavedMovies.css);
 
 /*Footer*/
 @import url(../Sandbox/Footer/Footer.css);

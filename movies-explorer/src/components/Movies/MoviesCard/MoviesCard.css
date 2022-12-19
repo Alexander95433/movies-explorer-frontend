@@ -1,8 +1,7 @@
 @import url(../../Sandbox/SandboxCss/animation.css);
 
 .moniesCard__element {
-    width: 364px;
-    min-height: 281px;
+    max-width: 364px;
     background-color: #222222;
 
     font-family: 'Inter';
@@ -11,8 +10,8 @@
 }
 
 .moniesCard__image {
-    width: 364px;
-    height: 203px;
+    width: 100%;
+    max-height: 203px;
 }
 
 .moniesCard__subtitle-box {
@@ -31,6 +30,7 @@
 
 .moniesCard__button-like-of {
     margin: 0;
+    padding: 0;
     width: 16px;
     height: 14px;
     background-image: url(../../../image/like-of.png);
@@ -40,18 +40,18 @@
     background-color: #222222;
     border: none;
     transition: .15s linear;
-    animation: standard-like-of .2s linear; 
-    
+    animation: standard-like-of .2s linear;
+
 }
 
 .moniesCard__button-like_on {
     background-image: url(../../../image/like-on.png);
-    animation: standard-like-on .5s linear; 
+    animation: standard-like-on .5s linear;
 }
 
 
 .moniesCard__time {
-    margin: 17px 0 0 16px;
+    margin: 17px 0 16px 16px;
     font-weight: 400;
     font-size: 11px;
     line-height: 13px;
@@ -59,4 +59,24 @@
     align-items: center;
 
     color: #8B8B8B;
+}
+
+.moniesCard__delete-card {
+    margin: 0;
+    padding: 0;
+    width: 7px;
+    height: 7px;
+    border: none;
+    background-image: url(../../../image/delete-movies-icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: #222222;
+    transform: scale(1.5) .15s linear;
+    transition: .3s linear;
+    cursor: pointer;
+}
+.moniesCard__delete-card:hover {
+    transform: scale(1.5) rotate(90deg);
+    
 }

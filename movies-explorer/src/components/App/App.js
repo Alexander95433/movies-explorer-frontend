@@ -7,25 +7,28 @@ import './App.css';
 import Header from '../Sandbox/Header/Header';
 import Main from '../Main/Main'
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 import Footer from '../Sandbox/Footer/Footer';
 
 function App() {
   return (
     <BrowserRouter>
-    <Header />
-    <Switch>
-      <Route exact  path='/'>
-        <Main />
-      </Route>
-      <Route path='/movies'>
-        <Movies />
-      </Route>
-      <React path='/saved-movies'></React>
-      <React path='/profile'></React>
-      <React path='/signin'></React>
-      <React path='/signup'></React>
-    </Switch>
-    <Footer />
+      <Header />
+      <Switch>
+        <Route exact path='/'>
+          <Main />
+        </Route>
+        <Route path='/movies'>
+          <Movies />
+        </Route>
+        <Route path='/saved-movies'>
+          <SavedMovies />
+        </Route>
+        <Route path='/profile'></Route>
+        <Route path='/signin'></Route>
+        <Route path='/signup'></Route>
+      </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

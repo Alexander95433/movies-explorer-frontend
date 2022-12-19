@@ -1,0 +1,6 @@
+.savedMovies__page {
+    padding: 0 70px 0;
+    background-color: #202020;
+}
+
+@import url(../SavedMovies/MoviesCardList/MoviesCardList.css);
