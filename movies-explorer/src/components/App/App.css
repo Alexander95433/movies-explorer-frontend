@@ -23,5 +23,8 @@ body {
 /*SavedMovies*/
 @import url(../SavedMovies/SavedMovies.css);
 
+/*Profile*/
+@import url(../Profile/Profile.css);
+
 /*Footer*/
 @import url(../Sandbox/Footer/Footer.css);

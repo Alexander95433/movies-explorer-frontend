@@ -6,7 +6,7 @@ import accountIcon from '../../../image/movies-header-icon-account.png'
 function Header() {
     const location = useLocation();
     return (
-            <section className={ location.pathname !== '/saved-movies' ? 'header__background' : 'header__background-movies'}>
+            <section className={ location.pathname !== '/' ?  'header__background-movies' : 'header__background'}>
                 <img className='header__icon' src={headerIcon} />
                 <Switch>
                     <Route exact path={'/'}>
@@ -20,7 +20,7 @@ function Header() {
                             <li className='header__link-box-movies'> <Link className='header__link-movies' to='/movies'>Фильмы</Link>  </li>
                             <li className='header__link-box-movies'> <Link className='header__link-movies header__link-movies_save-film' to='/saved-movies'>Сохранённые фильмы</Link>  </li>
                             <li className='header__link-box-movies'>
-                                <Link className='header__link-account'>Аккаунт <div className='header__movies-icon-box'> <img className='header__movies-icon' src={accountIcon} /></div></Link>
+                                <Link className='header__link-account' to ='/profile'>Аккаунт <div className='header__movies-icon-box'> <img className='header__movies-icon' src={accountIcon} /></div></Link>
                             </li>
                         </nav>
                     </Route>

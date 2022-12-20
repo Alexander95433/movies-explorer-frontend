@@ -8,6 +8,7 @@ import Header from '../Sandbox/Header/Header';
 import Main from '../Main/Main'
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
+import Profile from '../Profile/Profile';
 import Footer from '../Sandbox/Footer/Footer';
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
         <Route path='/saved-movies'>
           <SavedMovies />
         </Route>
-        <Route path='/profile'></Route>
+        <Route path='/profile'>
+          <Profile />
+        </Route>
         <Route path='/signin'></Route>
         <Route path='/signup'></Route>
       </Switch>
