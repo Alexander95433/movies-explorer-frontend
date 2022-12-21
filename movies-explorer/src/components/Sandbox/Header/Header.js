@@ -1,18 +1,25 @@
-import { Route, Link, Switch } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { Route, Link, Switch, useLocation } from 'react-router-dom';
 import headerIcon from '../../../image/header-icon.png'
 import accountIcon from '../../../image/movies-header-icon-account.png'
 
 function Header() {
     const location = useLocation();
+
+    function selectsHidden() {
+        if(location.pathname === '/signup') {return true};
+        if(location.pathname === '/signin') {return true};
+        return false;
+    };
+
     return (
-            <section className={ location.pathname !== '/' ?  'header__background-movies' : 'header__background'}>
+        <div hidden={selectsHidden()}>
+            <section className={ location.pathname !== '/' ?  'header__background-movies' : 'header__background'} >
                 <img className='header__icon' src={headerIcon} />
                 <Switch>
                     <Route exact path={'/'}>
                         <nav className='header__authentication'>
-                            <li className='header__link-box'><Link className='header__link-registration' to='#' >Регистрация</Link></li>
-                            <li className='header__link-box-grin'><Link className='header__link-entrance' to='#' >Войти</Link></li>
+                            <li className='header__link-box'><Link className='header__link-registration' to='/signup' >Регистрация</Link></li>
+                            <li className='header__link-box-grin'><Link className='header__link-entrance' to='/signin' >Войти</Link></li>
                         </nav>
                     </Route>
                     <Route >
@@ -26,7 +33,7 @@ function Header() {
                     </Route>
                 </Switch>
             </section>
-      
+            </div>
     );
 };
 

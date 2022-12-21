@@ -1,7 +1,16 @@
+import { useLocation } from 'react-router-dom';
 
 function Footer() {
+    const location = useLocation();
+
+    function selectsHidden() {
+        if(location.pathname === '/signup') {return true};
+        if(location.pathname === '/signin') {return true};
+        return false;
+    };
+
     return (
-        <section className="footer__background">
+        <section className="footer__background" hidden={selectsHidden()}>
             <p className="footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</p>
             <div className="footer__content-box">
                 <p className="footer__subtitle">© 2022</p>

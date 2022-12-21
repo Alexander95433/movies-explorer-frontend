@@ -26,5 +26,8 @@ body {
 /*Profile*/
 @import url(../Profile/Profile.css);
 
+/*Authentication*/
+@import url(../Authentication/Authentication.css);
+
 /*Footer*/
 @import url(../Sandbox/Footer/Footer.css);

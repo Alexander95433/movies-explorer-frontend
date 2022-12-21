@@ -9,9 +9,13 @@ import Main from '../Main/Main'
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
+import Register from '../Authentication/Register/Register';
+import Login from '../Authentication/Login/Login';
 import Footer from '../Sandbox/Footer/Footer';
 
 function App() {
+ 
+
   return (
     <BrowserRouter>
       <Header />
@@ -28,8 +32,12 @@ function App() {
         <Route path='/profile'>
           <Profile />
         </Route>
-        <Route path='/signin'></Route>
-        <Route path='/signup'></Route>
+        <Route path='/signin'>
+          <Login />
+        </Route>
+        <Route path='/signup'>
+          <Register />
+        </Route>
       </Switch>
       <Footer />
     </BrowserRouter>

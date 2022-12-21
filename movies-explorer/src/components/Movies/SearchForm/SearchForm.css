@@ -62,7 +62,7 @@
 .searchForm__button:active {
     background-color: #3ddc84;
     animation: standard-animation .15s ease, fade-out 0.15s linear; 
-    transform: scale(.92);
+    transform: scale(.95);
     transition: .15s linear;
 }
 
