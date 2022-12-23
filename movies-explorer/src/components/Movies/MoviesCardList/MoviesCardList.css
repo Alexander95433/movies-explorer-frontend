@@ -13,6 +13,7 @@
     grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
     grid-auto-flow: row;
     gap: 24px;
+    margin-bottom: 10px;
 }
 
 .moviesCardList__more-videos-button {
@@ -43,4 +44,12 @@
     animation: standard-animation .15s ease, fade-out 0.15s linear;
     transform: scale(.92);
     background-color: #3ddc84;
+}
+
+@media screen and (max-width: 768px) {
+    .moviesCardList__elements-box {
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+    
 }

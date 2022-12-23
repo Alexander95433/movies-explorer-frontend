@@ -15,7 +15,7 @@
 }
 
 .authentication__title-box {
-    width: 30.94%
+    max-width: 369px;
 }
 
 .authentication__image {

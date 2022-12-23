@@ -7,7 +7,7 @@ function AboutMe() {
                 <h3 className="title">Студент</h3>
             </div>
             <article className="aboutMe__content-box">
-                <div>
+                <div className="aboutMe__text-pox">
                     <h2 className="aboutMe__name">Алуксандр</h2>
                     <p className="aboutMe__name-subtitle">Фронтенд-разработчик, 30 лет</p>
                     <p className="aboutMe__about-student">Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена

@@ -52,9 +52,14 @@
     color: #EE3465;
 }
 
+
+.authForm__button-box {
+    text-align: center;
+}
+
 .authForm__button {
     width: 100%;
-    margin: 134px 0 0;
+    margin: 134px 0 0; 
     height: 45px;
     background-color: #4285F4;
     border-radius: 3px;
@@ -68,6 +73,10 @@
     transition: .15s linear;
 }
 
+.authForm__button_login {
+    margin: 221px 0 0; 
+}
+
 .authForm__button:active {
     animation: standard-animation .15s ease, fade-out 0.15s linear;
     background-color: #3ddc84;
@@ -79,7 +88,8 @@
     transition: .15s linear;
 }
 
-.authForm__subrirle-link {
+.authForm__subtitle-link {
+    margin: 16px 0 0;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;

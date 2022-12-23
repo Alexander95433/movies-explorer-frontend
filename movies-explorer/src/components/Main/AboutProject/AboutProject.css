@@ -4,19 +4,6 @@
     background-color: #202020;
 }
 
-.title-border {
-    border-bottom: solid 1px #DADADA;
-    padding-bottom: 23px;
-}
-
-.title {
-    margin: 0;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 27px;
-    letter-spacing: -0.04em;
-}
 
 .aboutProject__lists-wrapper {
     margin-top: 70px;
@@ -102,4 +89,11 @@
 .aboutProject__plan-subtitle-bottom {
     margin: 0;
     font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+    .aboutProject__background {
+        padding: 90px 50px;
+    }
+    
 }

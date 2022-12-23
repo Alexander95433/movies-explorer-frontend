@@ -1,8 +1,12 @@
+@import url(../../vendor/normalize.css);
+@import url(../../vendor/fonts/Inter_Web/inter.css);
+
 html {
     scroll-behavior: smooth;
   }
 
 body {
+  position: relative;
     max-width: 1280px;
     margin: auto;
     font-family: 'Inter';
@@ -10,7 +14,7 @@ body {
     background-color: black;
 }
 
-
+@import url(../Sandbox/BurgerMenu/BurgerMenu.css);
 /*Header*/
 @import url(../Sandbox/Header/Header.css);
 
@@ -31,3 +35,6 @@ body {
 
 /*Footer*/
 @import url(../Sandbox/Footer/Footer.css);
+
+/*NotFoundPage*/
+@import url(../Sandbox/NotFoundPage/NotFoundPage.css);

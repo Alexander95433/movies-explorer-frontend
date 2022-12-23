@@ -48,6 +48,7 @@
 .searchForm__button {
     width: 80px;
     height: 34px;
+    border: none;
     border-radius: 48px;
     cursor: pointer;
     transition: .15s linear;
@@ -70,4 +71,8 @@
     width: 20px;
     height: 20px;
     vertical-align: text-top;
+}
+
+@media screen and (max-width: 768px) {
+ 
 }

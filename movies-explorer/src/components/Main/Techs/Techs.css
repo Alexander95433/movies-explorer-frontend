@@ -9,7 +9,7 @@
     font-weight: 400;
 }
 
-.techs__title-box {}
+
 
 .techs__title {
     margin: 90px 0 0;
@@ -33,7 +33,7 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin: 100px 0 0 ;
+    margin: 100px 0 0;
 }
 
 .techs__technologie {
@@ -44,4 +44,31 @@
     height: 60px;
     background-color: #303030;
     border-radius: 10px;
+
+    font-size: 14px;
+    line-height: 17px;
+
+    text-align: center;
+    letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 768px) {
+    .techs__background { 
+        padding: 90px 60px;
+    }
+
+    .techs__subtitle {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .techs__technologie {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+ 
 }

@@ -1,3 +1,9 @@
 .moviesCardList__section_saved-movies {
     padding-bottom: 247px;
 }
+
+@media screen and (max-width: 768px) {
+    .moviesCardList__section_saved-movies {
+        padding-bottom: 140px;
+    }
+}

@@ -117,3 +117,41 @@
     height: 10.67px;
     margin: auto;
 }
+
+.header__burger-button {
+    display: none;
+    position: relative;
+    margin: 0 30px 0;
+    width: 44px;
+    height: 44px;
+    background-image: url(../../../image/burger-image.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: #202020;
+    border: none;
+    transition: .2 linear;
+}
+
+.header__burger-button_close {
+    /* right: 520px; */
+    z-index: 2;
+    background-image: url(../../../image/burger-close.png);
+    transition: .2s linear;
+    
+}
+
+
+@media screen and (max-width: 768px) {
+    .header__icon {
+        margin-left: 30px;
+    }
+    .header__movies {
+        display: none;
+    }
+
+    .header__burger-button {
+        display: block;
+    }
+}
+

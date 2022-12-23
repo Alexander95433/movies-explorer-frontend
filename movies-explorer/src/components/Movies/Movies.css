@@ -1,9 +1,15 @@
+@import url(../Movies/SearchForm/SearchForm.css);
+@import url(../Movies/Preloader/Preloader.css);
+@import url(../Movies/MoviesCardList/MoviesCardList.css);
+@import url(../Movies/MoviesCard/MoviesCard.css);
+
 .movies-page {
     background-color: #202020;
     padding: 0 70px 0;
 }
 
-@import url(../Movies/SearchForm/SearchForm.css);
-@import url(../Movies/Preloader/Preloader.css);
-@import url(../Movies/MoviesCardList/MoviesCardList.css);
-@import url(../Movies/MoviesCard/MoviesCard.css);
+@media screen and (max-width: 768px) {
+    .movies-page {
+        padding: 0 30px 0;
+    }
+}

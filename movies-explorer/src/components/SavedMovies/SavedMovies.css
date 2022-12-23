@@ -1,6 +1,12 @@
+@import url(../SavedMovies/MoviesCardList/MoviesCardList.css);
+
 .savedMovies__page {
     padding: 0 70px 0;
     background-color: #202020;
 }
 
-@import url(../SavedMovies/MoviesCardList/MoviesCardList.css);
+@media screen and (max-width: 768px) {
+    .savedMovies__page {
+        padding: 0 30px 0;
+    }
+}

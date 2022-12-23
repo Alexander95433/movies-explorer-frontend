@@ -3,16 +3,33 @@
     padding: 110px 70px 100px;
     background-color: #202020;
 
-    font-family: 'Inter';
     font-style: normal;
     color: #FFFFFF;
     font-weight: 500;
 }
 
+.title-border {
+    border-bottom: solid 1px #DADADA;
+    padding-bottom: 23px;
+}
+
+.title {
+    margin: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: -0.04em;
+}
+
 .aboutMe__content-box {
     display: flex;
-    gap: 270px;
+    justify-content: space-between;
     margin: 66px 0 0;
+}
+
+.aboutMe__text-pox {
+    max-width: 600px;
 }
 
 .aboutMe__name {
@@ -46,4 +63,26 @@
     border-radius: 10px;
     width: 270px;
     height: 327px;
+    margin-left: 49px;
+}
+
+@media screen and (max-width: 768px) {
+    .aboutMe__background {
+        padding: 90px 50px 100px;
+    }
+
+    .aboutMe__name {
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    .aboutMe__about-student {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .aboutMe__portrait { 
+        width: 255px;
+        height: 307px;
+    }
 }

@@ -3,11 +3,14 @@
 .moniesCard__element {
     max-width: 364px;
     background-color: #222222;
+    cursor: pointer;
 
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
 }
+
+
 
 .moniesCard__image {
     width: 100%;
@@ -75,8 +78,12 @@
     transform: scale(1.5) .15s linear;
     transition: .3s linear;
     cursor: pointer;
+    opacity: 0;
 }
-.moniesCard__delete-card:hover {
-    transform: scale(1.5) rotate(90deg);
-    
-}
+    .moniesCard__delete-card_active {
+        transform: scale(1.5) rotate(90deg);
+        opacity: 1;
+        
+    }
+
+

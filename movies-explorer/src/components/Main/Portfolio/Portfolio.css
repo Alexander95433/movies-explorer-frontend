@@ -54,3 +54,20 @@
     width: 20px;
     height: 19px;
 }
+
+@media screen and (max-width: 768px) {
+    .portfolio__background {
+        padding: 0px 50px 90px;
+    }
+
+    .portfolio__link {
+        font-size: 28px;
+        line-height: 50px;
+    }
+
+    .portfolio__image {
+        margin: 0 0 13px;
+        width: 18px;
+        height: 17px;
+    }
+}
