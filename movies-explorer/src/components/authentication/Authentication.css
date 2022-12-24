@@ -1,0 +1,21 @@
+@import url(./AuthForm/AuthForm.css);
+
+.authentication__background {
+    height: 100vh;
+    background-color: #202020;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 432px) {
+    .authentication__background {
+        padding: 0 30px;
+    }
+}

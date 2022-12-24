@@ -1,0 +1,40 @@
+@import url(../../vendor/normalize.css);
+@import url(../../vendor/fonts/Inter_Web/inter.css);
+
+html {
+    scroll-behavior: smooth;
+  }
+
+body {
+  position: relative;
+    max-width: 1280px;
+    margin: auto;
+    font-family: 'Inter';
+    color: #FFFFFF;
+    background-color: #202020;
+}
+
+@import url(../Sandbox/BurgerMenu/BurgerMenu.css);
+/*Header*/
+@import url(../Sandbox/Header/Header.css);
+
+/*main*/
+@import url(../Main/Main.css);
+
+/*Movies*/
+@import url(../Movies/Movies.css);
+
+/*SavedMovies*/
+@import url(../SavedMovies/SavedMovies.css);
+
+/*Profile*/
+@import url(../Profile/Profile.css);
+
+/*Authentication*/
+@import url(../Authentication/Authentication.css);
+
+/*Footer*/
+@import url(../Sandbox/Footer/Footer.css);
+
+/*NotFoundPage*/
+@import url(../Sandbox/NotFoundPage/NotFoundPage.css);

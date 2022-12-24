@@ -1,0 +1,100 @@
+@import url(../FilterCheckbox/FilterCheckbox.css);
+
+.searchForm__form {
+    margin: 0 4px 0;
+    width: 100%;
+    padding-top: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.searchForm__fildset {
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.searchForm__input-wrapper {
+    display: flex;
+    align-items: center;
+    border-bottom: solid 1px #424242;
+    padding-bottom: 13px;
+}
+
+.searchForm__input {
+    width: 100%;
+    background-color: #202020;
+    border: none;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 34px;
+    color: #FFFFFF;
+    outline: none;
+}
+
+.searchForm__input::placeholder {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 34px;
+    color: #8B8B8B;
+}
+
+.searchForm__button {
+    width: 80px;
+    height: 34px;
+    border: none;
+    border-radius: 48px;
+    cursor: pointer;
+    transition: .15s linear;
+    background-color: #4285F4;
+    animation: standard-animation-of .15s ease, fade-out 0.15s linear; 
+    box-sizing: content-box;
+}
+
+.searchForm__button:hover {
+    opacity: .65;
+}
+
+.searchForm__button:active {
+    background-color: #3ddc84;
+    animation: standard-animation .15s ease, fade-out 0.15s linear; 
+    transform: scale(.95);
+    transition: .15s linear;
+}
+
+.searchForm__button-icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: text-top;
+}
+
+@media screen and (max-width: 320px) {
+    .searchForm__form {
+        margin-top: -1px;
+        padding-top: 84px;
+    }
+    
+    .searchForm__input-wrapper {
+        padding-bottom: 9px;
+    }
+    
+    .searchForm__input {
+        width: 68%;
+
+        font-size: 18px;
+        line-height: 22px;
+        color: #8B8B8B;
+    }
+    
+    .searchForm__input::placeholder {
+        font-size: 18px;
+        line-height: 22px;
+    }
+    
+}
