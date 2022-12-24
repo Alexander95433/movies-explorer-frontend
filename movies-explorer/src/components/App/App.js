@@ -38,7 +38,7 @@ function App() {
           <SavedMovies />
         </Route>
         <Route path='/profile'>
-          <Profile />
+          <Profile onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={hendleBurgerButtonClick}/>
         </Route>
         <Route path='/signin'>
           <Login />

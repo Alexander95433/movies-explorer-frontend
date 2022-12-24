@@ -4,6 +4,7 @@
     background-color: #202020;
 
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
 
@@ -36,7 +37,7 @@
 }
 
 .not-found-page__link {
-    margin: 184px 0 0;
+    margin: 0 0 30px ;
     font-size: 14px;
     line-height: 17px;
     text-align: center;
@@ -49,3 +50,4 @@
     opacity: .7;
     transition: .15s linear;
 }
+

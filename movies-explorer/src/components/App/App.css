@@ -11,7 +11,7 @@ body {
     margin: auto;
     font-family: 'Inter';
     color: #FFFFFF;
-    background-color: black;
+    background-color: #202020;
 }
 
 @import url(../Sandbox/BurgerMenu/BurgerMenu.css);

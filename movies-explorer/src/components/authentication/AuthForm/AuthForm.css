@@ -1,7 +1,7 @@
 @import url(../../Sandbox/SandboxCss/animation.css);
+
 .authForm__form {
-    width: 100%;
-    margin: 40px 0 0;
+    max-width: 369px;
 }
 
 .authForm__fieldset {
@@ -10,7 +10,24 @@
     padding: 0;
 }
 
-.authForm__label {  
+.authForm__title {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    margin: 0 0 40px;
+    font-size: 24px;
+    line-height: 29px;
+    color: #FFFFFF;
+}
+
+.authForm__image {
+    width: 38px;
+    height: 38px;
+}
+
+
+.authForm__label {
     padding-bottom: 5px;
     font-weight: 400;
     font-size: 10px;
@@ -42,7 +59,7 @@
     font-weight: 400;
     font-size: 17px;
     line-height: 17px;
-    Letter-spacing: 3px ;
+    Letter-spacing: 3px;
 }
 
 .authForm__span-password-error {
@@ -55,11 +72,14 @@
 
 .authForm__button-box {
     text-align: center;
+    padding-top: 134px;
 }
 
+.authForm__button-box_login {
+    padding-top: 221px;
+}
 .authForm__button {
     width: 100%;
-    margin: 134px 0 0; 
     height: 45px;
     background-color: #4285F4;
     border-radius: 3px;
@@ -73,9 +93,6 @@
     transition: .15s linear;
 }
 
-.authForm__button_login {
-    margin: 221px 0 0; 
-}
 
 .authForm__button:active {
     animation: standard-animation .15s ease, fade-out 0.15s linear;
@@ -98,7 +115,6 @@
 }
 
 .authForm__link {
-    margin: 16px 0 70px;
     text-decoration: none;
     font-weight: 400;
     font-size: 14px;
@@ -111,4 +127,43 @@
 .authForm__link:hover {
     opacity: .75;
     transition: .15s linear;
+}
+
+@media screen and (max-width: 432px) {
+    .authForm__form {
+    }
+    .authForm__title {
+        gap: 50px;
+        margin: 0 0 80px;
+        text-align: center;
+    }
+
+    .authForm__image {
+        width: 38px;
+        height: 38px;
+        align-self: center;
+    }
+    
+    .authForm__subtitle-link {
+        margin: 14px 0 0;
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .authForm__link {
+        margin: 0 0 0 7px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .authForm__button-box {
+        text-align: center;
+        padding-top: 222px;
+        
+    }
+    
+    .authForm__button-box_login {
+        padding-top: 309px;
+    }
+
 }
