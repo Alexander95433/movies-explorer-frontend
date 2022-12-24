@@ -1,13 +1,12 @@
+import TitleBorderBottom from "../../Sandbox/TitleBorderBottom/TitleBorderBottom";
 import picture from "../../../image/face.png"
 
 function AboutMe() {
     return (
         <section id="aboutMe" className="aboutMe__background">
-            <div className="title-border">
-                <h3 className="title">Студент</h3>
-            </div>
+            <TitleBorderBottom onTitle ={'Студент'}/>
             <article className="aboutMe__content-box">
-                <div className="aboutMe__text-pox">
+                <div className="aboutMe__text-box">
                     <h2 className="aboutMe__name">Алуксандр</h2>
                     <p className="aboutMe__name-subtitle">Фронтенд-разработчик, 30 лет</p>
                     <p className="aboutMe__about-student">Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена

@@ -1,4 +1,6 @@
 .burgerMenu__wrapper {
+     /* display: block;  */
+    visibility: visible;
     position: absolute;
     top: 0;
     right: 0;
@@ -13,8 +15,9 @@
  }
 
  .burgerMenu__wrapper_hidden {
+    /* display: none;  */
     visibility: hidden;
-    transition: visibility .3s,opacity .3s linear;
+    transition: display .3s,opacity .3s linear;
     opacity: 0;
  }
 

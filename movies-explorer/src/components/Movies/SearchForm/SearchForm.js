@@ -11,7 +11,7 @@ function SearchForm() {
         <form className='searchForm__form'>
             <fieldset className='searchForm__fildset'>
                 <div className='searchForm__input-wrapper'>
-                    <input className='searchForm__input' placeholder="Фильмы"
+                    <input className='searchForm__input' placeholder="Фильм"
                         id="inputSearchMovieId" name="inputSearchMovieName" type="text"
                     ></input>
                     <button onClick={ hendleSubmit } className='searchForm__button' type="submit"><img className='searchForm__button-icon' src={buttonIcon} /></button>

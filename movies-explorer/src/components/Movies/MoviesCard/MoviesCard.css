@@ -80,10 +80,34 @@
     cursor: pointer;
     opacity: 0;
 }
-    .moniesCard__delete-card_active {
-        transform: scale(1.5) rotate(90deg);
-        opacity: 1;
-        
+
+.moniesCard__delete-card_active {
+    transform: scale(1.5) rotate(90deg);
+    opacity: 1;
+
+}
+
+
+@media screen and (max-width: 320px) {
+
+    .moniesCard__subtitle-box {
+        margin: 14px 24px 0;
     }
 
+    .moniesCard__title {
+        font-size: 12px;
+        line-height: 15px;
+    }
 
+    .moniesCard__button-like-of {
+        width: 14px;
+        height: 12px;
+    
+    }
+    .moniesCard__time {
+        margin: 14px 0 14px 24px;
+        font-size: 10px;
+        line-height: 12px;
+    }
+
+}

@@ -14,11 +14,17 @@
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
-    text-decoration-line: underline;
     color: #FFFFFF;
     margin-left: 40px;
 }
 
 .nav-tab__link:first-child {
     margin-left: 0;
+}
+
+@media screen and (max-width: 320px) {
+    .nav-tab__link {
+        font-size: 11px;
+        margin-left: 24px;
+    }
 }

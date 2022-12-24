@@ -1,3 +1,5 @@
+@import url(../../Sandbox/TitleBorderBottom/TitleBorderBottom.css);
+
 .aboutMe__background {
     max-width: 1280px;
     padding: 110px 70px 100px;
@@ -8,27 +10,13 @@
     font-weight: 500;
 }
 
-.title-border {
-    border-bottom: solid 1px #DADADA;
-    padding-bottom: 23px;
-}
-
-.title {
-    margin: 0;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 27px;
-    letter-spacing: -0.04em;
-}
-
 .aboutMe__content-box {
     display: flex;
     justify-content: space-between;
     margin: 66px 0 0;
 }
 
-.aboutMe__text-pox {
+.aboutMe__text-box {
     max-width: 600px;
 }
 
@@ -81,8 +69,94 @@
         line-height: 18px;
     }
 
-    .aboutMe__portrait { 
+    .aboutMe__portrait {
         width: 255px;
         height: 307px;
     }
 }
+
+@media screen and (max-width: 625px) {
+    .aboutMe__background {
+        padding: 90px 50px 70px;
+    }
+
+    .aboutMe__content-box {
+        flex-direction: column-reverse;
+        margin: 60px 0 0;
+    }
+
+    .aboutMe__text-box {
+        max-width: 600px;
+    }
+    .aboutMe__name {
+        margin: 60px 0 0;
+    }
+
+    .aboutMe__name-subtitle {
+        margin: 40px 0 0;
+    }
+
+    .aboutMe__about-student {
+        margin: 20px 0 0;
+    }
+    .aboutMe__github {
+        margin: 40px 0 0;
+    }
+    .aboutMe__portrait {
+        width: 270px;
+        height: min-content;
+        margin-left: 0;
+    }
+
+}
+
+@media screen and (max-width: 320px) {
+    .aboutMe__background {
+        padding: 70px 17px 70px;
+    }
+
+    .aboutMe__content-box {
+        flex-direction: column-reverse;
+        margin: 60px 0 0;
+    }
+
+    .aboutMe__text-box {
+        max-width: 600px;
+    }
+
+    .aboutMe__name {
+        margin: 40px 0 0;
+        font-size: 30px;
+        line-height: 36px;
+    }
+
+    .aboutMe__name-subtitle {
+        margin: 20px 0 0;
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .aboutMe__about-student {
+        margin: 20px 0 0;
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .aboutMe__github {
+        margin: 40px 0 0;
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .aboutMe__portrait {
+        width: 100%;
+        height: min-content;
+        margin-left: 0;
+    }
+
+
+}
+
+
+
+

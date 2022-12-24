@@ -13,3 +13,9 @@
         padding: 0 30px 0;
     }
 }
+
+@media screen and (max-width: 320px) {
+    .movies-page {
+        padding: 0 10px 0;
+    }
+}

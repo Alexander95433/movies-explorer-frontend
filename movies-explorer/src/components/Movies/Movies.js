@@ -13,7 +13,8 @@ function Movies(props) {
         <>
           <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} />
             <section className="movies-page">
-                <SearchForm /> {loading ? <Preloader /> : <MoviesCardList cards={cards} />}
+                <SearchForm /> 
+                {loading ? <Preloader /> : <MoviesCardList cards={cards} />}
             </section>
             <Footer />
         </>

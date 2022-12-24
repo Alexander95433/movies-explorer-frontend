@@ -1,6 +1,7 @@
 @import url(../FilterCheckbox/FilterCheckbox.css);
 
 .searchForm__form {
+    margin: 0 4px 0;
     width: 100%;
     padding-top: 70px;
     display: flex;
@@ -16,8 +17,7 @@
 
 .searchForm__input-wrapper {
     display: flex;
-    align-self: auto;
-    align-items: self-end;
+    align-items: center;
     border-bottom: solid 1px #424242;
     padding-bottom: 13px;
 }
@@ -54,6 +54,7 @@
     transition: .15s linear;
     background-color: #4285F4;
     animation: standard-animation-of .15s ease, fade-out 0.15s linear; 
+    box-sizing: content-box;
 }
 
 .searchForm__button:hover {
@@ -73,6 +74,27 @@
     vertical-align: text-top;
 }
 
-@media screen and (max-width: 768px) {
- 
+@media screen and (max-width: 320px) {
+    .searchForm__form {
+        margin-top: -1px;
+        padding-top: 84px;
+    }
+    
+    .searchForm__input-wrapper {
+        padding-bottom: 9px;
+    }
+    
+    .searchForm__input {
+        width: 68%;
+
+        font-size: 18px;
+        line-height: 22px;
+        color: #8B8B8B;
+    }
+    
+    .searchForm__input::placeholder {
+        font-size: 18px;
+        line-height: 22px;
+    }
+    
 }

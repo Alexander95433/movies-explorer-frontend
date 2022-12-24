@@ -1,11 +1,9 @@
-
+import TitleBorderBottom from "../../Sandbox/TitleBorderBottom/TitleBorderBottom"
 
 function AboutProject() {
     return (
         <section id="aboutProject" className="aboutProject__background">
-            <div className="title-border">
-                <h3 className="title">О проекте</h3>
-            </div>
+            <TitleBorderBottom onTitle ={'О проекте'}/>
             <div className="aboutProject__lists-wrapper">
                 <ul className="aboutProject__list">
                     <li className="aboutProject__list-title">Дипломный проект включал 5 этапов</li>
@@ -27,7 +25,7 @@ function AboutProject() {
                 </div>
             </div>
 
-            <div className="aboutProject__plan">
+            <div className="aboutProject__plan aboutProject__plan_bottom">
                 <div className="aboutProject__plan-element aboutProject__plan-element_bottom">
                     <p className="aboutProject__plan-subtitle-bottom">Back-end</p>
                 </div>

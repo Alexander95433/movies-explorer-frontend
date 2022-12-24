@@ -1,0 +1,28 @@
+.title-border {
+    border-bottom: solid 1px #DADADA;
+    padding-bottom: 23px;
+}
+.title-border_techs {
+    border-bottom: solid 1px #000000;
+}
+
+.title {
+    margin: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 320px) {
+    .title-border {
+        padding-bottom: 28px;
+    }
+
+    .title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}

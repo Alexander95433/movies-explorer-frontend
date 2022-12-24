@@ -37,7 +37,6 @@
     align-items: center;
     list-style-type: none;
     margin-right: 70px;
-
 }
 
 .header__link-box {}
@@ -51,7 +50,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .header__link-registration {
@@ -134,11 +132,10 @@
 }
 
 .header__burger-button_close {
-    /* right: 520px; */
     z-index: 2;
     background-image: url(../../../image/burger-close.png);
     transition: .2s linear;
-    
+
 }
 
 
@@ -146,6 +143,7 @@
     .header__icon {
         margin-left: 30px;
     }
+
     .header__movies {
         display: none;
     }
@@ -155,3 +153,36 @@
     }
 }
 
+@media screen and (max-width: 320px) {
+    .header__icon {
+        margin-left: 14px;
+    }
+
+    .header__authentication {
+        margin-right: 14px;
+    }
+
+    .header__link-box-grin {
+        width: 54px;
+        height: 26px;
+        margin: 0 0 0 14px;
+    
+    }
+
+    .header__link-registration {
+        font-size: 10px;
+        line-height: 16px;
+    }
+
+    .header__link-entrance {
+        font-size: 10px;
+        line-height: 16px;
+    }
+
+    .header__burger-button {
+        position: relative;
+        margin: 0 14px 0 ;
+    }
+
+
+}
