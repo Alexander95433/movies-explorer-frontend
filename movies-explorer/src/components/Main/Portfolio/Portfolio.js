@@ -7,14 +7,14 @@ function Portfolio() {
 
             <nav className="portfolio__links">
                 <li className="portfolio__link-box">
-                    <a className='portfolio__link'  href='https://alexander95433.github.io/how-to-learn/index.html' target='_blank'>Статичный сайт</a>
-                    <img className='portfolio__image' src={arrow} /></li>
+                    <a className='portfolio__link'  href='https://alexander95433.github.io/how-to-learn/index.html' target='blank'>Статичный сайт</a>
+                    <img className='portfolio__image' src={arrow} alt='Ярлык стрелка'/> </li>
                 <li className="portfolio__link-box">
-                    <a className='portfolio__link' href='https://alexander95433.github.io/russian-travel/index.html' target='_blank'>Адаптивный сайт</a>
-                    <img className='portfolio__image' src={arrow} /></li>
+                    <a className='portfolio__link' href='https://alexander95433.github.io/russian-travel/index.html' target='blank'>Адаптивный сайт</a>
+                    <img className='portfolio__image' src={arrow} alt='Ярлык стрелка'/></li>
                 <li className="portfolio__link-box">
-                    <a className='portfolio__link' href='https://alex-mesto.nomoredomains.icu' target='_blank'>Одностраничное приложение</a>
-                    <img className='portfolio__image' src={arrow} /></li>
+                    <a className='portfolio__link' href='https://alex-mesto.nomoredomains.icu' target='blank'>Одностраничное приложение</a>
+                    <img className='portfolio__image' src={arrow} alt='Ярлык стрелка'/></li>
             </nav>
         </section>
     );

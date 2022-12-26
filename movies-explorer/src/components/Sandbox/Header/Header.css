@@ -129,13 +129,28 @@
     background-color: #202020;
     border: none;
     transition: .2 linear;
+
+    cursor: pointer;
+    transition: .2s linear;
+}
+
+.header__burger-button:hover {
+    transform: scale(.96);
+    transition: .2s linear;
 }
 
 .header__burger-button_close {
     z-index: 2;
     background-image: url(../../../image/burger-close.png);
     transition: .2s linear;
+    cursor: pointer;
 
+}
+
+.header__burger-button_close:hover {
+    transform: scale(.93);
+    rotate: 90deg;
+    transition: .2s linear;
 }
 
 
@@ -143,6 +158,7 @@
     .header__icon {
         margin-left: 30px;
     }
+
     .header__authentication {
         margin-right: 30px;
     }
@@ -169,7 +185,7 @@
         width: 54px;
         height: 26px;
         margin: 0 0 0 14px;
-    
+
     }
 
     .header__link-registration {
@@ -184,7 +200,7 @@
 
     .header__burger-button {
         position: relative;
-        margin: 0 14px 0 ;
+        margin: 0 14px 0;
     }
 
 

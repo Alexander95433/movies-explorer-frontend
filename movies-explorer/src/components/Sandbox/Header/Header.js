@@ -7,7 +7,7 @@ function Header(props) {
 
     return (
                 <section className={location.pathname !== '/' ? 'header__background-movies' : 'header__background'} >
-                    <img className='header__icon' src={headerIcon} />
+                    <img className='header__icon' src={headerIcon} alt='Иконка заголовка'/>
                     <Switch>
                         <Route exact path={'/'}>
                             <nav className='header__authentication'>
@@ -20,7 +20,7 @@ function Header(props) {
                                 <li className='header__link-box-movies'> <Link className='header__link-movies' to='/movies'>Фильмы</Link>  </li>
                                 <li className='header__link-box-movies'> <Link className='header__link-movies header__link-movies_save-film' to='/saved-movies'>Сохранённые фильмы</Link>  </li>
                                 <li className='header__link-box-movies'>
-                                    <Link className='header__link-account' to='/profile'>Аккаунт <div className='header__movies-icon-box'> <img className='header__movies-icon' src={accountIcon} /></div></Link>
+                                    <Link className='header__link-account' to='/profile'>Аккаунт <div className='header__movies-icon-box'> <img className='header__movies-icon' src={accountIcon} alt='Ярлык аккаута'/></div></Link>
                                 </li>
                             </nav>
                             <button className={`header__burger-button ${props.onBurgerHidden ? '' : 'header__burger-button_close'}`} type='button' onClick={props.onBurgerButton} />

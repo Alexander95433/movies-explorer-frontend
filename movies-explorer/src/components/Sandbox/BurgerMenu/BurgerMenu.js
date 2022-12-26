@@ -13,7 +13,7 @@ function BurgerMenu(props) {
                     <li className="burgerMenu__list-element"><Link className="burgerMenu__link" to='/saved-movies'onClick={props.onHendleClickClose} >Сохранённые фильмы</Link></li>
                 </nav>
                 <Link className='burgerMenu__link burgerMenu__link-account' to='/profile' onClick={props.onHendleClickClose}>Аккаунт <div className='burgerMenu__profile-icon-box'>
-                        <img className='burgerMenu__icon' src={accountIcon} />
+                        <img className='burgerMenu__icon' src={accountIcon} alt='Ярлык аккаунта'/>
                     </div></Link>
             </div>
         </section>

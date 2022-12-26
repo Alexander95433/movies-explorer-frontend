@@ -4,7 +4,7 @@ import useForm from '../../Hooks/useForm';
 
 function AuthForm(props) {
     const location = useLocation();
-    const {values, setValue, handleChange }  = useForm();
+    const {values, handleChange }  = useForm();
     
     function hendleSubmit(evt) {
         evt.preventDefault()
@@ -13,7 +13,7 @@ function AuthForm(props) {
     return (
         <form className="authForm__form" id="authForm" name="authForm">
             <fieldset className="authForm__fieldset">
-                <legend className="authForm__title"><img className='authForm__image' src={imageGreenCircle} />
+                <legend className="authForm__title"><img className='authForm__image' src={imageGreenCircle} alt='Логотип сайта'/>
                     Рады видеть!
                 </legend>
                 <label className="authForm__label" htmlFor='inputName'>Имя</label>

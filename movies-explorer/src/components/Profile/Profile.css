@@ -7,6 +7,7 @@
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
+    will-change:contents
 }
 
 .profile__wrapper {}
@@ -54,6 +55,13 @@
     font-size: 11px;
     line-height: 13px;
     color: #FFFFFF;
+    transition: .2s linear;
+}
+
+.profile__input:focus {
+    font-size: 11.5px;
+    transition: .2s linear;
+
 }
 
 .profile__input_name {

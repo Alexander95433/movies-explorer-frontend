@@ -4,7 +4,7 @@ function Promo() {
     return (
         <>
             <section className="promo__background">
-                <img className="promo__image" src={pronoBackgroundImage} />
+                <img className="promo__image" src={pronoBackgroundImage} alt='Логотип Практикума'/>
                  <h1 className='promo__title'>Учебный проект студента факультета Веб-разработки.</h1>
             </section>
         </>
