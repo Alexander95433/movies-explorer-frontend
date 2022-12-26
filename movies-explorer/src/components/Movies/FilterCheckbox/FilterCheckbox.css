@@ -49,7 +49,7 @@
 
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
     .filterCheckbox__checkbox-wrapper {
         flex-direction: row-reverse;
         justify-content: center;

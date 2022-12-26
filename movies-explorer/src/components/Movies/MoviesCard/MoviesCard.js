@@ -19,7 +19,6 @@ function MoviesCard(props) {
         } else {
             setVisible(true)
         }
-        console.log(visible)
     };
 
     return (

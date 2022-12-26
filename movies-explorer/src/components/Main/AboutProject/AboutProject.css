@@ -103,7 +103,7 @@
 
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
     .aboutProject__background {
         max-width: 1280px;
         padding: 70px 18px;

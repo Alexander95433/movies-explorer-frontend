@@ -1,19 +1,21 @@
 import React from 'react';
-
 import AuthForm from '../AuthForm/AuthForm';
+import useForm from '../../Hooks/useForm';
 
 function Register() {
-   //Для проверки работоспособности классов ошибки пароля
-   const [classPasword, setClassPasword] = React.useState(false)
-   const classPaswordTest = `authForm__input ${classPasword ? '' : "authForm__input_password"}`;
-   //----------
+    //Для проверки работоспособности классов ошибки пароля 
+    // Если ввести пароль длинне 4ёх символов выйдет класс ошибки
+    const { values, passwordError, handleChange } = useForm();
+    const classPaswordTest = `authForm__input ${passwordError ? '' : "authForm__input_password"}`;
+
     return (
         <section className="authentication__background">
-                <AuthForm onButtonText={'Зарегистрироваться'}  onSubtitleLink={'Уже зарегистрированы?'} onTextLink={' Войти'} onRouteLink={'/signin'}>
-                <label className="authForm__label" for='inputpassword'>Пароль</label>
-                <input className={classPaswordTest} id='inputpassword' type="password" name="password" value='123456789' minlength="2" maxlength="30" required></input>
-                <span className='authForm__span-password-error' hidden={classPasword}>Что-то пошло не так...</span>
-                 </AuthForm>
+            <AuthForm onButtonText={'Зарегистрироваться'} onSubtitleLink={'Уже зарегистрированы?'} onTextLink={' Войти'} onRouteLink={'/signin'}>
+                <label className="authForm__label" htmlFor='inputpassword'>Пароль</label>
+                <input className={classPaswordTest} id='inputpassword' type="password" name="password" onChange={handleChange}
+                    value={values.password || ''} minLength="2" maxLength="30" required></input>
+                <span className='authForm__span-password-error' hidden={passwordError}>Что-то пошло не так...</span>
+            </AuthForm>
         </section>
     );
 };

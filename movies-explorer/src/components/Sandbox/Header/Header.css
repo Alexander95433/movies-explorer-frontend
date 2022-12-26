@@ -143,6 +143,9 @@
     .header__icon {
         margin-left: 30px;
     }
+    .header__authentication {
+        margin-right: 30px;
+    }
 
     .header__movies {
         display: none;
@@ -153,7 +156,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
     .header__icon {
         margin-left: 14px;
     }

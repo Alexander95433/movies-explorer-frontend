@@ -88,7 +88,7 @@
 }
 
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
 
     .moniesCard__subtitle-box {
         margin: 14px 24px 0;

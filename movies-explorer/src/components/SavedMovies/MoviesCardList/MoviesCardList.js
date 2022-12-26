@@ -7,7 +7,7 @@ function MoviesCardList() {
         <section className='moviesCardList__section moviesCardList__section_saved-movies'>
             <SearchForm />
             <div className="moviesCardList__elements-box">
-            {selectedCards.map((item) => (<MoviesCard card={item} />))}
+            {selectedCards.map((item) => (<MoviesCard key={item._id} card={item} />))}
             </div>
         </section>
     )

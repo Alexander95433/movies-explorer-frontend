@@ -63,7 +63,7 @@
 
 
 .profile__button-edit {
-    width: 100%;
+    width: max-content;
     height: 16px;
     margin: 220px 0 0;
     padding: 0;
@@ -74,10 +74,24 @@
     font-size: 13px;
     line-height: 16px;
     color: #FFFFFF;
+    cursor: pointer;
+    transition: .2s linear;
+}
+
+.profile__button-edit:hover {
+    opacity: .5;
+    transition: .2s linear;
+}
+
+.profile__button-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .profile__button-exit {
-    width: 100%;
+    width: max-content;
     height: 16px;
     margin: 16px 0 70px;
     padding: 0;
@@ -86,6 +100,13 @@
     font-size: 13px;
     line-height: 16px;
     color: #EE3465;
+    cursor: pointer;
+    transition: .2s linear;
+}
+
+.profile__button-exit:hover {
+    opacity: .5;
+    transition: .2s linear;
 }
 
 
@@ -93,7 +114,7 @@
 
     .profile__form {
         width: 300px;
-        height: 100vh;
+        height: 84.69vh;
         margin: 74px 0 0;
         display: flex;
         flex-direction: column;

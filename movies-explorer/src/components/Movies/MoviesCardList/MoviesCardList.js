@@ -11,7 +11,7 @@ function MoviesCardList({ cards }) {
     return (
         <section className="moviesCardList__section" >
             <div className="moviesCardList__elements-box">
-                {cards.slice(0, elementNumber).map((item) => (<MoviesCard card={item} />))}
+                {cards.slice(0, elementNumber).map((item) => (<MoviesCard key={ item._id } card={ item } />))}
             </div>
             <button onClick={hendleMoreVideos} className="moviesCardList__more-videos-button" type="button">Ещё</button>
         </section>

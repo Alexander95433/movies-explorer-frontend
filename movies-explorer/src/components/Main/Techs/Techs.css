@@ -85,7 +85,7 @@
 
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
     .techs__background {
         padding: 70px 18px;
     }

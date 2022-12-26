@@ -110,7 +110,7 @@
 
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
     .aboutMe__background {
         padding: 70px 17px 70px;
     }

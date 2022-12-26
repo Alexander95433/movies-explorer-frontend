@@ -74,7 +74,7 @@
     vertical-align: text-top;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
     .searchForm__form {
         margin-top: -1px;
         padding-top: 84px;

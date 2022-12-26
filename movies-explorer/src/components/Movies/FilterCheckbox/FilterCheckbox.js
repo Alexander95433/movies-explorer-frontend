@@ -9,10 +9,9 @@ function FilterCheckbox({value, onChange}) {
             checked={value}
             onChange={onChange}
             />
-            <label for='shortsCheckbox'></label>
+            <label htmlFor="shortsCheckbox" ></label>
             <span className="filterCheckbox__checkbox-subtitle">Короткометражки</span>
         </div>
     );
 };
-
 export default FilterCheckbox;

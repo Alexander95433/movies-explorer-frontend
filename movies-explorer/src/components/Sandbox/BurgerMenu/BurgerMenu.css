@@ -36,6 +36,7 @@
 }
 
 .burgerMenu__burger_visable {
+    width: 67.799%;
     right: 0;
     transition: .2s linear;
 }
@@ -97,8 +98,25 @@
     margin: auto;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (min-width: 768px) {
+    .burgerMenu__wrapper {
+        position: absolute;
+        visibility: hidden;
+        transition: display .3s, opacity .3s linear;
+        opacity: 0;
+    }
+    .burgerMenu__burger_visable {
+        display: none;
+    }
+}
 
+@media screen and (max-width: 400px) {
+    .burgerMenu__burger_visable {
+        width: 100vw;
+    }
+}
+
+@media screen and (max-width: 320px) {
     .burgerMenu__link-account {
         font-size: 13px;
         line-height: 12px;

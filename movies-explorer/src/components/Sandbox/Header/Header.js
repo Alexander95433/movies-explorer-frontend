@@ -5,14 +5,7 @@ import accountIcon from '../../../image/movies-header-icon-account.png'
 function Header(props) {
     const location = useLocation();
 
-    // function selectsHidden() {
-    //     if (location.pathname === '/signup') { return true };
-    //     if (location.pathname === '/signin') { return true };
-    //     return false;
-    // };
-
     return (
-            // <div hidden={selectsHidden()}>
                 <section className={location.pathname !== '/' ? 'header__background-movies' : 'header__background'} >
                     <img className='header__icon' src={headerIcon} />
                     <Switch>
@@ -34,7 +27,6 @@ function Header(props) {
                         </Route>
                     </Switch>
                 </section>
-            // </div>
     );
 };
 

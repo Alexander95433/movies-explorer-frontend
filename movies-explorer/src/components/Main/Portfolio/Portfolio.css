@@ -72,7 +72,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
 .portfolio__background {
     padding: 0px 14px 70px;
 }
