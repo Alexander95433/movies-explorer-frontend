@@ -1,12 +1,12 @@
 @import url(../../Sandbox/SandboxCss/animation.css);
 
-.moviesCardList__section {
+.movies-cardList__section {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.moviesCardList__elements-box {
+.movies-cardList__elements-box {
     width: 100%;
     display: grid;
     justify-items: center;
@@ -16,7 +16,7 @@
     margin-bottom: 10px;
 }
 
-.moviesCardList__more-videos-button {
+.movies-cardList__more-videos-button {
     width: 320px;
     height: 36px;
     background-color: #2F2F2F;
@@ -36,26 +36,29 @@
     transition: .15s linear;
 }
 
-.moviesCardList__more-videos-button:hover {
+.movies-cardList__more-videos-button:hover {
     opacity: .65;
 }
 
-.moviesCardList__more-videos-button:active {
+.movies-cardList__more-videos-button:active {
     animation: standard-animation .15s ease, fade-out 0.15s linear;
     transform: scale(.92);
     background-color: #3ddc84;
 }
 
 @media screen and (max-width: 768px) {
-    .moviesCardList__elements-box {
+    .movies-cardList__elements-box {
         gap: 30px;
         margin-bottom: 30px;
     }
-
 }
 
 @media screen and (max-width: 400px) {
-    .moviesCardList__elements-box {
+    .movies-cardList__more-videos-button {
+        width: 240px;
+    }
+
+    .movies-cardList__elements-box {
         gap: 14px;
         margin-bottom: 30px;
     }

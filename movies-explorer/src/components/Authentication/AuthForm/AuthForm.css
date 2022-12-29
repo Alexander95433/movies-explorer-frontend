@@ -1,16 +1,16 @@
 @import url(../../Sandbox/SandboxCss/animation.css);
 
-.authForm__form {
+.auth-form__form {
     max-width: 369px;
 }
 
-.authForm__fieldset {
+.auth-form__fieldset {
     width: 100%;
     border: none;
     padding: 0;
 }
 
-.authForm__title {
+.auth-form__title {
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -21,13 +21,13 @@
     color: #FFFFFF;
 }
 
-.authForm__image {
+.auth-form__image {
     width: 38px;
     height: 38px;
 }
 
 
-.authForm__label {
+.auth-form__label {
     padding-bottom: 5px;
     font-weight: 400;
     font-size: 10px;
@@ -35,7 +35,7 @@
     color: #8B8B8B;
 }
 
-.authForm__input {
+.auth-form__input {
     width: 100%;
     background-color: #202020;
     border-right: none;
@@ -51,11 +51,15 @@
 
 }
 
-.authForm__input:last-of-type {
+.auth-form__input:focus {
+    border-bottom: solid 1px #3ddc84;
+}
+
+.auth-form__input:last-of-type {
     margin: 0;
 }
 
-.authForm__input_password {
+.auth-form__input_password {
     color: #EE3465;
     font-weight: 400;
     font-size: 17px;
@@ -63,7 +67,7 @@
     Letter-spacing: 3px;
 }
 
-.authForm__span-password-error {
+.auth-form__span-password-error {
     font-weight: 400;
     font-size: 10px;
     line-height: 12px;
@@ -71,15 +75,15 @@
 }
 
 
-.authForm__button-box {
+.auth-form__button-box {
     text-align: center;
     padding-top: 134px;
 }
 
-.authForm__button-box_login {
+.auth-form__button-box_login {
     padding-top: 221px;
 }
-.authForm__button {
+.auth-form__button {
     width: 100%;
     height: 45px;
     background-color: #4285F4;
@@ -95,18 +99,18 @@
 }
 
 
-.authForm__button:active {
+.auth-form__button:active {
     animation: standard-animation .15s ease, fade-out 0.15s linear;
     background-color: #3ddc84;
     transform: scale(.95);
 }
 
-.authForm__button:hover {
+.auth-form__button:hover {
     opacity: .75;
     transition: .15s linear;
 }
 
-.authForm__subtitle-link {
+.auth-form__subtitle-link {
     margin: 16px 0 0;
     font-weight: 400;
     font-size: 14px;
@@ -115,7 +119,7 @@
 
 }
 
-.authForm__link {
+.auth-form__link {
     text-decoration: none;
     font-weight: 400;
     font-size: 14px;
@@ -125,45 +129,45 @@
     transition: .15s linear;
 }
 
-.authForm__link:hover {
+.auth-form__link:hover {
     opacity: .75;
     transition: .15s linear;
 }
 
 @media screen and (max-width: 432px) {
-    .authForm__form {
+    .auth-form__form {
     }
-    .authForm__title {
+    .auth-form__title {
         gap: 50px;
         margin: 0 0 80px;
         text-align: center;
     }
 
-    .authForm__image {
+    .auth-form__image {
         width: 38px;
         height: 38px;
         align-self: center;
     }
     
-    .authForm__subtitle-link {
+    .auth-form__subtitle-link {
         margin: 14px 0 0;
         font-size: 12px;
         line-height: 15px;
     }
 
-    .authForm__link {
+    .auth-form__link {
         margin: 0 0 0 7px;
         font-size: 12px;
         line-height: 15px;
     }
 
-    .authForm__button-box {
+    .auth-form__button-box {
         text-align: center;
         padding-top: 222px;
         
     }
     
-    .authForm__button-box_login {
+    .auth-form__button-box_login {
         padding-top: 309px;
     }
 

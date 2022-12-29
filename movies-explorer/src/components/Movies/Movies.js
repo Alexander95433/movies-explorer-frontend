@@ -12,10 +12,10 @@ function Movies(props) {
     return (
         <>
           <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} />
-            <section className="movies-page">
+            <main className="movies-page">
                 <SearchForm /> 
                 {loading ? <Preloader /> : <MoviesCardList cards={cards} />}
-            </section>
+            </main>
             <Footer />
         </>
     );

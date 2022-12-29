@@ -6,9 +6,9 @@ function SavedMovies(props) {
     return (
         <>
             <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} />
-            <section className='savedMovies__page'>
+            <main className='saved-movies__page'>
                 <MoviesCardList />
-            </section>
+            </main>
             <Footer />
         </>
     )

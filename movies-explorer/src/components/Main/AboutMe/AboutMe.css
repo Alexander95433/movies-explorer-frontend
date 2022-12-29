@@ -1,6 +1,6 @@
 @import url(../../Sandbox/TitleBorderBottom/TitleBorderBottom.css);
 
-.aboutMe__background {
+.about-me__background {
     max-width: 1280px;
     padding: 110px 70px 100px;
     background-color: #202020;
@@ -10,17 +10,17 @@
     font-weight: 500;
 }
 
-.aboutMe__content-box {
+.about-me__content-box {
     display: flex;
     justify-content: space-between;
     margin: 66px 0 0;
 }
 
-.aboutMe__text-box {
+.about-me__text-box {
     max-width: 600px;
 }
 
-.aboutMe__name {
+.about-me__name {
     margin: 0;
     font-weight: 400;
     font-size: 50px;
@@ -28,26 +28,26 @@
     letter-spacing: -0.04em;
 }
 
-.aboutMe__name-subtitle {
+.about-me__name-subtitle {
     margin: 18px 0 0;
     font-size: 18px;
     line-height: 20px;
 }
 
-.aboutMe__about-student {
+.about-me__about-student {
     margin: 26px 0 0;
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
 }
 
-.aboutMe__github {
+.about-me__github {
     margin: 99px 0 0;
     font-size: 14px;
     line-height: 17px;
 }
 
-.aboutMe__portrait {
+.about-me__portrait {
     border-radius: 10px;
     width: 270px;
     height: 327px;
@@ -55,54 +55,55 @@
 }
 
 @media screen and (max-width: 768px) {
-    .aboutMe__background {
+    .about-me__background {
         padding: 90px 50px 100px;
     }
 
-    .aboutMe__name {
+    .about-me__name {
         font-size: 40px;
         line-height: 40px;
     }
 
-    .aboutMe__about-student {
+    .about-me__about-student {
         font-size: 12px;
         line-height: 18px;
     }
 
-    .aboutMe__portrait {
+    .about-me__portrait {
         width: 255px;
         height: 307px;
     }
 }
 
-@media screen and (max-width: 625px) {
-    .aboutMe__background {
+
+@media screen and (max-width: 660px) {
+    .about-me__background {
         padding: 90px 50px 70px;
     }
 
-    .aboutMe__content-box {
+    .about-me__content-box {
         flex-direction: column-reverse;
         margin: 60px 0 0;
     }
 
-    .aboutMe__text-box {
+    .about-me__text-box {
         max-width: 600px;
     }
-    .aboutMe__name {
+    .about-me__name {
         margin: 60px 0 0;
     }
 
-    .aboutMe__name-subtitle {
+    .about-me__name-subtitle {
         margin: 40px 0 0;
     }
 
-    .aboutMe__about-student {
+    .about-me__about-student {
         margin: 20px 0 0;
     }
-    .aboutMe__github {
+    .about-me__github {
         margin: 40px 0 0;
     }
-    .aboutMe__portrait {
+    .about-me__portrait {
         width: 270px;
         height: min-content;
         margin-left: 0;
@@ -111,44 +112,44 @@
 }
 
 @media screen and (max-width: 400px) {
-    .aboutMe__background {
+    .about-me__background {
         padding: 70px 17px 70px;
     }
 
-    .aboutMe__content-box {
+    .about-me__content-box {
         flex-direction: column-reverse;
         margin: 60px 0 0;
     }
 
-    .aboutMe__text-box {
+    .about-me__text-box {
         max-width: 600px;
     }
 
-    .aboutMe__name {
+    .about-me__name {
         margin: 40px 0 0;
         font-size: 30px;
         line-height: 36px;
     }
 
-    .aboutMe__name-subtitle {
+    .about-me__name-subtitle {
         margin: 20px 0 0;
         font-size: 11px;
         line-height: 16px;
     }
 
-    .aboutMe__about-student {
+    .about-me__about-student {
         margin: 20px 0 0;
         font-size: 11px;
         line-height: 16px;
     }
 
-    .aboutMe__github {
+    .about-me__github {
         margin: 40px 0 0;
         font-size: 14px;
         line-height: 17px;
     }
 
-    .aboutMe__portrait {
+    .about-me__portrait {
         width: 100%;
         height: min-content;
         margin-left: 0;

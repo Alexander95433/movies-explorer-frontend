@@ -9,7 +9,7 @@ body {
   position: relative;
     max-width: 1280px;
     margin: auto;
-    font-family: 'Inter';
+    font-family: 'Inter, Arial, Helvetica, sans-serif';
     color: #FFFFFF;
     background-color: #202020;
 }

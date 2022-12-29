@@ -1,15 +1,15 @@
-import image1 from "../image/movie1.png";
-import image2 from "../image/movie2.png";
-import image3 from "../image/movie3.png";
-import image4 from "../image/movie4.png";
-import image5 from "../image/movie5.png";
-import image6 from "../image/movie6.png";
-import image7 from "../image/movie7.png";
-import image8 from "../image/movie8.png";
-import image9 from "../image/movie9.png";
-import image10 from "../image/movie10.png";
-import image11 from "../image/movie11.png";
-import image12 from "../image/movie12.png";
+import image1 from "../image/movie1s.svg";
+import image2 from "../image/movie2s.svg";
+import image3 from "../image/movie3s.svg";
+import image4 from "../image/movie4s.svg";
+import image5 from "../image/movie5s.svg";
+import image6 from "../image/movie6s.svg";
+import image7 from "../image/movie7s.svg";
+import image8 from "../image/movie8s.svg";
+import image9 from "../image/movie9s.svg";
+import image10 from "../image/movie10s.svg";
+import image11 from "../image/movie11s.svg";
+import image12 from "../image/movie12s.svg";
 
 export const cards = [
     {

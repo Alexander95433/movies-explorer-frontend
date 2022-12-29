@@ -12,7 +12,7 @@ function Profile(props) {
     return (
         <>
             <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} />
-            <section className="profile__background" >
+            <main className="profile__background" >
                 <form className="profile__form" id="profile" name="profile">
                     <fieldset className="profile__form-fieldset">
                         <legend className="profile__title">Привет, Александр!</legend>
@@ -29,8 +29,7 @@ function Profile(props) {
                         <button className="profile__button-exit" type="button">Выйти из аккаунта</button>
                     </div>
                 </form>
-
-            </section>
+            </main>
         </>
     );
 };

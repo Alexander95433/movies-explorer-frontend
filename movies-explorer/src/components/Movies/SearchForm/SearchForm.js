@@ -1,4 +1,4 @@
-import buttonIcon from '../../../image/movies__dutton-icon.png'
+import buttonIcon from '../../../image/movies__dutton-icon2.svg'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 
 function SearchForm() {
@@ -8,17 +8,15 @@ function SearchForm() {
     }
 
     return (
-        <form className='searchForm__form'>
-            <fieldset className='searchForm__fildset'>
-                <div className='searchForm__input-wrapper'>
-                    <input className='searchForm__input' placeholder="Фильм"
-                        id="inputSearchMovieId" name="inputSearchMovieName" type="text"
-                    ></input>
-                    <button onClick={ hendleSubmit } className='searchForm__button' type="submit"><img className='searchForm__button-icon' src={buttonIcon} /></button>
+        <form className='search-form__form'>
+            <fieldset className='search-form__fildset'>
+                <div className='search-form__input-wrapper'>
+                    <input className='search-form__input' placeholder="Фильм"
+                        id="inputSearchMovieId" name="inputSearchMovieName" type="text" required/>
+                    <button onClick={ hendleSubmit } className='search-form__button' type="submit"><img className='search-form__button-icon' src={buttonIcon} /></button>
                 </div>
                 <FilterCheckbox />
             </fieldset>
-
         </form>
     );
 };

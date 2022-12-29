@@ -25,14 +25,19 @@
 .portfolio__link-box {
     padding-bottom: 20px;
     margin: 20px 0 0;
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: baseline; */
     border-bottom: solid 1px #424242;
     
 }
 
 .portfolio__link {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
     text-decoration: none;
     margin: 0;
     font-size: 30px;

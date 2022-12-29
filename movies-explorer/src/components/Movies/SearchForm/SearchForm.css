@@ -1,6 +1,6 @@
 @import url(../FilterCheckbox/FilterCheckbox.css);
 
-.searchForm__form {
+.search-form__form {
     margin: 0 4px 0;
     width: 100%;
     padding-top: 70px;
@@ -8,21 +8,21 @@
     align-items: center;
 }
 
-.searchForm__fildset {
+.search-form__fildset {
     width: 100%;
     border: none;
     padding: 0;
     margin: 0;
 }
 
-.searchForm__input-wrapper {
+.search-form__input-wrapper {
     display: flex;
     align-items: center;
     border-bottom: solid 1px #424242;
     padding-bottom: 13px;
 }
 
-.searchForm__input {
+.search-form__input {
     width: 100%;
     background-color: #202020;
     border: none;
@@ -36,7 +36,7 @@
     outline: none;
 }
 
-.searchForm__input::placeholder {
+.search-form__input::placeholder {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
@@ -45,7 +45,7 @@
     color: #8B8B8B;
 }
 
-.searchForm__button {
+.search-form__button {
     width: 80px;
     height: 34px;
     border: none;
@@ -57,34 +57,34 @@
     box-sizing: content-box;
 }
 
-.searchForm__button:hover {
+.search-form__button:hover {
     opacity: .65;
 }
 
-.searchForm__button:active {
+.search-form__button:active {
     background-color: #3ddc84;
     animation: standard-animation .15s ease, fade-out 0.15s linear; 
     transform: scale(.95);
     transition: .15s linear;
 }
 
-.searchForm__button-icon {
+.search-form__button-icon {
     width: 20px;
     height: 20px;
     vertical-align: text-top;
 }
 
 @media screen and (max-width: 400px) {
-    .searchForm__form {
+    .search-form__form {
         margin-top: -1px;
         padding-top: 84px;
     }
     
-    .searchForm__input-wrapper {
+    .search-form__input-wrapper {
         padding-bottom: 9px;
     }
     
-    .searchForm__input {
+    .search-form__input {
         width: 68%;
 
         font-size: 18px;
@@ -92,7 +92,7 @@
         color: #8B8B8B;
     }
     
-    .searchForm__input::placeholder {
+    .search-form__input::placeholder {
         font-size: 18px;
         line-height: 22px;
     }

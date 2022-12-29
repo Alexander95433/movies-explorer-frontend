@@ -13,14 +13,14 @@ function Main(props) {
     return (
         <>
             <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} />
-            <section className="main-page">
+            <main className="main-page">
                 <Promo />
                 <NavTab />
                 <AboutProject />
                 <Techs />
                 <AboutMe />
                 <Portfolio />
-            </section>
+            </main>
             <Footer />
         </>
 

@@ -1,11 +1,12 @@
-.burgerMenu__wrapper {
+
+.burger-menu__wrapper {
     overflow: hidden;
     visibility: visible;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     z-index: 1;
     display: flex;
     justify-content: flex-end;
@@ -14,14 +15,14 @@
     transition: visibility .3s, opacity .3s linear;
 }
 
-.burgerMenu__wrapper_hidden {
+.burger-menu__wrapper_hidden {
     position: absolute;
     visibility: hidden;
     transition: display .3s, opacity .3s linear;
     opacity: 0;
 }
 
-.burgerMenu__burger {
+.burger-menu__burger {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,13 +36,13 @@
     transition: .2s linear;
 }
 
-.burgerMenu__burger_visable {
+.burger-menu__burger_visable {
     width: 67.799%;
     right: 0;
     transition: .2s linear;
 }
 
-.burgerMenu__list {
+.burger-menu__list {
     width: 340px;
     margin: 159px 0 0;
     text-align: center;
@@ -53,14 +54,14 @@
 }
 
 
-.burgerMenu__list-element {
+.burger-menu__list-element {
     list-style-type: none;
     margin: 0 0 28px;
     padding: min-content;
 }
 
 
-.burgerMenu__link {
+.burger-menu__link {
     font-size: 18px;
     line-height: 22px;
     color: #FFFFFF;
@@ -70,12 +71,12 @@
 
 }
 
-.burgerMenu__link:hover {
+.burger-menu__link:hover {
     border-bottom: solid 2px #FFFFFF;
 
 }
 
-.burgerMenu__link-account {
+.burger-menu__link-account {
     display: flex;
     gap: 7px;
     margin-bottom: 90px;
@@ -84,7 +85,7 @@
     cursor: pointer;
 }
 
-.burgerMenu__profile-icon-box {
+.burger-menu__profile-icon-box {
     display: flex;
     width: 26px;
     height: 26px;
@@ -92,32 +93,32 @@
     border-radius: 50px;
 }
 
-.burgerMenu__icon {
+.burger-menu__icon {
     width: 10.38px;
     height: 10.67px;
     margin: auto;
 }
 
 @media screen and (min-width: 768px) {
-    .burgerMenu__wrapper {
+    .burger-menu__wrapper {
         position: absolute;
         visibility: hidden;
         transition: display .3s, opacity .3s linear;
         opacity: 0;
     }
-    .burgerMenu__burger_visable {
+    .burger-menu__burger_visable {
         display: none;
     }
 }
 
 @media screen and (max-width: 400px) {
-    .burgerMenu__burger_visable {
+    .burger-menu__burger_visable {
         width: 100vw;
     }
 }
 
 @media screen and (max-width: 320px) {
-    .burgerMenu__link-account {
+    .burger-menu__link-account {
         font-size: 13px;
         line-height: 12px;
     }

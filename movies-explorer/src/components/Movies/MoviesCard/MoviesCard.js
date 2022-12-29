@@ -23,20 +23,20 @@ function MoviesCard(props) {
     return (
 
 
-        <article className='moniesCard__element' onMouseEnter={visableDeleteButton} onMouseLeave={visableDeleteButton}>
-            <img className='moniesCard__image' src={props.card.image} alt='Обложка фильма'/>
-            <div className='moniesCard__subtitle-box'>
-                <h3 className='moniesCard__title'>{props.card.title}</h3>
+        <article className='monies-card__element' onMouseEnter={visableDeleteButton} onMouseLeave={visableDeleteButton}>
+            <img className='monies-card__image' src={props.card.image} alt='Обложка фильма'/>
+            <div className='monies-card__subtitle-box'>
+                <h3 className='monies-card__title'>{props.card.title}</h3>
                 <Switch>
                     <Route exact path={'/movies'}>
-                        <button onClick={hendleClickButton} className={`moniesCard__button-like-of ${clickButton && 'moniesCard__button-like_on'}`} />
+                        <button onClick={hendleClickButton} className={`monies-card__button-like-of ${clickButton && 'monies-card__button-like_on'}`} />
                     </Route>
                     <Route path={'/saved-movies'}>
-                        <button onClick={hendleClickButton} className={`moniesCard__delete-card ${!visible ? '' : 'moniesCard__delete-card_active '}`} />
+                        <button onClick={hendleClickButton} className={`monies-card__delete-card ${!visible ? '' : 'monies-card__delete-card_active '}`} />
                     </Route>
                 </Switch>
             </div>
-            <p className='moniesCard__time'>{props.card.time}</p>
+            <p className='monies-card__time'>{props.card.time}</p>
         </article>
 
 

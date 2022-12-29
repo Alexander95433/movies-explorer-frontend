@@ -1,4 +1,4 @@
-import pronoBackgroundImage  from '../../../image/promo_image.png'
+import pronoBackgroundImage  from '../../../image/promo_image2.svg'
 
 function Promo() {
     return (

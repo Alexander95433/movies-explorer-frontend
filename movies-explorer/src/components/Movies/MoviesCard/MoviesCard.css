@@ -1,6 +1,6 @@
 @import url(../../Sandbox/SandboxCss/animation.css);
 
-.moniesCard__element {
+.monies-card__element {
     max-width: 364px;
     background-color: #222222;
     cursor: pointer;
@@ -13,7 +13,7 @@
     will-change:contents
 }
 
-.moniesCard__element:hover {
+.monies-card__element:hover {
     filter: brightness(120%);
     transform: scale(.995);
     transition: .2s linear;
@@ -21,32 +21,32 @@
 
 
 
-.moniesCard__image {
+.monies-card__image {
     width: 100%;
     max-height: 203px;
     transition: .2s linear;
 }
 
-.moniesCard__subtitle-box {
+.monies-card__subtitle-box {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 16px 16px 0;
 }
 
-.moniesCard__title {
+.monies-card__title {
     margin: 0;
     font-size: 13px;
     line-height: 16px;
     color: #FFFFFF;
 }
 
-.moniesCard__button-like-of {
+.monies-card__button-like-of {
     margin: 0;
     padding: 0;
     width: 16px;
     height: 14px;
-    background-image: url(../../../image/like-of.png);
+    background-image: url(../../../image/like-of2.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -57,17 +57,17 @@
 
 }
 
-.moniesCard__button-like-of:hover {
+.monies-card__button-like-of:hover {
     scale: 1.19;
 }
 
-.moniesCard__button-like_on {
-    background-image: url(../../../image/like-on.png);
+.monies-card__button-like_on {
+    background-image: url(../../../image/like-on2.svg);
     animation: standard-like-on .5s linear;
 }
 
 
-.moniesCard__time {
+.monies-card__time {
     margin: 17px 0 16px 16px;
     font-weight: 400;
     font-size: 11px;
@@ -78,13 +78,13 @@
     color: #8B8B8B;
 }
 
-.moniesCard__delete-card {
+.monies-card__delete-card {
     margin: 0;
     padding: 0;
     width: 7px;
     height: 7px;
     border: none;
-    background-image: url(../../../image/delete-movies-icon.png);
+    background-image: url(../../../image/delete-movies-icon2.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -95,7 +95,7 @@
     opacity: 0;
 }
 
-.moniesCard__delete-card_active {
+.monies-card__delete-card_active {
     transform: scale(1.5) rotate(90deg);
     opacity: 1;
 
@@ -104,21 +104,21 @@
 
 @media screen and (max-width: 400px) {
 
-    .moniesCard__subtitle-box {
+    .monies-card__subtitle-box {
         margin: 14px 24px 0;
     }
 
-    .moniesCard__title {
+    .monies-card__title {
         font-size: 12px;
         line-height: 15px;
     }
 
-    .moniesCard__button-like-of {
+    .monies-card__button-like-of {
         width: 14px;
         height: 12px;
     
     }
-    .moniesCard__time {
+    .monies-card__time {
         margin: 14px 0 14px 24px;
         font-size: 10px;
         line-height: 12px;
