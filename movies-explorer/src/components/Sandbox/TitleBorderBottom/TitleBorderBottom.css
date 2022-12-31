@@ -1,12 +1,12 @@
-.title-border {
+.title-border__wrapper {
     border-bottom: solid 1px #DADADA;
     padding-bottom: 23px;
 }
-.title-border_techs {
+.title-border__wrapper_techs {
     border-bottom: solid 1px #000000;
 }
 
-.title {
+.title-border__title {
     margin: 0;
     font-family: 'Inter';
     font-style: normal;
@@ -17,11 +17,11 @@
 }
 
 @media screen and (max-width: 320px) {
-    .title-border {
+    .title-border__wrapper {
         padding-bottom: 28px;
     }
 
-    .title {
+    .title-border__title {
         font-size: 18px;
         line-height: 22px;
     }

@@ -11,10 +11,10 @@ function Movies(props) {
     const [loading, setLoading] = useState(false)
     return (
         <>
-          <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} />
+            <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} />
             <main className="movies-page">
-                <SearchForm /> 
-                {loading ? <Preloader /> : <MoviesCardList cards={cards} />}
+                    <SearchForm />
+                    {loading ? <Preloader /> : <MoviesCardList cards={cards} />}
             </main>
             <Footer />
         </>

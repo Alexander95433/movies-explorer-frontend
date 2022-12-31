@@ -8,16 +8,18 @@ function SearchForm() {
     }
 
     return (
-        <form className='search-form__form'>
-            <fieldset className='search-form__fildset'>
-                <div className='search-form__input-wrapper'>
-                    <input className='search-form__input' placeholder="Фильм"
-                        id="inputSearchMovieId" name="inputSearchMovieName" type="text" required/>
-                    <button onClick={ hendleSubmit } className='search-form__button' type="submit"><img className='search-form__button-icon' src={buttonIcon} /></button>
-                </div>
-                <FilterCheckbox />
-            </fieldset>
-        </form>
+        <section className='search-form__form-wrapper'>
+            <form className='search-form__form'>
+                <fieldset className='search-form__fildset'>
+                    <div className='search-form__input-wrapper'>
+                        <input className='search-form__input' placeholder="Фильм"
+                            id="inputSearchMovieId" name="inputSearchMovieName" type="text" required />
+                        <button onClick={hendleSubmit} className='search-form__button' type="submit"><img className='search-form__button-icon' src={buttonIcon} /></button>
+                    </div>
+                    <FilterCheckbox />
+                </fieldset>
+            </form>
+        </section>
     );
 };
 

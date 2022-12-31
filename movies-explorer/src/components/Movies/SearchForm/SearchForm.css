@@ -1,7 +1,11 @@
 @import url(../FilterCheckbox/FilterCheckbox.css);
 
+.search-form__form-wrapper {
+    width: 100%;
+}
+
 .search-form__form {
-    margin: 0 4px 0;
+    margin: 0 0 0;
     width: 100%;
     padding-top: 70px;
     display: flex;
@@ -15,17 +19,13 @@
     margin: 0;
 }
 
-.search-form__input-wrapper {
-    display: flex;
-    align-items: center;
-    border-bottom: solid 1px #424242;
-    padding-bottom: 13px;
-}
+ .search-form__input-wrapper {
+    position: relative;
+} 
 
 .search-form__input {
     width: 100%;
     background-color: #202020;
-    border: none;
 
     font-family: 'Inter';
     font-style: normal;
@@ -34,6 +34,17 @@
     line-height: 34px;
     color: #FFFFFF;
     outline: none;
+
+    display: flex;
+    align-items: center;
+    border-bottom: solid 1px #424242;
+    border-right: none;
+    padding-bottom: 13px;
+}
+
+.search-form__input:focus { 
+    border-bottom: solid 1px #3ddc84;
+    
 }
 
 .search-form__input::placeholder {
@@ -46,6 +57,9 @@
 }
 
 .search-form__button {
+    position: absolute;
+    right: 0;
+    top: 0;
     width: 80px;
     height: 34px;
     border: none;
