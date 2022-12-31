@@ -135,8 +135,6 @@
 }
 
 @media screen and (max-width: 432px) {
-    .auth-form__form {
-    }
     .auth-form__title {
         gap: 50px;
         margin: 0 0 80px;
