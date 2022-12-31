@@ -3,7 +3,7 @@ import TitleBorderBottom from "../../Sandbox/TitleBorderBottom/TitleBorderBottom
 function Techs() {
     return (
         <section id="techs" className="techs__background">
-            <TitleBorderBottom onTitle={'Технологии'} classMod={'title-border_techs'} />
+            <TitleBorderBottom onTitle={'Технологии'} classMod={'title-border__wrapper_techs'} />
             <h2 className="techs__title">7 технологий</h2>
             <p className="techs__subtitle">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
             <ul className="techs__technologies-list">

@@ -14,7 +14,7 @@ function Main(props) {
         <>
             <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} />
             <main className="main-page">
-                <Promo />
+                <Promo /> 
                 <NavTab />
                 <AboutProject />
                 <Techs />
