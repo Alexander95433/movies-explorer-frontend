@@ -1,7 +1,7 @@
 
 function Preloader() {
     return (
-        <div class="spinner"></div> 
+        <div className="preloader"></div> 
     );
 };
 

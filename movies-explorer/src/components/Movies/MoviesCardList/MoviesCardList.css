@@ -6,6 +6,16 @@
     align-items: center;
 }
 
+.movies-cardList__not-found-title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 41px;
+    line-height: 169px;
+    text-align: center;
+    color: gray;
+}
+
 .movies-cardList__elements-box {
     width: 100%;
     display: grid;
@@ -51,12 +61,17 @@
         gap: 30px;
         margin-bottom: 30px;
     }
+    .movies-cardList__not-found-title {
+        font-size: 32px;
+    }
 }
 
 @media screen and (max-width: 400px) {
     .movies-cardList__more-videos-button {
         width: 240px;
     }
+
+    .movies-cardList__not-found-title {font-size: 25px;}
 
     .movies-cardList__elements-box {
         gap: 14px;

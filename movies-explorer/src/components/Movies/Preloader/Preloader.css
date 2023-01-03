@@ -1,6 +1,6 @@
 @import url(../../Sandbox/SandboxCss/animation.css);
 
-.spinner{
+.preloader{
     width: 80px;
     height: 80px;
     border: 2px solid #424242;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useState } from 'react';
+import { useState } from "react";
+
 
 import './App.css';
 //import { useHistory } from 'react-router-dom'; authentication
@@ -16,6 +17,22 @@ import NotFoundPage from '../Sandbox/NotFoundPage/NotFoundPage';
 
 function App() {
   const [burgerHidden, setBurgerHidden] = useState(true);
+  // const [loading, setLoading] = useState(true)
+  // const [movies, setMovies] =useState([])
+
+//   useEffect(() => {
+//     moviesApi.getAllMovies()
+//     .then((movies) => {
+//         console.log(movies)
+//         setMovies(movies)
+//     })
+//     .catch(err => console.log(err))
+//     .finally(() => setLoading(false))
+// }, [])
+
+
+
+
 
   function handlerOpeningAndClosingBurgerMenu() {
       if (burgerHidden) { setBurgerHidden(false) }

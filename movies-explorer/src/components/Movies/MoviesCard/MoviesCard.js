@@ -1,6 +1,8 @@
 import { Route, Switch } from 'react-router-dom';
 import { useState } from "react";
 
+import { formaTtime } from '../../../utils/Functions';
+
 function MoviesCard(props) {
     const [clickButton, setclickButton] = useState(false);
     const [visible, setVisible] = useState(false);
@@ -24,9 +26,9 @@ function MoviesCard(props) {
 
 
         <article className='monies-card__element' onMouseEnter={visableDeleteButton} onMouseLeave={visableDeleteButton}>
-            <img className='monies-card__image' src={props.card.image} alt='Обложка фильма'/>
+            <img className='monies-card__image' src={`https://api.nomoreparties.co/${props.card.image.url}`} alt='Обложка фильма'/>
             <div className='monies-card__subtitle-box'>
-                <h3 className='monies-card__title'>{props.card.title}</h3>
+                <h3 className='monies-card__title'>{props.card.nameRU}</h3>
                 <Switch>
                     <Route exact path={'/movies'}>
                         <button onClick={hendleClickButton} className={`monies-card__button-like-of ${clickButton && 'monies-card__button-like_on'}`} />
@@ -36,7 +38,7 @@ function MoviesCard(props) {
                     </Route>
                 </Switch>
             </div>
-            <p className='monies-card__time'>{props.card.time}</p>
+            <p className='monies-card__time'>{formaTtime(props.card.duration)}</p>
         </article>
 
 
