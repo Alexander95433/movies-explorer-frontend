@@ -1,5 +1,5 @@
 
-function FilterCheckbox({ value, onChange }) {
+function FilterCheckbox({hendleCheckbox}) {
     return (
         <div className="filter-checkbox__checkbox-wrapper" >
             <div className="filter-checkbox__toddle">
@@ -7,8 +7,7 @@ function FilterCheckbox({ value, onChange }) {
                 className="filter-checkbox__checkbox" type="checkbox"
                 name="shortsCheckbox"
                 id="shortsCheckbox"
-                checked={value}
-                onChange={onChange}
+                onChange={hendleCheckbox}
             />
             
                 <label htmlFor="shortsCheckbox" ></label>

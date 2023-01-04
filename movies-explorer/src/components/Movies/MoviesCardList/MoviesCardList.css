@@ -16,6 +16,11 @@
     color: gray;
 }
 
+.movies-cardList__not-found-title_loading-error {
+    font-size: 25px;
+    line-height: 63px;
+}
+
 .movies-cardList__elements-box {
     width: 100%;
     display: grid;
@@ -61,8 +66,15 @@
         gap: 30px;
         margin-bottom: 30px;
     }
+
     .movies-cardList__not-found-title {
         font-size: 32px;
+    }
+
+    .movies-cardList__not-found-title_loading-error {
+        font-size: 18px;
+        line-height: 45px;
+
     }
 }
 
@@ -71,7 +83,15 @@
         width: 240px;
     }
 
-    .movies-cardList__not-found-title {font-size: 25px;}
+    .movies-cardList__not-found-title {
+        font-size: 25px;
+    }
+
+    .movies-cardList__not-found-title_loading-error {
+        font-size: 14px;
+        line-height: 26px;
+
+    }
 
     .movies-cardList__elements-box {
         gap: 14px;

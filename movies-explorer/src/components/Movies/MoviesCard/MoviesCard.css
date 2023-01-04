@@ -107,6 +107,13 @@
 }
 
 
+
+@media screen and (max-width: 642px) {
+    .monies-card__element {
+        max-width: 339px;
+    }
+    
+}
 @media screen and (max-width: 400px) {
 
     .monies-card__subtitle-box {

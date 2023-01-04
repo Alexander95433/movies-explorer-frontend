@@ -8,41 +8,76 @@ import { moviesApi } from "../../utils/Api"
 import { movieSearchHandler } from '../../utils/Functions'
 
 function Movies(props) {
-    const [loading, setLoading] = useState(true)
-    const [movies, setMovies] = useState([])
-    const [inputValue, setInputValue] = useState('')
-
-    const [foundMovies, setFoundMovies] = useState([])
-    const movieStorage = JSON.parse(localStorage.getItem('movies'));
-    const [titleNothingFound, setTitleNothingFound] = useState(true)
-
-
-    let filtered = [];
+    const moviesFromServer = JSON.parse(localStorage.getItem('movies'));
+    const movieSearchResult = JSON.parse(localStorage.getItem('movieSearchResult'))
+    const queryStore = localStorage.getItem('query')
+    const [loading, setLoading] = useState(true);
+    const [movies, setMovies] = useState([]);
+    const [inputValue, setInputValue] = useState('');
+    const [foundMovies, setFoundMovies] = useState([]);
+    const [titleNothingFound, setTitleNothingFound] = useState(true);
+    const [moreButtonState, setMoreButtonState] = useState(false)
+    const [titleNotFoundMovies, setTitleNotFoundMovies] = useState(true)
 
     useEffect(() => {
-        moviesApi.getAllMovies()
-            .then((movies) => {
-                setMovies(movies)
-                setFoundMovies(movies)
-                localStorage.setItem('movies', JSON.stringify(movies));
-            })
-            .catch(err => console.log(err))
-            .finally(() => setLoading(false))
-    }, [])
+        if (movieSearchResult.length === 0) {
+            moviesApi.getAllMovies()
+                .then((movies) => {
+                    setMovies(movies)
+                    setFoundMovies(movies)
+                    localStorage.setItem('movies', JSON.stringify(movies));
+                    setTitleNotFoundMovies(true)
+                })
+                .catch((err) => {
+                    setTitleNotFoundMovies(false)
+                    console.log(err)
+                })
+                .finally(() => setLoading(false))
+        } else {
+            setFoundMovies(movieSearchResult)
+            setTitleNotFoundMovies(true)
+            setLoading(false)
+            console.log(queryStore)
+            setInputValue(queryStore)
+        }
 
-    // Динамическое отображение заполнения инпута для отображения карточек с фильмами по умолчанию после его очистки
-    useEffect(() => { if (inputValue.length === 0) { setFoundMovies(movies) }; }, [inputValue])
+    }, [])
+    // Динамическое отображение заполнения инпута для отображения карточек с фильмами по умолчанию после его очистки (!movieSearchResult ? movies : movieSearchResult) 
+    useEffect(() => {
+        if (inputValue.length === 0) {
+            setFoundMovies((!movieSearchResult ? movies : moviesFromServer))
+        } else if (inputValue === queryStore) {
+            setFoundMovies(movieSearchResult)
+        }
+        else {
+            setFoundMovies(!movies ? movies : moviesFromServer)
+        }
+    }, [inputValue])
+
     //Динамическое отображение длинны массива с карточками фильмов для корректной работы сообщения о не корректном запросе
     useEffect(() => {
-        if (foundMovies.length === 0) { setTitleNothingFound(false) } else {
+        if (foundMovies.length <= 0) {
+            setTitleNothingFound(false)
+            setMoreButtonState(true)
+            return
+        }
+        if (foundMovies.length > 6) {
             setTitleNothingFound(true)
+            setMoreButtonState(false)
+        } else {
+            setTitleNothingFound(true)
+            setMoreButtonState(true)
         }
     }, [foundMovies])
 
-    function handleInput(e) { setInputValue(e.target.value); }
+    // function handleInput(e) { 
+    //         setInputValue(e.target.value); 
+    //         localStorage.setItem((pathname === '/movies' ? 'query' : 'query-saved'), inputValue);
+    // }
 
     function searchHandler(query) {
-        filtered = movieSearchHandler(movieStorage, query);
+        let filtered = movieSearchHandler(moviesFromServer, query);
+        localStorage.setItem('movieSearchResult', JSON.stringify(filtered));
         setFoundMovies(filtered);
 
     }
@@ -52,9 +87,10 @@ function Movies(props) {
         <>
             <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} />
             <main className="movies-page">
-                <SearchForm onSearchHandler={searchHandler} inputValue={inputValue} handleInput={handleInput} />
-                
-                {loading ? <Preloader /> : <MoviesCardList cards={foundMovies} movieStorage={movieStorage} titleNothingFound={titleNothingFound}/>}
+                <SearchForm onSearchHandler={searchHandler} inputValue={inputValue} setInputValue={setInputValue} foundMovies={foundMovies} queryStore={queryStore} />
+
+                {loading ? <Preloader /> : <MoviesCardList cards={foundMovies} moviesFromServer={moviesFromServer} titleNothingFound={titleNothingFound}
+                    titleNotFoundMovies={titleNotFoundMovies} moreButtonState={moreButtonState} setMoreButtonState={setMoreButtonState} />}
             </main>
             <Footer />
         </>
