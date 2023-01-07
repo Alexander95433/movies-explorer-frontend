@@ -1,7 +1,7 @@
 @import url(../../Sandbox/SandboxCss/animation.css);
 
 .auth-form__form {
-    max-width: 369px;
+    width: 369px;
 }
 
 .auth-form__fieldset {
@@ -47,8 +47,9 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
+    -webkit-box-shadow: 0 0 0 30px #202020 inset !important;
+    -webkit-text-fill-color: #FFFFFF;
     color: #FFFFFF;
-
 }
 
 .auth-form__input:focus {
@@ -59,37 +60,48 @@
     margin: 0;
 }
 
-.auth-form__input_password {
+.auth-form__input_error {
+    -webkit-text-fill-color: #EE3465;
     color: #EE3465;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 17px;
-    Letter-spacing: 3px;
+    margin: 0;
 }
 
-.auth-form__input_password:focus {
+.auth-form__input_error:focus {
     border-bottom: solid 1px #EE3465;
 }
 
-.auth-form__span-password-error {
+.auth-form__span-error {
+    margin: 4px 0 8px;
     font-weight: 400;
     font-size: 10px;
     line-height: 12px;
     color: #EE3465;
 }
 
+.auth-form__span-error_password {
+    margin-bottom: 0;
+}
+
 
 .auth-form__button-box {
     text-align: center;
-    padding-top: 134px;
+    padding-top: 114px;
 }
 
 .auth-form__button-box_login {
     padding-top: 221px;
 }
+
+.auth-form__button-span {
+    color: #EE3465;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;}
+
 .auth-form__button {
     width: 100%;
     height: 45px;
+    margin-top: 20px;
     background-color: #4285F4;
     border-radius: 3px;
     border: none;
@@ -112,6 +124,14 @@
 .auth-form__button:hover {
     opacity: .75;
     transition: .15s linear;
+}
+
+.auth-form__button:disabled {
+    animation: standard-animation-of .0s ease, fade-out 0.0s linear;
+    transform: scale(1);
+    background-color: #4286f47e;
+    color: #ffffff9c;
+    opacity: .7;
 }
 
 .auth-form__subtitle-link {
@@ -139,6 +159,10 @@
 }
 
 @media screen and (max-width: 432px) {
+    .auth-form__form {
+        width: 100%;
+    }
+
     .auth-form__title {
         gap: 50px;
         margin: 0 0 80px;
@@ -150,7 +174,7 @@
         height: 38px;
         align-self: center;
     }
-    
+
     .auth-form__subtitle-link {
         margin: 14px 0 0;
         font-size: 12px;
@@ -166,9 +190,9 @@
     .auth-form__button-box {
         text-align: center;
         padding-top: 222px;
-        
+
     }
-    
+
     .auth-form__button-box_login {
         padding-top: 309px;
     }

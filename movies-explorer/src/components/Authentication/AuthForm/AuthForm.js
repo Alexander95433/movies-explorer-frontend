@@ -1,33 +1,37 @@
 import { Link, useLocation } from 'react-router-dom';
 import imageGreenCircle from '../../../image/header-icon2.svg'
-import useForm from '../../Hooks/useForm';
+// import useForm from '../../Hooks/useForm';
 
 function AuthForm(props) {
     const location = useLocation();
-    const {values, handleChange }  = useForm();
     
-    function hendleSubmit(evt) {
-        evt.preventDefault()
-    }
+    console.log(props.errorMessage)
+    
+
 
     return (
         <form className="auth-form__form" id="authForm" name="authForm">
             <fieldset className="auth-form__fieldset">
-                <legend className="auth-form__title"><img className='auth-form__image' src={imageGreenCircle} alt='Логотип сайта'/>
-                    Рады видеть!
+                <legend className="auth-form__title"><img className='auth-form__image' src={imageGreenCircle} alt='Логотип сайта' />
+                    {location.pathname === '/signin' ? 'Рады видеть!' : 'Добро пожаловать!'}
                 </legend>
-                <label className="auth-form__label" htmlFor='inputName'>Имя</label>
-                <input className="auth-form__input " id="inputName" type="text" name="name" onChange={handleChange}
-                value={values.name || ''} minLength="2" maxLength="30" required></input>
+                {props.children}
 
                 <label className="auth-form__label" htmlFor='inputEmail'>E-mail</label>
-                <input className="auth-form__input" id='inputEmail' type="email" name="email" onChange={handleChange}
-                value={values.email || ''} minLength="2" maxLength="30" required></input>
-                {props.children}
-                <div className={`auth-form__button-box ${location.pathname !=='/signup' ? 'auth-form__button-box_login' : ''}`}>
-                <button className='auth-form__button'  type="submit" onClick={hendleSubmit}>{props.onButtonText}</button>
-                <p className='auth-form__subtitle-link'>{props.onSubtitleLink}<Link className='auth-form__link' to={props.onRouteLink}>{props.onTextLink}</Link></p>
-            </div>
+                <input className={`auth-form__input ${props.onError.email ? 'auth-form__input_error' : ''}`} id='inputEmail' type="email" name="email"
+                    onChange={props.handleChange} value={props.onValues.email || ''} minLength="2" maxLength="30" pattern="^[\w]+@[a-zA-Z]+\.[a-zA-Z]{1,3}$" required></input>
+                <p className='auth-form__span-error' hidden={!props.onError.email}>Не корректный Email</p>
+
+                <label className="auth-form__label" htmlFor='inputpassword'>Пароль</label>
+                <input className={`auth-form__input ${props.onError.password ? "auth-form__input_error" : ''}`} id='inputpassword' type="password"
+                    name="password" onChange={props.handleChange} value={props.onValues.password || ''} minLength="6" maxLength="30" required></input>
+                <p className='auth-form__span-error auth-form__span-error_password' hidden={!props.onError.password}>{props.onError.password}</p>
+
+                <div className={`auth-form__button-box ${location.pathname !== '/signup' ? 'auth-form__button-box_login' : ''}`}>
+                    <span className='auth-form__button-span'>{props.onErrorMessage} </span>
+                    <button className='auth-form__button' onClick={props.hendleSubmit} type="submit" disabled={!props.onValid ? true : false}>{props.onButtonText}</button>
+                    <p className='auth-form__subtitle-link'>{props.onSubtitleLink}<Link className='auth-form__link' to={props.onRouteLink}>{props.onTextLink}</Link></p>
+                </div>
             </fieldset>
         </form>
     );

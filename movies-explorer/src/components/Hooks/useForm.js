@@ -1,23 +1,27 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 
 function useForm() {
-    const [values, setValue] = useState({})
-    const [passwordError, setPasswordError] = useState(true)
+    const [values, setValues] = useState({})
+    const [errors, setErrors] = useState({});
+    const [isValid, setIsValid] = useState(true);
 
     const handleChange = (e) => {
         const { name, value } = e.target
-        setValue({ ...values, [name]: value });
-
-        if(name === 'password') {
-            
-            if(value.length  < 4) { setPasswordError(true) } else {
-                setPasswordError(false)
-            } 
-        } 
+        setValues({ ...values, [name]: value });
+        setErrors({ ...errors, [name]: e.target.validationMessage });
+        setIsValid(e.target.closest('form').checkValidity());
     }
 
-    return { values, setValue, passwordError, handleChange }
+    const resetForm = React.useCallback((newValues = {}, newErrors = {}, newIsValid = false) => {
+        
+        setValues(newValues);
+        setErrors(newErrors);
+        setIsValid(newIsValid);
+    }, [setValues, setErrors, setIsValid]);
+
+    return { errors, isValid, resetForm, setIsValid, setErrors, values, setValues, handleChange };
+
 }
 
 export default useForm;

@@ -27,7 +27,7 @@ function Profile(props) {
                         </fieldset>
                         <div className="profile__button-box">
                             <button className="profile__button-edit" type="submit" onClick={hendleSubmit}>Редактировать</button>
-                            <button className="profile__button-exit" type="button">Выйти из аккаунта</button>
+                            <button className="profile__button-exit" type="button" onClick={props.onHendleAccountLogout}>Выйти из аккаунта</button>
                         </div>
                     </form>
                 </section>

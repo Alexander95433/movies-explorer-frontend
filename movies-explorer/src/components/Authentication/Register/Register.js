@@ -2,20 +2,34 @@ import React from 'react';
 import AuthForm from '../AuthForm/AuthForm';
 import useForm from '../../Hooks/useForm';
 
-function Register() {
-    //Для проверки работоспособности классов ошибки пароля 
-    // Если ввести пароль длинне 4ёх символов выйдет класс ошибки
-    const { values, passwordError, handleChange } = useForm();
-    const classPaswordTest = `auth-form__input ${passwordError ? '' : "auth-form__input_password"}`;
+function Register({ onErrorMessage, handleRegister }) {
+    const { errors, isValid, resetForm, values, passwordError, handleChange } = useForm();
+    React.useEffect(() => {
+        resetForm()
+    }, []);
+
+    function hendleSubmit(evt) {
+        evt.preventDefault()
+        const { name, email, password } = values
+        handleRegister({
+            endpoint: 'signup',
+            methodName: 'POST',
+            body: { name, email, password }
+        })
+        console.log('reg')
+    }
 
     return (
         <main className="authentication__background">
             <section>
-                <AuthForm onButtonText={'Зарегистрироваться'} onSubtitleLink={'Уже зарегистрированы?'} onTextLink={' Войти'} onRouteLink={'/signin'}>
-                    <label className="auth-form__label" htmlFor='inputpassword'>Пароль</label>
-                    <input className={classPaswordTest} id='inputpassword' type="password" name="password" onChange={handleChange}
-                        value={values.password || ''} minLength="2" maxLength="30" required></input>
-                    <span className='auth-form__span-password-error' hidden={passwordError}>Что-то пошло не так...</span>
+                <AuthForm onErrorMessage={onErrorMessage} passwordError={passwordError} onError={errors} onValid={isValid} onValues={values} handleChange={handleChange}
+                    hendleSubmit={hendleSubmit} onButtonText={'Зарегистрироваться'} onSubtitleLink={'Уже зарегистрированы?'}
+                    onTextLink={' Войти'} onRouteLink={'/signin'}>
+                    <label className="auth-form__label" htmlFor='inputName'>Имя</label>
+                    <input className={`auth-form__input ${errors.name ? 'auth-form__input_error' : ''}`} id='inputEmail' type="text" name="name"
+                    onChange={handleChange} value={values.name || ''} minLength="6" maxLength="30" pattern="^[a-zA-Zа-яА-Я\s-]+$" required></input>
+                                <p className='auth-form__span-error' hidden={!errors.name}>{errors.name}</p>
+
                 </AuthForm>
             </section>
         </main>

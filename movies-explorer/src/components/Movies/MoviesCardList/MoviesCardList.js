@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList({ cards, moviesFromServer, titleNothingFound, titleNotFoundMovies, moreButtonState, setMoreButtonState }) {
@@ -18,11 +18,12 @@ function MoviesCardList({ cards, moviesFromServer, titleNothingFound, titleNotFo
         } else { setElementNumber(elementNumber + 12) }
     }
 
-    //Для корректного отображения/скрытия кнопки "Ещё"
+    //Для корректного отображения/скрытия кнопки "Ещё" при отсутствии карточек
     useEffect(() => {
-        if (moviesFromServer.length - elementNumber <= 0) { setMoreButtonState(true) }
-    }, [elementNumber, moviesFromServer.length])
-
+        //  if (moviesFromServer.length - elementNumber <= 0) { setMoreButtonState(true) }
+        if(cards.length < elementNumber) {setMoreButtonState(true)}
+    }, [elementNumber, cards.length])
+    
     //Для различного числа рендора карточек в зависимости от масштаба окна
     useEffect(() => {
         if (screenSize < 643) {

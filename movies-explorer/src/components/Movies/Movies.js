@@ -7,6 +7,7 @@ import Footer from '../Sandbox/Footer/Footer';
 import { moviesApi } from "../../utils/Api"
 import { movieSearchHandler } from '../../utils/Functions'
 
+
 function Movies(props) {
     const moviesFromServer = JSON.parse(localStorage.getItem('movies'));
     const movieSearchResult = JSON.parse(localStorage.getItem('movieSearchResult'))
@@ -20,9 +21,10 @@ function Movies(props) {
     const [titleNotFoundMovies, setTitleNotFoundMovies] = useState(true)
 
     useEffect(() => {
-        if (movieSearchResult.length === 0) {
+        if (!movieSearchResult || movieSearchResult.length === 0 ) {
             moviesApi.getAllMovies()
                 .then((movies) => {
+                    console.log(movies)
                     setMovies(movies)
                     setFoundMovies(movies)
                     localStorage.setItem('movies', JSON.stringify(movies));
@@ -40,17 +42,15 @@ function Movies(props) {
             console.log(queryStore)
             setInputValue(queryStore)
         }
-
     }, [])
+
+  
     // Динамическое отображение заполнения инпута для отображения карточек с фильмами по умолчанию после его очистки (!movieSearchResult ? movies : movieSearchResult) 
     useEffect(() => {
         if (inputValue.length === 0) {
             setFoundMovies((!movieSearchResult ? movies : moviesFromServer))
         } else if (inputValue === queryStore) {
             setFoundMovies(movieSearchResult)
-        }
-        else {
-            setFoundMovies(!movies ? movies : moviesFromServer)
         }
     }, [inputValue])
 
@@ -70,16 +70,10 @@ function Movies(props) {
         }
     }, [foundMovies])
 
-    // function handleInput(e) { 
-    //         setInputValue(e.target.value); 
-    //         localStorage.setItem((pathname === '/movies' ? 'query' : 'query-saved'), inputValue);
-    // }
-
     function searchHandler(query) {
         let filtered = movieSearchHandler(moviesFromServer, query);
         localStorage.setItem('movieSearchResult', JSON.stringify(filtered));
         setFoundMovies(filtered);
-
     }
 
 

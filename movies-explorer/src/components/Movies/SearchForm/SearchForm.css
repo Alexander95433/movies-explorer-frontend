@@ -35,6 +35,9 @@
     color: #FFFFFF;
     outline: none;
 
+    -webkit-box-shadow: 0 0 0 30px #202020 inset !important;
+    -webkit-text-fill-color: #FFFFFF;
+
     display: flex;
     align-items: center;
     border-bottom: solid 1px #424242;
