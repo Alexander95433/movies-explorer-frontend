@@ -20,26 +20,41 @@ import mainApi from '../../utils/MainApi';
 
 function App() {
   let history = useHistory();
+  const savedMovies =  JSON.parse(localStorage.getItem('savedMovies'));
   const [loggedIn, setLoggedIn] = React.useState(false)
   const [burgerHidden, setBurgerHidden] = useState(true);
   const [currentUser, setCurrentUser] = useState({})
   const [errorMessage, setErrorMessage] = useState('')
 
-  useEffect(() => { handleTokenCheck() }, [loggedIn])
+  
+
+  useEffect(() => {
+    handleTokenCheck()
+    if (loggedIn) {
+      mainApi.detUserInfo({
+        endpoint: 'users/me',
+        methodName: 'GET',
+      })
+        .then((user) => { setCurrentUser(user) })
+        .catch((err) => { console.log(err) })
+    }
+  }, [loggedIn])
 
   function handleRegister(data) {
     mainApi.register(data)
       .then((data) => {
         setErrorMessage('')
         history.push('/signin')
-        console.log(data,'hhhhhhhhh')
       })
       .catch((err) => {
         console.log(`Ошибка регистрации: ${err}`)
         setErrorMessage('Пользователь с такой почтой уже существует')
         console.log(errorMessage)
       })
+      
   }
+
+   
 
 
   function handleAuthorization(data) {
@@ -49,7 +64,6 @@ function App() {
           setErrorMessage('')
           localStorage.setItem('jwt', data.token)
           setLoggedIn(true)
-          console.log(loggedIn)
           history.push('/movies');
         } else { return }
       })
@@ -73,7 +87,6 @@ function App() {
 
   function handleTokenCheck() {
     const jwt = localStorage.getItem('jwt')
-    console.log('ddsf')
     if (jwt) {
       mainApi.checkToken({
         endpoint: 'users/me',
@@ -87,6 +100,40 @@ function App() {
     }
   }
 
+  function hendleEditProfile(data) {
+    mainApi.patchUserInfo(data)
+      .then((res) => {
+        setCurrentUser(res.data)
+      })
+      .catch((err) => { console.log(err) })
+  }
+
+  // function hendleSaveMovies(data) {
+  //   const newMovie = {};
+  //   const { image, id } = data;
+
+  //   Object.assign(newMovie, data);
+  //   delete newMovie.id;
+  //   delete newMovie.created_at;
+  //   delete newMovie.updated_at;
+
+  //   mainApi.saveMovies({
+  //     endpoint: 'movies',
+  //     methodName: 'POST',
+  //     body: {
+  //       ...newMovie,
+  //       image: `https://api.nomoreparties.co/${image.url}`,
+  //       thumbnail: `https://api.nomoreparties.co/${image.formats.thumbnail.url}`,
+  //       movieId: id,
+  //     }
+  //   })
+  //     .then((res) => {
+  //       console.log(res)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
+  // }
 
 
 
@@ -108,9 +155,9 @@ function App() {
         <Route exact path='/'>
           <Main onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
         </Route>
-        <ProtectedRouter path='/movies' logiedId={loggedIn} component={Movies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
+        <ProtectedRouter path='/movies'  logiedId={loggedIn} component={Movies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
         <ProtectedRouter path='/saved-movies' logiedId={loggedIn} component={SavedMovies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
-        <ProtectedRouter path='/profile' logiedId={loggedIn} component={Profile} onHendleAccountLogout={hendleAccountLogout} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
+        <ProtectedRouter path='/profile' onHendleEditProfile={hendleEditProfile} logiedId={loggedIn} component={Profile} onHendleAccountLogout={hendleAccountLogout} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
         <Route path='*'>
           <NotFoundPage />
         </Route>

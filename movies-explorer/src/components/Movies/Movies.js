@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Header from '../Sandbox/Header/Header';
 import SearchForm from "./SearchForm/SearchForm";
 import Preloader from "./Preloader/Preloader";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import Footer from '../Sandbox/Footer/Footer';
 import { moviesApi } from "../../utils/Api"
+import mainApi from '../../utils/MainApi';
 import { movieSearchHandler } from '../../utils/Functions'
+
 
 
 function Movies(props) {
@@ -14,17 +16,19 @@ function Movies(props) {
     const queryStore = localStorage.getItem('query')
     const [loading, setLoading] = useState(true);
     const [movies, setMovies] = useState([]);
+    const [savedMovies, setSavedMovies] = useState([]);
+
     const [inputValue, setInputValue] = useState('');
     const [foundMovies, setFoundMovies] = useState([]);
+    const [moreButtonState, setMoreButtonState] = useState(false);
     const [titleNothingFound, setTitleNothingFound] = useState(true);
-    const [moreButtonState, setMoreButtonState] = useState(false)
     const [titleNotFoundMovies, setTitleNotFoundMovies] = useState(true)
-
+    // const [clickButton, setclickButton] = useState(false);
+    // const [e, setE] = useState({})
     useEffect(() => {
-        if (!movieSearchResult || movieSearchResult.length === 0 ) {
+        if (!movieSearchResult || movieSearchResult.length === 0) {
             moviesApi.getAllMovies()
                 .then((movies) => {
-                    console.log(movies)
                     setMovies(movies)
                     setFoundMovies(movies)
                     localStorage.setItem('movies', JSON.stringify(movies));
@@ -39,12 +43,22 @@ function Movies(props) {
             setFoundMovies(movieSearchResult)
             setTitleNotFoundMovies(true)
             setLoading(false)
-            console.log(queryStore)
             setInputValue(queryStore)
         }
+        mainApi.getSavedMovies({
+            endpoint: 'movies',
+            methodName: 'GET',
+        })
+            .then((data) => {
+                setSavedMovies(data)
+                localStorage.setItem('savedMovies', JSON.stringify(data));
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }, [])
 
-  
+
     // Динамическое отображение заполнения инпута для отображения карточек с фильмами по умолчанию после его очистки (!movieSearchResult ? movies : movieSearchResult) 
     useEffect(() => {
         if (inputValue.length === 0) {
@@ -69,6 +83,7 @@ function Movies(props) {
             setMoreButtonState(true)
         }
     }, [foundMovies])
+
 
     function searchHandler(query) {
         let filtered = movieSearchHandler(moviesFromServer, query);

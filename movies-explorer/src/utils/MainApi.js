@@ -39,6 +39,21 @@ class MainApi {
         return this._request(data)
     };
 
+    detUserInfo(data) {
+        return this._request(data)
+    }
+
+    patchUserInfo(data) {
+        return this._request(data)
+    }
+
+    getSavedMovies(data) {
+        return this._request(data)
+    }
+    
+    saveMovies(data) {
+        return this._request(data)
+    }
 
 
 

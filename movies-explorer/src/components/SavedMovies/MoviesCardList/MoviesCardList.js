@@ -2,7 +2,7 @@ import SearchForm from '../../Movies/SearchForm/SearchForm';
 import MoviesCard from '../../Movies/MoviesCard/MoviesCard';
 import { selectedCards } from '../../../utils/MoviesData'
 
-function MoviesCardList() {
+function MoviesCardList({onHendleSaveMovies}) {
     return (
         <>
             <SearchForm />
