@@ -1,13 +1,17 @@
+import React, { useState, useEffect } from "react";
 import SearchForm from '../../Movies/SearchForm/SearchForm';
 import MoviesCard from '../../Movies/MoviesCard/MoviesCard';
-import { selectedCards } from '../../../utils/MoviesData'
+import mainApi from "../../../utils/MainApi";
 
-function MoviesCardList({onHendleSaveMovies}) {
+function MoviesCardList({hendleDeleteMovies}) {
+    const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+    
+  
     return (
         <>
             <SearchForm />
             <section className="movies-cardList__elements-box">
-                {selectedCards.map((item) => (<MoviesCard key={item._id} card={item} />))}
+                {savedMovies.map((savedMovie) => (<MoviesCard key={savedMovie._id} card={savedMovie} hendleDeleteMovies={hendleDeleteMovies}/>))}
                 {/* <h3 hidden={titleNothingFound}>нет</h3> */}
             </section>
             </>

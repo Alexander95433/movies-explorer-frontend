@@ -54,6 +54,9 @@ class MainApi {
     saveMovies(data) {
         return this._request(data)
     }
+    deleteMovies(data) {
+        return this._request(data)
+    }
 
 
 

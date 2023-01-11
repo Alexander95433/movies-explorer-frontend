@@ -4,10 +4,6 @@ import imageGreenCircle from '../../../image/header-icon2.svg'
 
 function AuthForm(props) {
     const location = useLocation();
-    
-    console.log(props.errorMessage)
-    
-
 
     return (
         <form className="auth-form__form" id="authForm" name="authForm">

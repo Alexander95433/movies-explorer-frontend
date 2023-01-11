@@ -4,21 +4,17 @@ import buttonIcon from '../../../image/movies__dutton-icon2.svg'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 
 
-function SearchForm({ onSearchHandler, inputValue, setInputValue }) {
+function SearchForm({ filter, onSearchHandler, inputValue, setInputValue }) {
+    const { pathname } = useLocation();
     const [errorClass, setErrorClass] = useState(true)
     const [plaseholderText, setPlaseholderText] = useState('Фильм');
     const [checkbox, setCheckbox] = useState(false)
-    const { pathname } = useLocation();
-
 
     function hendleCheckbox() {
-        if (!checkbox) {
-            setCheckbox(true)
-        } else {
-            setCheckbox(false)
-        }
+        if (!checkbox) { setCheckbox(true) }
+        else { setCheckbox(false) }
         localStorage.setItem('shorts', checkbox)
-
+        filter()
     }
 
     function hendleSubmit(event) {

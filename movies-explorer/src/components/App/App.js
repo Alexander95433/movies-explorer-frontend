@@ -2,9 +2,6 @@ import React from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { CurrentUserContext } from '../Sandbox/CurrentUserContext/CurrentUserContext'
-
-
-
 import './App.css';
 import BurgerMenu from '../Sandbox/BurgerMenu/BurgerMenu';
 import Main from '../Main/Main'
@@ -17,16 +14,12 @@ import NotFoundPage from '../Sandbox/NotFoundPage/NotFoundPage';
 import ProtectedRouter from '../Sandbox/ProtectedRouter/ProtectedRoute ';
 import mainApi from '../../utils/MainApi';
 
-
 function App() {
   let history = useHistory();
-  const savedMovies =  JSON.parse(localStorage.getItem('savedMovies'));
   const [loggedIn, setLoggedIn] = React.useState(false)
   const [burgerHidden, setBurgerHidden] = useState(true);
   const [currentUser, setCurrentUser] = useState({})
   const [errorMessage, setErrorMessage] = useState('')
-
-  
 
   useEffect(() => {
     handleTokenCheck()
@@ -34,8 +27,7 @@ function App() {
       mainApi.detUserInfo({
         endpoint: 'users/me',
         methodName: 'GET',
-      })
-        .then((user) => { setCurrentUser(user) })
+      }).then((user) => { setCurrentUser(user) })
         .catch((err) => { console.log(err) })
     }
   }, [loggedIn])
@@ -45,17 +37,12 @@ function App() {
       .then((data) => {
         setErrorMessage('')
         history.push('/signin')
-      })
-      .catch((err) => {
+      }).catch((err) => {
         console.log(`Ошибка регистрации: ${err}`)
         setErrorMessage('Пользователь с такой почтой уже существует')
         console.log(errorMessage)
       })
-      
   }
-
-   
-
 
   function handleAuthorization(data) {
     mainApi.authorization(data)
@@ -66,8 +53,7 @@ function App() {
           setLoggedIn(true)
           history.push('/movies');
         } else { return }
-      })
-      .catch((err) => {
+      }).catch((err) => {
         setErrorMessage('Не не правильная почта или пароль')
         console.log(`Ошибка входа в систему: ${err}`)
       })
@@ -77,8 +63,7 @@ function App() {
     mainApi.accountLogout({
       endpoint: 'signout',
       methodName: 'GET',
-    })
-      .then(data => console.log(data))
+    }).then(data => console.log(data))
       .catch(err => console.log(err))
     setLoggedIn(false)
     localStorage.removeItem('jwt')
@@ -108,34 +93,41 @@ function App() {
       .catch((err) => { console.log(err) })
   }
 
-  // function hendleSaveMovies(data) {
-  //   const newMovie = {};
-  //   const { image, id } = data;
+  function hendleSaveMovies(data) {
+    const newMovie = {};
+    const { image, id } = data;
 
-  //   Object.assign(newMovie, data);
-  //   delete newMovie.id;
-  //   delete newMovie.created_at;
-  //   delete newMovie.updated_at;
+    Object.assign(newMovie, data);
+    delete newMovie.id;
+    delete newMovie.created_at;
+    delete newMovie.updated_at;
 
-  //   mainApi.saveMovies({
-  //     endpoint: 'movies',
-  //     methodName: 'POST',
-  //     body: {
-  //       ...newMovie,
-  //       image: `https://api.nomoreparties.co/${image.url}`,
-  //       thumbnail: `https://api.nomoreparties.co/${image.formats.thumbnail.url}`,
-  //       movieId: id,
-  //     }
-  //   })
-  //     .then((res) => {
-  //       console.log(res)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }
+    mainApi.saveMovies({
+      endpoint: 'movies',
+      methodName: 'POST',
+      body: {
+        ...newMovie,
+        image: `https://api.nomoreparties.co/${image.url}`,
+        thumbnail: `https://api.nomoreparties.co/${image.formats.thumbnail.url}`,
+        movieId: id,
+      }
+    }).then((res) => {
+      console.log(res)
+    }).catch((err) => { console.log(err) })
+  }
 
-
+  function hendleDeleteMovies(movieId) {
+    mainApi.deleteMovies({
+      endpoint: `movies/${movieId}`,
+      methodName: 'DELETE'
+    })
+      .then((data) => {
+        console.log(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 
   function handlerOpeningAndClosingBurgerMenu() {
     if (burgerHidden) { setBurgerHidden(false) }
@@ -155,8 +147,8 @@ function App() {
         <Route exact path='/'>
           <Main onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
         </Route>
-        <ProtectedRouter path='/movies'  logiedId={loggedIn} component={Movies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
-        <ProtectedRouter path='/saved-movies' logiedId={loggedIn} component={SavedMovies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
+        <ProtectedRouter path='/movies' hendleDeleteMovies={hendleDeleteMovies} hendleSaveMovies={hendleSaveMovies} logiedId={loggedIn} component={Movies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
+        <ProtectedRouter path='/saved-movies' hendleDeleteMovies={hendleDeleteMovies} logiedId={loggedIn} component={SavedMovies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
         <ProtectedRouter path='/profile' onHendleEditProfile={hendleEditProfile} logiedId={loggedIn} component={Profile} onHendleAccountLogout={hendleAccountLogout} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
         <Route path='*'>
           <NotFoundPage />

@@ -1,75 +1,60 @@
-import { Route, Switch } from 'react-router-dom';
-import { useState, useContext, useEffect } from "react";
-import { CurrentUserContext } from '../../Sandbox/CurrentUserContext/CurrentUserContext'
+import { Route, Switch, useLocation } from 'react-router-dom';
+import { useState, useEffect } from "react";
 import { formaTtime } from '../../../utils/Functions';
-import mainApi from '../../../utils/MainApi';
 
 function MoviesCard(props) {
+    const location = useLocation();
     const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
-    const currentUser = useContext(CurrentUserContext);
     const [visible, setVisible] = useState(false);
+    const [isLiked, setisLiked] = useState(false);
+    const [savedId, setSavedId] = useState('');
 
-    const [clickButton, setclickButton] = useState(false);
-    const [isLiked, setisLiked] = useState(false)
-    const [savedCard, setSavedCard] = useState({})
-
-
+    useEffect(() => {
+        if (location.pathname === '/saved-movies') {
+            setSavedId(props.card._id)
+        }
+        if (location.pathname === '/movies') {
+            props.savedFilms.forEach((savedFilm) => {
+                if (savedFilm.nameRU === props.card.nameRU && savedFilm.description === props.card.description) {
+                    setisLiked(true)
+                    setSavedId(savedFilm._id) };
+            })
+        } else { return }
+    }, [])
 
     function hendleLikeButtonCard() {
-        // if (props.clickButton) { props.setclickButton(false)
-        // } else { props.setclickButton(true) }
-
-
-
-
-        hendleSaveMovies(props.card)
-
-    };
-
-    function handleDeleteButtonCard() {
-
-    };
-    function visableDeleteButton() {
-        if (visible) {
-            setVisible(false)
-        } else {
-            setVisible(true)
-        }
-    };
-
-
-    function hendleSaveMovies(data) {
-        const newMovie = {};
-        const { image, id } = data;
-
-        Object.assign(newMovie, data);
-        delete newMovie.id;
-        delete newMovie.created_at;
-        delete newMovie.updated_at;
-
-        mainApi.saveMovies({
-            endpoint: 'movies',
-            methodName: 'POST',
-            body: {
-                ...newMovie,
-                image: `https://api.nomoreparties.co/${image.url}`,
-                thumbnail: `https://api.nomoreparties.co/${image.formats.thumbnail.url}`,
-                movieId: id,
-            }
+        props.hendleGetSavedMovies()
+        const ff = savedMovies.filter((element) => {
+            if (element.nameRU === props.card.nameRU && element.description === props.card.description) {
+                return element };
         })
-            .then((res) => {
-                setVisible(true)
-                console.log(res)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
 
+        if (isLiked) {
+            setisLiked(false)
+            props.hendleDeleteMovies(ff[0]._id)
+            let index = {}
+            for (let i = 0; i < savedMovies.length; i += 1) {
+                const movie = savedMovies[i];
+                if (movie._id === props.card.id) { index = i; }
+            }
+            savedMovies.splice(index, 1);
+            localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+        } else {
+            setisLiked(true)
+            props.hendleSaveMovies(props.card)
+        } };
+
+    function handleDeleteButtonCard(evt) {
+        props.hendleDeleteMovies(savedId)
+        evt.target.closest('.monies-card__element').remove();
+    };
+
+    function visableDeleteButton() {
+        if (visible) { setVisible(false)
+        } else { setVisible(true) }
+    };
 
     return (
-
-
         <article className='monies-card__element' onMouseEnter={visableDeleteButton} onMouseLeave={visableDeleteButton}>
 
             <Switch>
@@ -77,19 +62,18 @@ function MoviesCard(props) {
                     <img className='monies-card__image' src={`https://api.nomoreparties.co/${props.card.image.url}`} alt='Обложка фильма' />
                     <div className='monies-card__subtitle-box'>
                         <h3 className='monies-card__title'>{props.card.nameRU}</h3>
-                        {/* <button onClick={hendleLikeButtonCard} className={`monies-card__button-like-of ${isLiked && 'monies-card__button-like_on'}`} /> */}
                         <button onClick={hendleLikeButtonCard} className={`monies-card__button-like-of ${isLiked && 'monies-card__button-like_on'}`} />
                     </div>
                     <p className='monies-card__time'>{formaTtime(props.card.duration)}</p>
                 </Route>
                 <Route path={'/saved-movies'}>
-                <img className='monies-card__image' src={props.card.image} alt='Обложка фильма' />
+                    <img className='monies-card__image' src={props.card.image} alt='Обложка фильма' />
                     <div className='monies-card__subtitle-box'>
-                        <h3 className='monies-card__title'>{props.card.title}</h3>
+                        <h3 className='monies-card__title'>{props.card.nameRU}</h3>
                         <button onClick={handleDeleteButtonCard} className={`monies-card__delete-card ${!visible ? '' : 'monies-card__delete-card_active '}`} />
                     </div>
-                    <p className='monies-card__time'>{props.card.time}</p>
-                     
+                    <p className='monies-card__time'>{formaTtime(props.card.duration)}</p>
+
                 </Route>
             </Switch>
 
