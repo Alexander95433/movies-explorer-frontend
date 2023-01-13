@@ -8,7 +8,6 @@ function MoviesCard(props) {
     const [visible, setVisible] = useState(false);
     const [isLiked, setisLiked] = useState(false);
     const [savedId, setSavedId] = useState('');
-    const [isLikedd, setisLikedd] = useState(true);
 
     useEffect(() => {
         if (location.pathname === '/saved-movies') {
@@ -54,13 +53,10 @@ function MoviesCard(props) {
 
     function visableDeleteButtonOn() {
     setVisible(false)
-         console.log(visible)
      };
      function visableDeleteButtonOf() {
         setVisible(true)
          
-        console.log(visible)
-        console.log(isLikedd, 'hh')
      };
 
     return (
