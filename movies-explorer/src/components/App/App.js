@@ -36,7 +36,7 @@ function App() {
     mainApi.register(data)
       .then((data) => {
         setErrorMessage('')
-        history.push('/signin')
+        history.push('signin')
       }).catch((err) => {
         console.log(`Ошибка регистрации: ${err}`)
         setErrorMessage('Пользователь с такой почтой уже существует')
@@ -51,7 +51,7 @@ function App() {
           setErrorMessage('')
           localStorage.setItem('jwt', data.token)
           setLoggedIn(true)
-          history.push('/movies');
+          history.push('movies');
         } else { return }
       }).catch((err) => {
         setErrorMessage('Не не правильная почта или пароль')
@@ -79,7 +79,7 @@ function App() {
       }).then((res) => {
         if (res) {
           setLoggedIn(true);
-          history.push('/movies');
+          history.push('movies');
         }
       }).catch((err) => { console.log(`Ошибка проверки токена: ${err}`) })
     }

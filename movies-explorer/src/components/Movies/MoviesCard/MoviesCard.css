@@ -97,8 +97,10 @@
     transform: scale(1.5) .15s linear;
     transition: .3s linear;
     cursor: pointer;
-    opacity: 0;
+    opacity: 0; 
 }
+
+
 
 .monies-card__delete-card_active {
     transform: scale(1.5) rotate(90deg);

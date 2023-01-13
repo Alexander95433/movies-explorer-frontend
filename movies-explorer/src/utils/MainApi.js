@@ -10,6 +10,7 @@ class MainApi {
     };
 
     _request(data) {
+        
         const config = {
             method: data.methodName,
             headers: {
@@ -24,6 +25,7 @@ class MainApi {
     }
 
     register(data) {
+        debugger
         return this._request(data)
     };
 
@@ -36,6 +38,7 @@ class MainApi {
     };
 
     accountLogout(data) {
+        debugger
         return this._request(data)
     };
 
@@ -64,7 +67,8 @@ class MainApi {
   
 
 const mainApi = new MainApi({
-    host: 'http://localhost:4000/',
+    // host: 'http://localhost:3000/',
+    host: 'https://api-movies-explorer-alkom.nomoredomains.club/',
     headers: { 'Content-Type': 'application/json; charset=utf-8' },
 })
 

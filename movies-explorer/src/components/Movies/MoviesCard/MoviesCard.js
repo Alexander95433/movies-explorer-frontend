@@ -8,6 +8,7 @@ function MoviesCard(props) {
     const [visible, setVisible] = useState(false);
     const [isLiked, setisLiked] = useState(false);
     const [savedId, setSavedId] = useState('');
+    const [isLikedd, setisLikedd] = useState(true);
 
     useEffect(() => {
         if (location.pathname === '/saved-movies') {
@@ -45,17 +46,25 @@ function MoviesCard(props) {
         } };
 
     function handleDeleteButtonCard(evt) {
+         
         props.hendleDeleteMovies(savedId)
         evt.target.closest('.monies-card__element').remove();
+        
     };
 
-    function visableDeleteButton() {
-        if (visible) { setVisible(false)
-        } else { setVisible(true) }
-    };
+    function visableDeleteButtonOn() {
+    setVisible(false)
+         console.log(visible)
+     };
+     function visableDeleteButtonOf() {
+        setVisible(true)
+         
+        console.log(visible)
+        console.log(isLikedd, 'hh')
+     };
 
     return (
-        <article className='monies-card__element' onMouseEnter={visableDeleteButton} onMouseLeave={visableDeleteButton}>
+        <article className='monies-card__element' onMouseEnter={visableDeleteButtonOf} onMouseLeave={visableDeleteButtonOn}>
 
             <Switch>
                 <Route exact path={'/movies'}>
@@ -70,7 +79,7 @@ function MoviesCard(props) {
                     <img className='monies-card__image' src={props.card.image} alt='Обложка фильма' />
                     <div className='monies-card__subtitle-box'>
                         <h3 className='monies-card__title'>{props.card.nameRU}</h3>
-                        <button onClick={handleDeleteButtonCard} className={`monies-card__delete-card ${!visible ? '' : 'monies-card__delete-card_active '}`} />
+                        <button onClick={handleDeleteButtonCard} className={`monies-card__delete-card ${!visible ? '' : 'monies-card__delete-card_active '}`} /> 
                     </div>
                     <p className='monies-card__time'>{formaTtime(props.card.duration)}</p>
 
