@@ -6,7 +6,7 @@ function MoviesCardList({ hendleGetSavedMovies, hendleDeleteMovies, savedFilms, 
     const [screenSize, setDimension] = useState(window.innerWidth);
     const getDimension = () => { setDimension(window.innerWidth) };
 
-    //Обновляет счётчик карточек для рендера в зависимости от масштаба окна
+    //Обновляет счётчик карточек для рендера в зависимости от масштаба окна 
     function hendleMoreVideos() {
         if (screenSize < 643) { setElementNumber(elementNumber + 5) }
         else if (screenSize < 760) { setElementNumber(elementNumber + 8) }

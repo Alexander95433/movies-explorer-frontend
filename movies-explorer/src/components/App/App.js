@@ -20,16 +20,13 @@ function App() {
   const [burgerHidden, setBurgerHidden] = useState(true);
   const [currentUser, setCurrentUser] = useState({})
   const [errorMessage, setErrorMessage] = useState('')
+  const [savedFilms, setsavedFilms] = useState([])
+   
 
   useEffect(() => {
     handleTokenCheck()
-    if (loggedIn) {
-      mainApi.detUserInfo({
-        endpoint: 'users/me',
-        methodName: 'GET',
-      }).then((user) => { setCurrentUser(user) })
-        .catch((err) => { console.log(err) })
-    }
+    hendleGetSavedMovies()
+    if (loggedIn) { hendleGetUserInfo() }
   }, [loggedIn])
 
   function handleRegister(data) {
@@ -85,6 +82,16 @@ function App() {
     }
   }
 
+  function hendleGetUserInfo() {
+    mainApi.detUserInfo({
+      endpoint: 'users/me',
+      methodName: 'GET',
+    }).then((user) => { 
+      localStorage.setItem('user', JSON.stringify(user))
+      setCurrentUser(user) })
+      .catch((err) => { console.log(err) })
+  }
+
   function hendleEditProfile(data) {
     mainApi.patchUserInfo(data)
       .then((res) => {
@@ -93,7 +100,31 @@ function App() {
       .catch((err) => { console.log(err) })
   }
 
+  
+  function hendleGetSavedMovies() {
+    let mySavedFilms = []
+    mainApi.getSavedMovies({
+      endpoint: 'movies',
+      methodName: 'GET',
+    }).then((data) => {
+      console.log(data,'data')
+      data.forEach((savedFilm) => {
+        if (savedFilm.owner === currentUser._id) {
+          
+          mySavedFilms.push(savedFilm)
+          localStorage.setItem('savedMovies', JSON.stringify(mySavedFilms));
+          setsavedFilms(mySavedFilms)
+        };
+      })
+      setsavedFilms(data)
+        
+    }).catch((err) => {
+      console.log(err)})
+  }
+
+
   function hendleSaveMovies(data) {
+ 
     const newMovie = {};
     const { image, id } = data;
 
@@ -147,9 +178,15 @@ function App() {
         <Route exact path='/'>
           <Main onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
         </Route>
-        <ProtectedRouter path='/movies' hendleDeleteMovies={hendleDeleteMovies} hendleSaveMovies={hendleSaveMovies} logiedId={loggedIn} component={Movies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
-        <ProtectedRouter path='/saved-movies' hendleDeleteMovies={hendleDeleteMovies} logiedId={loggedIn} component={SavedMovies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
-        <ProtectedRouter path='/profile' onHendleEditProfile={hendleEditProfile} logiedId={loggedIn} component={Profile} onHendleAccountLogout={hendleAccountLogout} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
+        <ProtectedRouter path='/movies' setCurrentUser={setCurrentUser} hendleGetUserInfo={hendleGetUserInfo} hendleGetSavedMovies={hendleGetSavedMovies}
+          setsavedFilms={setsavedFilms} savedFilms={savedFilms} hendleDeleteMovies={hendleDeleteMovies} hendleSaveMovies={hendleSaveMovies} logiedId={loggedIn} component={Movies}
+          onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
+
+        <ProtectedRouter path='/saved-movies' savedFilms={savedFilms} hendleGetSavedMovies={hendleGetSavedMovies} hendleDeleteMovies={hendleDeleteMovies} logiedId={loggedIn}
+          component={SavedMovies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
+
+        <ProtectedRouter path='/profile' onHendleEditProfile={hendleEditProfile} logiedId={loggedIn} component={Profile} onHendleAccountLogout={hendleAccountLogout}
+          onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
         <Route path='*'>
           <NotFoundPage />
         </Route>
