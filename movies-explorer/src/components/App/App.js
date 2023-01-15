@@ -96,9 +96,9 @@ function App() {
   function hendleEditProfile(data) {
     mainApi.patchUserInfo(data)
       .then((res) => {
-        debugger
         setCurrentUser(res.data)
         localStorage.setItem('user', JSON.stringify(res.data))
+        history.push('movies');
       })
       .catch((err) => { console.log(err) })
   }

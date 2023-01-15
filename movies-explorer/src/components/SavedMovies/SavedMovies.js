@@ -5,10 +5,11 @@ import MoviesCardList from '../SavedMovies/MoviesCardList/MoviesCardList';
 import Footer from '../Sandbox/Footer/Footer'; 
 
 function SavedMovies(props) {
+    const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
     const location = useLocation();
     useEffect(() => {
         props.hendleGetSavedMovies()
-    }, [location.pathname='/saved-movies'])
+    }, [location.pathname='/saved-movies', savedMovies])
 
     return (
         <>
