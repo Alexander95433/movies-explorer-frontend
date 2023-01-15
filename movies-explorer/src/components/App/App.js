@@ -21,7 +21,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [errorMessage, setErrorMessage] = useState('')
   const [savedFilms, setsavedFilms] = useState([])
-   
+
 
   useEffect(() => {
     handleTokenCheck()
@@ -86,48 +86,46 @@ function App() {
     mainApi.detUserInfo({
       endpoint: 'users/me',
       methodName: 'GET',
-    }).then((user) => { 
+    }).then((user) => {
+      setCurrentUser(user)
       localStorage.setItem('user', JSON.stringify(user))
-      setCurrentUser(user) })
+    })
       .catch((err) => { console.log(err) })
   }
 
   function hendleEditProfile(data) {
     mainApi.patchUserInfo(data)
       .then((res) => {
+        debugger
         setCurrentUser(res.data)
+        localStorage.setItem('user', JSON.stringify(res.data))
       })
       .catch((err) => { console.log(err) })
   }
 
-  
   function hendleGetSavedMovies() {
     let mySavedFilms = []
     mainApi.getSavedMovies({
       endpoint: 'movies',
       methodName: 'GET',
     }).then((data) => {
-      console.log(data,'data')
+      if (data.length === 0) { localStorage.setItem('savedMovies', JSON.stringify([])); }
       data.forEach((savedFilm) => {
         if (savedFilm.owner === currentUser._id) {
-          
           mySavedFilms.push(savedFilm)
           localStorage.setItem('savedMovies', JSON.stringify(mySavedFilms));
           setsavedFilms(mySavedFilms)
         };
       })
       setsavedFilms(data)
-        
     }).catch((err) => {
-      console.log(err)})
+      console.log(err)
+    })
   }
 
-
   function hendleSaveMovies(data) {
- 
     const newMovie = {};
     const { image, id } = data;
-
     Object.assign(newMovie, data);
     delete newMovie.id;
     delete newMovie.created_at;
@@ -142,22 +140,16 @@ function App() {
         thumbnail: `https://api.nomoreparties.co/${image.formats.thumbnail.url}`,
         movieId: id,
       }
-    }).then((res) => {
-      console.log(res)
-    }).catch((err) => { console.log(err) })
+    }).then((res) => { console.log(res) })
+      .catch((err) => { console.log(err) })
   }
 
   function hendleDeleteMovies(movieId) {
     mainApi.deleteMovies({
       endpoint: `movies/${movieId}`,
       methodName: 'DELETE'
-    })
-      .then((data) => {
-        console.log(data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    }).then((data) => { console.log(data) })
+      .catch((err) => { console.log(err) })
   }
 
   function handlerOpeningAndClosingBurgerMenu() {

@@ -16,7 +16,7 @@ function Profile(props) {
     useEffect(() => {
         resetForm()
         setValues(currentUser)
-    }, [currentUser])
+    }, [])
 
     useEffect(() => {
         if (eventTargetInput === 'name') {

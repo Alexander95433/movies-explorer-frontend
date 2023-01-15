@@ -21,4 +21,26 @@ export function searchFilter(array, query, short) {
     return filtered;
 }
 
+export function checkingOwnerCards(data) {
+    let mySavedFilms = []
+    data.savedFilms.forEach((savedFilm) => {
+        if (savedFilm.owner === data.savedUser._id) {
+            mySavedFilms.push(savedFilm)
+            localStorage.setItem('savedMovies', JSON.stringify(mySavedFilms));
+        };
+    })
+}
+
+export function deleteSavedFilmsFromLocalStorege(data) {
+    debugger
+    let savedMoviess = JSON.parse(localStorage.getItem('savedMovies'));
+    let index = {}
+    for (let i = 0; i < savedMoviess.length; i += 1) {
+        let movie = savedMoviess[i];
+        if (movie.nameRU === data.card.nameRU && movie.description === data.card.description) { index = i; }
+    }
+    savedMoviess.splice(index, 1);
+    localStorage.setItem('savedMovies', JSON.stringify(savedMoviess))
+}
+
 
