@@ -41,7 +41,13 @@
 }
 
 
-.filter-checkbox__checkbox:checked+label::before {
+/* .filter-checkbox__checkbox:checked+label::before {
+    transform: translateX(18px);
+    background-color: #3ddc84;
+    transition: .1s linear;
+} */
+
+.filter-checkbox__checkbox_active+label::before {
     transform: translateX(18px);
     background-color: #3ddc84;
     transition: .1s linear;

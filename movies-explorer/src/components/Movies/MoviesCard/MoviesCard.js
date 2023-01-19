@@ -11,12 +11,12 @@ function MoviesCard(props) {
     const [savedId, setSavedId] = useState('');
 
     useEffect(() => {
-        props.hendleGetSavedMovies()
+        //props.hendleGetSavedMovies()
         const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
         checkingOwnerCards({ savedFilms: savedMovies, savedUser })
         if (location.pathname === '/saved-movies') { setSavedId(props.card._id) }
         if (location.pathname === '/movies') {
-            console.log(savedMovies, 'savedMoviesCardssss')
+             
             savedMovies.forEach((savedFilm) => {
                 if (savedFilm.nameRU === props.card.nameRU && savedFilm.description === props.card.description) {
                     setisLiked(true)
@@ -40,15 +40,17 @@ function MoviesCard(props) {
             setisLiked(false)
         } else {
             props.hendleSaveMovies(props.card)
+            
             props.hendleGetSavedMovies()
             setisLiked(true)
         }
     };
 
     function handleDeleteButtonCard(evt) {
+        props.hendleGetSavedMovies()
         props.hendleDeleteMovies(savedId)
         deleteSavedFilmsFromLocalStorege({ card: props.card })
-        props.hendleGetSavedMovies()
+         
     };
 
     function visableDeleteButtonOn() {

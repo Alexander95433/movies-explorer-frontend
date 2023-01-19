@@ -4,16 +4,20 @@ import buttonIcon from '../../../image/movies__dutton-icon2.svg'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 
 
-function SearchForm({ filter, onSearchHandler, inputValue, setInputValue }) {
+function SearchForm({checkbox, setCheckbox, filter, onSearchHandler, inputValue, setInputValue }) {
     const { pathname } = useLocation();
     const [errorClass, setErrorClass] = useState(true)
     const [plaseholderText, setPlaseholderText] = useState('Фильм');
-    const [checkbox, setCheckbox] = useState(false)
+    //  const [checkbox, setCheckbox] = useState(false)
 
     function hendleCheckbox() {
-        if (!checkbox) { setCheckbox(true) }
-        else { setCheckbox(false) }
-        localStorage.setItem('shorts', checkbox)
+        if (!checkbox) { 
+            setCheckbox(true) 
+            localStorage.setItem('shorts', true)}
+        else { 
+            setCheckbox(false) 
+            localStorage.setItem('shorts', false)}
+        console.log(checkbox)
         filter()
     }
 
@@ -34,7 +38,7 @@ function SearchForm({ filter, onSearchHandler, inputValue, setInputValue }) {
         setInputValue(e.target.value);
         if (e.target.value.length === 0) {
             localStorage.setItem((pathname === '/movies' ? 'query' : 'query-saved'), e.target.value);
-            localStorage.setItem('movieSearchResult', JSON.stringify([]));
+           // localStorage.setItem('movieSearchResult', JSON.stringify([]));
         }
     }
 
@@ -48,7 +52,7 @@ function SearchForm({ filter, onSearchHandler, inputValue, setInputValue }) {
                         <span className="search-form_error-span" hidden={errorClass}>Нужно ввести ключевое слово</span>
                         <button onClick={hendleSubmit} className='search-form__button' type="submit"><img className='search-form__button-icon' src={buttonIcon} alt='Кнопка поиска' /></button>
                     </div>
-                    <FilterCheckbox hendleCheckbox={hendleCheckbox} />
+                    <FilterCheckbox checkbox={checkbox} hendleCheckbox={hendleCheckbox} />
                 </fieldset>
             </form>
         </section>

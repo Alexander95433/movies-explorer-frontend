@@ -12,11 +12,14 @@ function Profile(props) {
     const [eventTargetInput, setEventTargetInput] = useState('')
     const [errorText, setErrorText] = useState(' ')
 
-
+    
     useEffect(() => {
         resetForm()
         setValues(currentUser)
     }, [])
+
+    useEffect(() => {
+    }, [currentUser])
 
     useEffect(() => {
         if (eventTargetInput === 'name') {
@@ -54,6 +57,7 @@ function Profile(props) {
             methodName: 'PATCH',
             body: { name, email, password }
         })
+        
     };
 
     function hendleOnInputFocus(e) {
@@ -72,7 +76,7 @@ function Profile(props) {
     }
     return (
         <>
-            <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} />
+            <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} loggedIn={props.loggedIn} />
             <main className="profile__background" >
                 <section>
                     <form className="profile__form" id="profile" name="profile">

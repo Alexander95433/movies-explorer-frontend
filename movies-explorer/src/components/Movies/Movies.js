@@ -21,18 +21,19 @@ function Movies(props) {
     const [titleNothingFound, setTitleNothingFound] = useState(true);
     const [titleNotFoundMovies, setTitleNotFoundMovies] = useState(true)
 
+       const [checkbox, setCheckbox] = useState(false)
+      
     // На свою ответственность я реализовал следующий алгоритм. При пустой поисковой строке 
     // выводится весь обьём карточек полученного от сервера (отрисовываются по количеству заявленному в задании при клике на кнопу "Ещё").
     // Данные поиска и найденные фильмы сохранаются в localStorage но если очистить поисковую строку то содержимое localStorage для этого функционала очистится
     // и снова будет выведен весь массив карточек. Оправдываю я это тем, что довольно странно выглядит пустая страница при посещение сайта. 
     // В целом руководствовался такой мыслью, что иногда хочется полистать ленту с фильмами и выбрать подходящий, просто посмотреть что вообще есть.
     // Ну, а на пустой странице это реализовать довольно проблематично. В любом случае если мой вариант функционала фатально нарушает правила  приёма тз, то 
-    // я могу всё вернуть на место.
-    
+    // я могу всё вернуть на место.   checkbox, setCheckbox, filter, onSearchHandler, inputValue, setInputValue
+     
     useEffect(() => {
-        props.hendleGetUserInfo()
+         setCheckbox(checkboxState)
         if (!movieSearchResult || movieSearchResult.length === 0) {
-            props.hendleGetUserInfo()
             hendleGetMovies()
         } else {
             setFoundMovies(movieSearchResult)
@@ -82,21 +83,38 @@ function Movies(props) {
         let filtered = movieSearchHandler(moviesFromServer, query);
         localStorage.setItem('movieSearchResult', JSON.stringify(filtered));
         setFoundMovies(filtered);
+         
     }
-
+   
+console.log(queryStore.length > 0, 'ffffffffffff')
     const filter = (query) => {
+       
         const storedMovies = JSON.parse(localStorage.getItem('movies'));
-        const filtered = searchFilter(storedMovies, query, checkboxState)
-        setFoundMovies(filtered);
+        const movieSearchResult = JSON.parse(localStorage.getItem('movieSearchResult'));
+         
+
+        
+        console.log(queryStore.length ,'movieSearchResult')
+        if(queryStore.length > 0){
+            console.log('ggg')
+            const filtered = searchFilter(movieSearchResult, query, checkboxState)
+            setFoundMovies(filtered);
+        }else{
+            console.log('fff')
+            const filtered = searchFilter(storedMovies, query, checkboxState)
+            setFoundMovies(filtered);
+        }
+         
+         
         setLoading(false);
     };
-
+//props.savedFilms
     return (
         <>
-            <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} />
+            <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} loggedIn={props.loggedIn}/>
             <main className="movies-page">
-                <SearchForm filter={filter} onSearchHandler={searchHandler} inputValue={inputValue} setInputValue={setInputValue}
-                    foundMovies={foundMovies} queryStore={queryStore} />
+                <SearchForm filter={filter} checkbox={checkbox} setCheckbox={setCheckbox} onSearchHandler={searchHandler}
+                 inputValue={inputValue} setInputValue={setInputValue} foundMovies={foundMovies} queryStore={queryStore} />
 
                 {loading ? <Preloader /> : <MoviesCardList hendleGetSavedMovies={props.hendleGetSavedMovies} savedFilms={props.savedFilms}
                     hendleDeleteMovies={props.hendleDeleteMovies} hendleSaveMovies={props.hendleSaveMovies} cards={foundMovies}

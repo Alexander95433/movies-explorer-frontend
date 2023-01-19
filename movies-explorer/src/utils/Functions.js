@@ -14,6 +14,13 @@ export function movieSearchHandler(allMovies, query) {
 }
 
 export function searchFilter(array, query, short) {
+    // const queryResult = JSON.parse(localStorage.getItem('query'));
+    // if (!array) { return []; }
+    // let filtered = [...array];
+    // if (queryResult) { filtered = filtered.filter((element) => element.nameRU.toLowerCase().includes(queryResult.toLowerCase())); }
+    // if (short) { return filtered.filter((element) => element.duration <= 40); }
+    // return filtered;
+
     if (!array) { return []; }
     let filtered = [...array];
     if (query) { filtered = filtered.filter((element) => element.nameRU.toLowerCase().includes(query.toLowerCase())); }

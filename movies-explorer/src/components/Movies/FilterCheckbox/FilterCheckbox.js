@@ -1,10 +1,10 @@
 
-function FilterCheckbox({hendleCheckbox}) {
+function FilterCheckbox({checkbox, hendleCheckbox}) {
     return (
         <div className="filter-checkbox__checkbox-wrapper" >
             <div className="filter-checkbox__toddle">
             <input
-                className="filter-checkbox__checkbox" type="checkbox"
+                className={`filter-checkbox__checkbox ${!checkbox ? 'filter-checkbox__checkbox_active' : ''} `}type="checkbox"
                 name="shortsCheckbox"
                 id="shortsCheckbox"
                 onChange={hendleCheckbox}

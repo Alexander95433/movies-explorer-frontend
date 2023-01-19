@@ -8,7 +8,8 @@ function AuthForm(props) {
     return (
         <form className="auth-form__form" id="authForm" name="authForm">
             <fieldset className="auth-form__fieldset">
-                <legend className="auth-form__title"><img className='auth-form__image' src={imageGreenCircle} alt='Логотип сайта' />
+                <legend className="auth-form__title">
+                    <Link to='/'><img className='auth-form__image' src={imageGreenCircle} alt='Логотип сайта' /></Link>
                     {location.pathname === '/signin' ? 'Рады видеть!' : 'Добро пожаловать!'}
                 </legend>
                 {props.children}

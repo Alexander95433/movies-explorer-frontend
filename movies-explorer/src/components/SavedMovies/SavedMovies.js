@@ -13,9 +13,8 @@ function SavedMovies(props) {
 
     return (
         <>
-            <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} />
+            <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} loggedIn={props.loggedIn}/>
             <main className='saved-movies__page'>
-                
                 <MoviesCardList hendleGetSavedMovies={props.hendleGetSavedMovies} savedFilms={props.savedFilms} hendleDeleteMovies={props.hendleDeleteMovies} /> 
                 
             </main>

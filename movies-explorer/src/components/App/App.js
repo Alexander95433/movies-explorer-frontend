@@ -21,13 +21,17 @@ function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [errorMessage, setErrorMessage] = useState('')
   const [savedFilms, setsavedFilms] = useState([])
+   //const [checkbox, setCheckbox] = useState(false)
 
 
   useEffect(() => {
     handleTokenCheck()
-    hendleGetSavedMovies()
     if (loggedIn) { hendleGetUserInfo() }
   }, [loggedIn])
+
+  useEffect(() => {
+    hendleGetSavedMovies()
+  }, [])
 
   function handleRegister(data) {
     mainApi.register(data)
@@ -87,6 +91,7 @@ function App() {
       endpoint: 'users/me',
       methodName: 'GET',
     }).then((user) => {
+      
       setCurrentUser(user)
       localStorage.setItem('user', JSON.stringify(user))
     })
@@ -96,11 +101,13 @@ function App() {
   function hendleEditProfile(data) {
     mainApi.patchUserInfo(data)
       .then((res) => {
+        
         setCurrentUser(res.data)
         localStorage.setItem('user', JSON.stringify(res.data))
-        history.push('movies');
+        console.log(currentUser)
       })
       .catch((err) => { console.log(err) })
+      .finally(() =>{hendleGetUserInfo() })
   }
 
   function hendleGetSavedMovies() {
