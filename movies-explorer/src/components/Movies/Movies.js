@@ -28,18 +28,60 @@ function Movies(props) {
     // я могу всё вернуть на место.   checkbox, setCheckbox, filter, onSearchHandler, inputValue, setInputValue
 
     useEffect(() => {
-        console.log(movieSearchResult, 'hhhhhhh')
+        
         props.setCheckbox(checkboxState)
-        if (!movieSearchResult || movieSearchResult.length === 0) {
+        if (movieSearchResult.length === 0 && movieFilteredhResult.length === 0) {
+             debugger
             hendleGetMovies()
-        } else {
-            props.setFoundMovies(movieSearchResult)
-            setTitleNotFoundMovies(true)
+        } else if (checkboxState) {
+             debugger
+            //filter(movieSearchResult, moviesFromServer, checkboxState)
+            // props.setFoundMovies(movieSearchResult && moviesFromServer)
+            // props.setFoundMovies(movieSearchResult ? movieSearchResult : moviesFromServer)
+            if(movieSearchResult.length > 0) {
+                props.setFoundMovies(movieSearchResult)
+                debugger
+            } 
+            if(movieSearchResult.length === 0){ 
+                props.setFoundMovies(moviesFromServer)
+                debugger
+            }
+            
+            //props.setFoundMovies(movieFilteredhResult || movieSearchResult )
+            console.log(movieFilteredhResult, checkboxState, 'movieFilteredhResult', movieSearchResult)
+            
+        } else if(movieFilteredhResult.length > 0) {
+            if(movieFilteredhResult.length > 0) {
+                props.setFoundMovies(movieFilteredhResult)
+                debugger
+            }
+            if(movieSearchResult.length > 0) {
+                props.setFoundMovies(movieSearchResult)
+                debugger
+            }
+        }
+             
+             debugger
             props.setLoading(false)
             props.setInputValue(queryStore)
+            setTitleNotFoundMovies(true)}
+        
+            , [])
+   
+    useEffect(() => {
+        if (props.foundMovies.length <= 0) {
+            setTitleNothingFound(false)
+            setMoreButtonState(true)
+            return
         }
-
-    }, [])
+        if (props.foundMovies.length > 6) {
+            setTitleNothingFound(true)
+            setMoreButtonState(false)
+        } else {
+            setTitleNothingFound(true)
+            setMoreButtonState(true)
+        }
+    }, [props.foundMovies])
 
     function hendleGetMovies() {
         moviesApi.getAllMovies()
@@ -55,33 +97,22 @@ function Movies(props) {
             .finally(() => props.setLoading(false))
     }
     // Динамическое отображение заполнения инпута для отображения карточек с фильмами по умолчанию после его очистки (!movieSearchResult ? movies : movieSearchResult) 
-    useEffect(() => {
-        console.log(movieFilteredhResult,'movieFilteredhResult')
-        if (movieFilteredhResult) { props.setFoundMovies(movieFilteredhResult) }
-        else {
-            if (props.inputValue.length === 0) {
-                props.setFoundMovies((!movieSearchResult ? movies : moviesFromServer))
-                filter = (films)
-            }
-            else if (props.inputValue === queryStore) { props.setFoundMovies(movieSearchResult) }
-        }
-    }, [props.inputValue])
+    // useEffect(() => {
+    //     console.log(movieFilteredhResult,'movieFilteredhResult')
+    //     if (movieFilteredhResult) { props.setFoundMovies(movieFilteredhResult) }
+    //     else {
+    //         if (props.inputValue.length === 0) {
+    //             props.setFoundMovies((!movieSearchResult ? movies : moviesFromServer))
+    //            // filter = (films)
+    //         }
+    //         else if (props.inputValue === queryStore) { props.setFoundMovies(movieSearchResult) }
+    //     }
+    // }, [props.inputValue])
+
+
 
     //Динамическое отображение длинны массива с карточками фильмов для корректной работы сообщения о не корректном запросе
-    useEffect(() => {
-        if (props.foundMovies.length <= 0) {
-            setTitleNothingFound(false)
-            setMoreButtonState(true)
-            return
-        }
-        if (props.foundMovies.length > 6) {
-            setTitleNothingFound(true)
-            setMoreButtonState(false)
-        } else {
-            setTitleNothingFound(true)
-            setMoreButtonState(true)
-        }
-    }, [props.foundMovies])
+
 
     return (
         <>

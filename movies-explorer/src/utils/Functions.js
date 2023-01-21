@@ -13,21 +13,13 @@ export function movieSearchHandler(allMovies, query) {
     return filtered
 }
 
-export function searchFilter(array, short) {
-    // const queryResult = JSON.parse(localStorage.getItem('query'));
-    // if (!array) { return []; }
-    // let filtered = [...array];
-    // if (queryResult) { filtered = filtered.filter((element) => element.nameRU.toLowerCase().includes(queryResult.toLowerCase())); }
-    // if (short) { return filtered.filter((element) => element.duration <= 40); }
-    // return filtered;
-
+export function searchFilter(array,  short) {
     if (!array) { return []; }
     let filtered = [...array];
-    //if (query) { filtered = filtered.filter((element) => element.nameRU.toLowerCase().includes(query.toLowerCase())); }
     if (short) { return filtered.filter((element) => element.duration <= 40); }
-    //localStorage.setItem('savedMovies', JSON.stringify(mySavedFilms));
     return filtered;
 }
+
 
 export function checkingOwnerCards(data) {
     let mySavedFilms = []
