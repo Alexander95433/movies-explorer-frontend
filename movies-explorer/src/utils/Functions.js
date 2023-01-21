@@ -13,7 +13,7 @@ export function movieSearchHandler(allMovies, query) {
     return filtered
 }
 
-export function searchFilter(array, query, short) {
+export function searchFilter(array, short) {
     // const queryResult = JSON.parse(localStorage.getItem('query'));
     // if (!array) { return []; }
     // let filtered = [...array];
@@ -23,8 +23,9 @@ export function searchFilter(array, query, short) {
 
     if (!array) { return []; }
     let filtered = [...array];
-    if (query) { filtered = filtered.filter((element) => element.nameRU.toLowerCase().includes(query.toLowerCase())); }
+    //if (query) { filtered = filtered.filter((element) => element.nameRU.toLowerCase().includes(query.toLowerCase())); }
     if (short) { return filtered.filter((element) => element.duration <= 40); }
+    //localStorage.setItem('savedMovies', JSON.stringify(mySavedFilms));
     return filtered;
 }
 

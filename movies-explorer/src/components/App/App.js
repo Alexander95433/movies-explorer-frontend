@@ -17,11 +17,17 @@ import mainApi from '../../utils/MainApi';
 function App() {
   let history = useHistory();
   const [loggedIn, setLoggedIn] = React.useState(false)
+  const [loading, setLoading] = useState(true);
   const [burgerHidden, setBurgerHidden] = useState(true);
   const [currentUser, setCurrentUser] = useState({})
   const [errorMessage, setErrorMessage] = useState('')
   const [savedFilms, setsavedFilms] = useState([])
-   //const [checkbox, setCheckbox] = useState(false)
+
+
+  const [checkbox, setCheckbox] = useState(false)
+       const [inputValue, setInputValue] = useState('');
+       const [foundMovies, setFoundMovies] = useState([]);
+
 
 
   useEffect(() => {
@@ -165,6 +171,10 @@ function App() {
 
   }
 
+  function receiveSetFoundMovies(data) {
+    setFoundMovies(data)
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
@@ -177,11 +187,17 @@ function App() {
         <Route exact path='/'>
           <Main onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
         </Route>
-        <ProtectedRouter path='/movies' setCurrentUser={setCurrentUser} hendleGetUserInfo={hendleGetUserInfo} hendleGetSavedMovies={hendleGetSavedMovies}
+        <ProtectedRouter path='/movies' setFoundMovies={setFoundMovies} checkbox={checkbox} setCheckbox={setCheckbox}  inputValue={inputValue} setInputValue={setInputValue} foundMovies={foundMovies}  loading={loading} setLoading={setLoading}
+         setCurrentUser={setCurrentUser} hendleGetUserInfo={hendleGetUserInfo} hendleGetSavedMovies={hendleGetSavedMovies}
           setsavedFilms={setsavedFilms} savedFilms={savedFilms} hendleDeleteMovies={hendleDeleteMovies} hendleSaveMovies={hendleSaveMovies} logiedId={loggedIn} component={Movies}
           onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
 
-        <ProtectedRouter path='/saved-movies' savedFilms={savedFilms} hendleGetSavedMovies={hendleGetSavedMovies} hendleDeleteMovies={hendleDeleteMovies} logiedId={loggedIn}
+        <ProtectedRouter path='/saved-movies'
+        loading={loading} setLoading={setLoading}
+        checkbox={checkbox} setCheckbox={setCheckbox} setFoundMovies={setFoundMovies}
+        inputValue={inputValue} setInputValue={setInputValue} foundMovies={foundMovies}
+        
+        savedFilms={savedFilms} hendleGetSavedMovies={hendleGetSavedMovies} hendleDeleteMovies={hendleDeleteMovies} logiedId={loggedIn}
           component={SavedMovies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
 
         <ProtectedRouter path='/profile' onHendleEditProfile={hendleEditProfile} logiedId={loggedIn} component={Profile} onHendleAccountLogout={hendleAccountLogout}
