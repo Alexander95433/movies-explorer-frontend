@@ -30,18 +30,18 @@ console.log(movieFilteredhResult)
 
             // if (inputValue.length === 0) {
                 if (inputValue.length === 0) {
-                    //   debugger
+                      debugger
                 localStorage.setItem('movieSearchResult', JSON.stringify([]));
                  setFoundMovies(movieSearchResult && moviesFromServer)
                 if (!checkboxState) {
-                    //  debugger
+                     debugger
                     filter(moviesFromServer, moviesFromServer, checkboxState, queryStore)
                     setFoundMovies(movieFilteredhResult)
                 } else {
                     
                     localStorage.setItem('movieFilteredhResult', JSON.stringify([]))
                     setFoundMovies(movieSearchResult && moviesFromServer)
-                    //  debugger
+                     debugger
                 }
 
             } 
@@ -60,7 +60,7 @@ console.log(movieFilteredhResult)
             setCheckbox(true)
             localStorage.setItem('shorts', true)
             console.log(checkbox, 'from checkbox')
-            //  debugger
+             debugger
             searchHandler(true, inputValue)
         }
         else {
@@ -68,11 +68,12 @@ console.log(movieFilteredhResult)
             localStorage.setItem('shorts', false)
             localStorage.setItem('movieFilteredhResult', JSON.stringify([]));
             console.log(checkbox, 'from checkbox')
-            // debugger
+            filter(movieSearchResult, moviesFromServer, checkboxState, queryStore)
+            debugger
         }
 
 
-        filter(movieSearchResult, moviesFromServer, checkboxState, queryStore)
+         
     }
 
     function hendleSubmit(event) {
@@ -92,11 +93,11 @@ console.log(movieFilteredhResult)
     function handleInput(e) {
         setInputValue(e.target.value);
         localStorage.setItem((pathname === '/movies' ? 'query' : 'query-saved'), e.target.value);
-        // debugger
+        debugger
         if (e.target.value.length === 0) {
             localStorage.setItem((pathname === '/movies' ? 'query' : 'query-saved'), e.target.value);
             localStorage.setItem('movieSearchResult', JSON.stringify([]));
-            //  debugger
+             debugger
              filter(movieSearchResult, moviesFromServer, true, e.target.value)
         }
 
@@ -106,28 +107,29 @@ console.log(movieFilteredhResult)
     }
 
     function searchHandler(stateCheckbox, query) {
-        //  debugger
+         debugger
         if (!stateCheckbox) {
             let filtered = movieSearchHandler(movieFilteredhResult, query);
             localStorage.setItem('movieSearchResult', JSON.stringify(filtered));
             setFoundMovies(filtered);
         } else{
+            debugger
         let filtered = movieSearchHandler(moviesFromServer, query);
         localStorage.setItem('movieSearchResult', JSON.stringify(filtered));
         setFoundMovies(filtered);}
-
+        debugger
     }
 
 
     const filter = (resultSearchFilms, filmsFromServer, stateCheckbox, input) => {
         if (input.length > 0 ) {
-            // debugger
+            debugger
             const filtered = searchFilter(resultSearchFilms, stateCheckbox)
             // localStorage.setItem('movieFilteredhResult', JSON.stringify(filtered));
             localStorage.setItem('movieFilteredhResult', JSON.stringify(filtered));
             setFoundMovies(filtered);
         } else {
-            // debugger
+            debugger
             const filtered = searchFilter(filmsFromServer, stateCheckbox)
             // localStorage.setItem('movieFilteredhResult', JSON.stringify(filtered));
             localStorage.setItem('movieFilteredhResult', JSON.stringify(filtered));
