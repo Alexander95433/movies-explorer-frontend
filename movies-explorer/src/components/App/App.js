@@ -29,11 +29,7 @@ function App() {
        const [inputValue, setInputValue] = useState('');
        const [foundMovies, setFoundMovies] = useState([]);
 
-useEffect(() => {
-  localStorage.setItem('resultRastIssue', JSON.stringify(foundMovies));
-  // const resultRastIssue = JSON.parse(localStorage.getItem('resultRastIssue'))
-  // console.log(resultRastIssue)
-}, [foundMovies])
+ 
 
   useEffect(() => {
     handleTokenCheck()

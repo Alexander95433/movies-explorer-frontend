@@ -4,7 +4,7 @@ import buttonIcon from '../../../image/movies__dutton-icon2.svg'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 import { movieSearchHandler, searchFilter } from '../../../utils/Functions';
 
-function SearchForm({ setLoading, setFoundMovies, checkbox, setCheckbox, inputValue, setInputValue }) {
+function SearchForm({foundMovies, setLoading, setFoundMovies, checkbox, setCheckbox, inputValue, setInputValue }) {
     const moviesFromServer = JSON.parse(localStorage.getItem('movies'));
     const movieSearchResult = JSON.parse(localStorage.getItem('movieSearchResult'))
     const checkboxState = JSON.parse(localStorage.getItem('shorts'))
@@ -14,12 +14,15 @@ function SearchForm({ setLoading, setFoundMovies, checkbox, setCheckbox, inputVa
     const [errorClass, setErrorClass] = useState(true)
     const [plaseholderText, setPlaseholderText] = useState('Фильм');
 
+    useEffect(() => {
+        localStorage.setItem('resultRastIssue', JSON.stringify(foundMovies));
+        // debugger
+      }, [foundMovies])
      
 
     useEffect(() => {
-        if (!checkboxState) { }
-        else {
-            if (inputValue.length === 0) {
+        if (!checkboxState) { } 
+        else { if (inputValue.length === 0) { 
                 // debugger
                 localStorage.setItem('movieSearchResult', JSON.stringify([]));
                 setFoundMovies(movieSearchResult && moviesFromServer)
@@ -31,12 +34,8 @@ function SearchForm({ setLoading, setFoundMovies, checkbox, setCheckbox, inputVa
                     localStorage.setItem('movieFilteredhResult', JSON.stringify([]))
                     setFoundMovies(movieSearchResult && moviesFromServer)
                     // debugger
-                }
-            }
-        }
+                }}}
     }, [inputValue, checkboxState, queryStore])
-
-
 
     function hendleCheckbox() {
         if (!checkboxState) {
@@ -45,8 +44,7 @@ function SearchForm({ setLoading, setFoundMovies, checkbox, setCheckbox, inputVa
             console.log(checkbox, 'from checkbox')
             // debugger
             searchHandler(true, queryStore)
-        }
-        else {
+        } else {
             setCheckbox(false)
             localStorage.setItem('shorts', false)
             localStorage.setItem('movieFilteredhResult', JSON.stringify([]));
@@ -71,7 +69,7 @@ function SearchForm({ setLoading, setFoundMovies, checkbox, setCheckbox, inputVa
 
     function handleInput(e) {
         setInputValue(e.target.value);
-        // debugger
+         debugger
         if (e.target.value.length === 0) {
             localStorage.setItem('movieSearchResult', JSON.stringify([]));
             localStorage.setItem('query', '');

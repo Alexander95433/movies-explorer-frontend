@@ -19,7 +19,7 @@ function Movies(props) {
     const [titleNothingFound, setTitleNothingFound] = useState(true);
     const [titleNotFoundMovies, setTitleNotFoundMovies] = useState(true)
 
-    const resultRastIssue = JSON.parse(localStorage.getItem('resultRastIssue'))
+     
 
     // На свою ответственность я реализовал следующий алгоритм. При пустой поисковой строке 
     // выводится весь обьём карточек полученного от сервера (отрисовываются по количеству заявленному в задании при клике на кнопу "Ещё").
@@ -30,31 +30,14 @@ function Movies(props) {
     // я могу всё вернуть на место.   checkbox, setCheckbox, filter, onSearchHandler, inputValue, setInputValue
 
     useEffect(() => {
+        const resultRastIssue = JSON.parse(localStorage.getItem('resultRastIssue'))
         props.setCheckbox(checkboxState)
         if (movieSearchResult.length === 0 && movieFilteredhResult.length === 0) {
-            debugger
+            // debugger
             hendleGetMovies()
-        } else if (checkboxState) {
-            debugger
-            if (movieSearchResult.length > 0) {
-                props.setFoundMovies(movieSearchResult)
-                debugger
-            }
-            if (movieSearchResult.length === 0) {
-                props.setFoundMovies(moviesFromServer)
-                debugger
-            }
-        }
-        else if (movieFilteredhResult.length > 0) {
-            if (movieFilteredhResult.length > 0) {
-                props.setFoundMovies(movieFilteredhResult)
-                debugger
-            } else if (movieSearchResult.length > 0) {
-                props.setFoundMovies(movieSearchResult)
-                debugger
-            }
-        }
-        debugger
+        } else{
+            props.setFoundMovies(resultRastIssue)}
+        // debugger
         props.setLoading(false)
         props.setInputValue(queryStore)
         setTitleNotFoundMovies(true)

@@ -12,6 +12,19 @@ function SavedMovies(props) {
         props.hendleGetSavedMovies()
     }, [location.pathname = '/saved-movies', savedMovies])
 
+    // useEffect(() => {
+    //     props.setCheckbox(checkboxState)
+    //     if (movieSearchResult.length === 0 && movieFilteredhResult.length === 0) {
+    //         // debugger
+    //         hendleGetMovies()
+    //     } else{
+    //         props.setFoundMovies(resultRastIssue)}
+    //     // debugger
+    //     props.setLoading(false)
+    //     props.setInputValue(queryStore)
+    //     setTitleNotFoundMovies(true)
+    // }, [])
+
     return (
         <>
             <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} loggedIn={props.loggedIn} />
