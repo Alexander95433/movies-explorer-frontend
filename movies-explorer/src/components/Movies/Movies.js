@@ -19,6 +19,8 @@ function Movies(props) {
     const [titleNothingFound, setTitleNothingFound] = useState(true);
     const [titleNotFoundMovies, setTitleNotFoundMovies] = useState(true)
 
+    const resultRastIssue = JSON.parse(localStorage.getItem('resultRastIssue'))
+
     // На свою ответственность я реализовал следующий алгоритм. При пустой поисковой строке 
     // выводится весь обьём карточек полученного от сервера (отрисовываются по количеству заявленному в задании при клике на кнопу "Ещё").
     // Данные поиска и найденные фильмы сохранаются в localStorage но если очистить поисковую строку то содержимое localStorage для этого функционала очистится
@@ -28,46 +30,36 @@ function Movies(props) {
     // я могу всё вернуть на место.   checkbox, setCheckbox, filter, onSearchHandler, inputValue, setInputValue
 
     useEffect(() => {
-        
         props.setCheckbox(checkboxState)
         if (movieSearchResult.length === 0 && movieFilteredhResult.length === 0) {
-             debugger
+            debugger
             hendleGetMovies()
         } else if (checkboxState) {
-             debugger
-            //filter(movieSearchResult, moviesFromServer, checkboxState)
-            // props.setFoundMovies(movieSearchResult && moviesFromServer)
-            // props.setFoundMovies(movieSearchResult ? movieSearchResult : moviesFromServer)
-            if(movieSearchResult.length > 0) {
+            debugger
+            if (movieSearchResult.length > 0) {
                 props.setFoundMovies(movieSearchResult)
                 debugger
-            } 
-            if(movieSearchResult.length === 0){ 
+            }
+            if (movieSearchResult.length === 0) {
                 props.setFoundMovies(moviesFromServer)
                 debugger
             }
-            
-            //props.setFoundMovies(movieFilteredhResult || movieSearchResult )
-            console.log(movieFilteredhResult, checkboxState, 'movieFilteredhResult', movieSearchResult)
-            
-        } else if(movieFilteredhResult.length > 0) {
-            if(movieFilteredhResult.length > 0) {
+        }
+        else if (movieFilteredhResult.length > 0) {
+            if (movieFilteredhResult.length > 0) {
                 props.setFoundMovies(movieFilteredhResult)
                 debugger
-            }
-            if(movieSearchResult.length > 0) {
+            } else if (movieSearchResult.length > 0) {
                 props.setFoundMovies(movieSearchResult)
                 debugger
             }
         }
-             
-             debugger
-            props.setLoading(false)
-            props.setInputValue(queryStore)
-            setTitleNotFoundMovies(true)}
-        
-            , [])
-   
+        debugger
+        props.setLoading(false)
+        props.setInputValue(queryStore)
+        setTitleNotFoundMovies(true)
+    }, [])
+
     useEffect(() => {
         if (props.foundMovies.length <= 0) {
             setTitleNothingFound(false)
@@ -96,23 +88,6 @@ function Movies(props) {
             })
             .finally(() => props.setLoading(false))
     }
-    // Динамическое отображение заполнения инпута для отображения карточек с фильмами по умолчанию после его очистки (!movieSearchResult ? movies : movieSearchResult) 
-    // useEffect(() => {
-    //     console.log(movieFilteredhResult,'movieFilteredhResult')
-    //     if (movieFilteredhResult) { props.setFoundMovies(movieFilteredhResult) }
-    //     else {
-    //         if (props.inputValue.length === 0) {
-    //             props.setFoundMovies((!movieSearchResult ? movies : moviesFromServer))
-    //            // filter = (films)
-    //         }
-    //         else if (props.inputValue === queryStore) { props.setFoundMovies(movieSearchResult) }
-    //     }
-    // }, [props.inputValue])
-
-
-
-    //Динамическое отображение длинны массива с карточками фильмов для корректной работы сообщения о не корректном запросе
-
 
     return (
         <>
