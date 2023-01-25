@@ -24,12 +24,11 @@ function App() {
   const [savedFilms, setsavedFilms] = useState([])
 
    
-
   const [checkbox, setCheckbox] = useState(false)
-       const [inputValue, setInputValue] = useState('');
-       const [foundMovies, setFoundMovies] = useState([]);
-
- 
+  const [inputValue, setInputValue] = useState('');
+  const [foundMovies, setFoundMovies] = useState([]);
+  const [titleNotFoundMovies, setTitleNotFoundMovies] = useState(true)
+   
 
   useEffect(() => {
     handleTokenCheck()
@@ -98,7 +97,7 @@ function App() {
       endpoint: 'users/me',
       methodName: 'GET',
     }).then((user) => {
-      
+
       setCurrentUser(user)
       localStorage.setItem('user', JSON.stringify(user))
     })
@@ -108,13 +107,13 @@ function App() {
   function hendleEditProfile(data) {
     mainApi.patchUserInfo(data)
       .then((res) => {
-        
+
         setCurrentUser(res.data)
         localStorage.setItem('user', JSON.stringify(res.data))
         console.log(currentUser)
       })
       .catch((err) => { console.log(err) })
-      .finally(() =>{hendleGetUserInfo() })
+      .finally(() => { hendleGetUserInfo() })
   }
 
   function hendleGetSavedMovies() {
@@ -131,7 +130,8 @@ function App() {
           setsavedFilms(mySavedFilms)
         };
       })
-      setsavedFilms(data)
+      setTitleNotFoundMovies(true)
+      //setsavedFilms(data)
     }).catch((err) => {
       console.log(err)
     })
@@ -164,6 +164,7 @@ function App() {
       methodName: 'DELETE'
     }).then((data) => { console.log(data) })
       .catch((err) => { console.log(err) })
+       
   }
 
   function handlerOpeningAndClosingBurgerMenu() {
@@ -188,17 +189,14 @@ function App() {
         <Route exact path='/'>
           <Main onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
         </Route>
-        <ProtectedRouter path='/movies' setFoundMovies={setFoundMovies} checkbox={checkbox} setCheckbox={setCheckbox}  inputValue={inputValue} setInputValue={setInputValue} foundMovies={foundMovies}  loading={loading} setLoading={setLoading}
-         setCurrentUser={setCurrentUser} hendleGetUserInfo={hendleGetUserInfo} hendleGetSavedMovies={hendleGetSavedMovies}
+        <ProtectedRouter path='/movies' setFoundMovies={setFoundMovies} checkbox={checkbox} setCheckbox={setCheckbox} inputValue={inputValue} setInputValue={setInputValue}
+          foundMovies={foundMovies} loading={loading} setLoading={setLoading} setCurrentUser={setCurrentUser} hendleGetUserInfo={hendleGetUserInfo} hendleGetSavedMovies={hendleGetSavedMovies}
           setsavedFilms={setsavedFilms} savedFilms={savedFilms} hendleDeleteMovies={hendleDeleteMovies} hendleSaveMovies={hendleSaveMovies} logiedId={loggedIn} component={Movies}
           onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
 
         <ProtectedRouter path='/saved-movies'
-        loading={loading} setLoading={setLoading}
-        checkbox={checkbox} setCheckbox={setCheckbox} setFoundMovies={setFoundMovies}
-        inputValue={inputValue} setInputValue={setInputValue} foundMovies={foundMovies}
-        
-        savedFilms={savedFilms} hendleGetSavedMovies={hendleGetSavedMovies} hendleDeleteMovies={hendleDeleteMovies} logiedId={loggedIn}
+          loading={loading} setLoading={setLoading} setTitleNotFoundMovies={setTitleNotFoundMovies} titleNotFoundMovies={titleNotFoundMovies}
+          foundMovies={foundMovies} savedFilms={savedFilms} hendleGetSavedMovies={hendleGetSavedMovies} hendleDeleteMovies={hendleDeleteMovies} logiedId={loggedIn}
           component={SavedMovies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
 
         <ProtectedRouter path='/profile' onHendleEditProfile={hendleEditProfile} logiedId={loggedIn} component={Profile} onHendleAccountLogout={hendleAccountLogout}

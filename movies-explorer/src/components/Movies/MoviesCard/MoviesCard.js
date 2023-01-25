@@ -7,7 +7,7 @@ function MoviesCard(props) {
     const location = useLocation();
     const savedUser = JSON.parse(localStorage.getItem('user'));
     const [visible, setVisible] = useState(false);
-    const [isLiked, setisLiked] = useState(false);
+     const [isLiked, setisLiked] = useState(false);
     const [savedId, setSavedId] = useState('');
 
     useEffect(() => {
@@ -47,8 +47,9 @@ function MoviesCard(props) {
     };
 
     function handleDeleteButtonCard(evt) {
-        props.hendleGetSavedMovies()
+         
         props.hendleDeleteMovies(savedId)
+        //props.hendleGetSavedMovies()
         deleteSavedFilmsFromLocalStorege({ card: props.card })
          
     };

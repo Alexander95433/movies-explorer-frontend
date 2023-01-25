@@ -13,12 +13,12 @@ function Movies(props) {
     const checkboxState = JSON.parse(localStorage.getItem('shorts'))
     const movieFilteredhResult = JSON.parse(localStorage.getItem('movieFilteredhResult'))
     const queryStore = localStorage.getItem('query')
-    const location = useLocation();
-    const [movies, setMovies] = useState([]);
+    const resultRastIssue = JSON.parse(localStorage.getItem('resultRastIssue'))
+    //const location = useLocation();
+    //const [movies, setMovies] = useState([]);
     const [moreButtonState, setMoreButtonState] = useState(false);
     const [titleNothingFound, setTitleNothingFound] = useState(true);
     const [titleNotFoundMovies, setTitleNotFoundMovies] = useState(true)
-
      
 
     // На свою ответственность я реализовал следующий алгоритм. При пустой поисковой строке 
@@ -27,10 +27,9 @@ function Movies(props) {
     // и снова будет выведен весь массив карточек. Оправдываю я это тем, что довольно странно выглядит пустая страница при посещение сайта. 
     // В целом руководствовался такой мыслью, что иногда хочется полистать ленту с фильмами и выбрать подходящий, просто посмотреть что вообще есть.
     // Ну, а на пустой странице это реализовать довольно проблематично. В любом случае если мой вариант функционала фатально нарушает правила  приёма тз, то 
-    // я могу всё вернуть на место.   checkbox, setCheckbox, filter, onSearchHandler, inputValue, setInputValue
+    // я могу всё вернуть на место.
 
     useEffect(() => {
-        const resultRastIssue = JSON.parse(localStorage.getItem('resultRastIssue'))
         props.setCheckbox(checkboxState)
         if (movieSearchResult.length === 0 && movieFilteredhResult.length === 0) {
             // debugger
@@ -61,7 +60,7 @@ function Movies(props) {
     function hendleGetMovies() {
         moviesApi.getAllMovies()
             .then((movies) => {
-                setMovies(movies)
+                //setMovies(movies)
                 props.setFoundMovies(movies)
                 localStorage.setItem('movies', JSON.stringify(movies));
                 setTitleNotFoundMovies(true)
@@ -76,7 +75,7 @@ function Movies(props) {
         <>
             <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} loggedIn={props.loggedIn} />
             <main className="movies-page">
-                <SearchForm loading={props.loading} setLoading={props.setLoading}
+            <SearchForm loading={props.loading} setLoading={props.setLoading}
                     checkbox={props.checkbox} setCheckbox={props.setCheckbox} setFoundMovies={props.setFoundMovies}
                     inputValue={props.inputValue} setInputValue={props.setInputValue} foundMovies={props.foundMovies} />
 

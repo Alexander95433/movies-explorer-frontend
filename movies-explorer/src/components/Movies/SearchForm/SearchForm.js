@@ -69,7 +69,7 @@ function SearchForm({foundMovies, setLoading, setFoundMovies, checkbox, setCheck
 
     function handleInput(e) {
         setInputValue(e.target.value);
-         debugger
+        //  debugger
         if (e.target.value.length === 0) {
             localStorage.setItem('movieSearchResult', JSON.stringify([]));
             localStorage.setItem('query', '');
