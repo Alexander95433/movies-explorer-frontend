@@ -122,7 +122,7 @@ function App() {
       endpoint: 'movies',
       methodName: 'GET',
     }).then((data) => {
-      if (data.length === 0) { localStorage.setItem('savedMovies', JSON.stringify([])); }
+      //if (data.length === 0) { localStorage.setItem('savedMovies', JSON.stringify([])); }
       data.forEach((savedFilm) => {
         if (savedFilm.owner === currentUser._id) {
           mySavedFilms.push(savedFilm)
