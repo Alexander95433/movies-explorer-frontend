@@ -21,15 +21,15 @@ export function searchFilter(array,  short) {
 }
 
 
-export function checkingOwnerCards(data) {
-    let mySavedFilms = []
-    data.savedFilms.forEach((savedFilm) => {
-        if (savedFilm.owner === data.savedUser._id) {
-            mySavedFilms.push(savedFilm)
-            localStorage.setItem('savedMovies', JSON.stringify(mySavedFilms));
-        };
-    })
-}
+// export function checkingOwnerCards(data) {
+//     let mySavedFilms = []
+//     data.savedFilms.forEach((savedFilm) => {
+//         if (savedFilm.owner === data.savedUser._id) {
+//             mySavedFilms.push(savedFilm)
+//             localStorage.setItem('savedMovies', JSON.stringify(mySavedFilms));
+//         };
+//     })
+// }
 
 export function deleteSavedFilmsFromLocalStorege(data) {
     // debugger
