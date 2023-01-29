@@ -12,37 +12,11 @@ function SavedMovies(props) {
     const [inputValueSaved, setInputValueSaved] = useState('');
     const [titleNothingFound, setTitleNothingFound] = useState(true);
 
-    const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
-    const movieSearchResult = JSON.parse(localStorage.getItem('movieSearchResultSaved'))
-    const movieFilteredhResult = JSON.parse(localStorage.getItem('movieFilteredhResultSaved'))
-    const resultRastIssueSaved = JSON.parse(localStorage.getItem('resultRastIssueSved'))
-
-    // useEffect(() => {
-    //     props.hendleGetSavedMovies()
-    //     setCheckboxSaved(checkboxState)
-    //     if (movieSearchResult.length === 0 && movieFilteredhResult.length === 0) {
-    //         props.hendleGetSavedMovies()
-    //         setFoundSavedMovies(resultRastIssueSaved)
-    //     } else {
-    //         setFoundSavedMovies(resultRastIssueSaved)
-    //     }
-    //     props.setLoading(false)
-    //     setInputValueSaved(queryStore)
-    // }, [])
-
-
     useEffect(() => {
         setCheckboxSaved(checkboxState)
-        // if (movieSearchResult.length === 0 && movieFilteredhResult.length === 0) {
-        //     props.hendleGetSavedMovies()
-        //     setFoundSavedMovies(resultRastIssueSaved)
-        // } else {
-        //     setFoundSavedMovies(resultRastIssueSaved)
-        // }
         props.setLoading(false)
         setInputValueSaved(queryStore)
     }, [])
-
 
     useEffect(() => {
         if (foundSavedMovies.length === 0) { setTitleNothingFound(false) }
@@ -57,7 +31,7 @@ function SavedMovies(props) {
                     checkbox={checkboxSaved} setCheckbox={setCheckboxSaved} setFoundSavedMovies={setFoundSavedMovies}
                     inputValue={inputValueSaved} setInputValue={setInputValueSaved} foundSavedMovies={foundSavedMovies} />
                 <MoviesCardList titleNothingFound={titleNothingFound} titleNotFoundMovies={props.titleNotFoundMovies} hendleGetSavedMovies={props.hendleGetSavedMovies} 
-                savedFilms={props.savedFilms} savedMovies={foundSavedMovies} hendleDeleteMovies={props.hendleDeleteMovies} checDeleteCard={props.checDeleteCard}    setChecDeleteCard={props.setChecDeleteCard}/>
+                savedFilms={props.savedFilms} savedMovies={foundSavedMovies} checDeleteCard={props.checDeleteCard}    setChecDeleteCard={props.setChecDeleteCard}/>
             </main>
             <Footer />
         </>

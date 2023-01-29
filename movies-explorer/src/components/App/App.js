@@ -23,15 +23,15 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('')
   const [savedFilms, setsavedFilms] = useState([])
 
-   
+
   const [checkbox, setCheckbox] = useState(false)
   const [inputValue, setInputValue] = useState('');
   const [foundMovies, setFoundMovies] = useState([]);
   const [titleNotFoundMovies, setTitleNotFoundMovies] = useState(true)
-   
+
   const [checDeleteCard, setChecDeleteCard] = useState(false)
- 
-   
+
+
   useEffect(() => {
     handleTokenCheck()
     if (loggedIn) { hendleGetUserInfo() }
@@ -124,7 +124,6 @@ function App() {
       endpoint: 'movies',
       methodName: 'GET',
     }).then((data) => {
-      //if (data.length === 0) { localStorage.setItem('savedMovies', JSON.stringify([])); }
       data.forEach((savedFilm) => {
         if (savedFilm.owner === currentUser._id) {
           mySavedFilms.push(savedFilm)
@@ -133,65 +132,15 @@ function App() {
         };
       })
       setTitleNotFoundMovies(true)
-      //setsavedFilms(data)
     }).catch((err) => {
       console.log(err)
     })
   }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  function hendleSaveMovies(data, setisLiked) {
-    
-    const newMovie = {};
-    const { image, id } = data;
-    Object.assign(newMovie, data);
-    delete newMovie.id;
-    delete newMovie.created_at;
-    delete newMovie.updated_at;
 
-    mainApi.saveMovies({
-        endpoint: 'movies',
-        methodName: 'POST',
-        body: {
-            ...newMovie,
-            image: `https://api.nomoreparties.co/${image.url}`,
-            thumbnail: `https://api.nomoreparties.co/${image.formats.thumbnail.url}`,
-            movieId: id,
-        }
-    }).then((res) => {
-        // debugger
-        let savedMoviess = JSON.parse(localStorage.getItem('savedMovies'));
-        console.log(savedMoviess, 'перед добавлением')
-        // debugger
-        savedMoviess.push(res);
-
-        localStorage.setItem('savedMovies', JSON.stringify(savedMoviess))
-        let savedMoviessd = JSON.parse(localStorage.getItem('savedMovies'));
-        console.log(savedMoviessd, 'после добавления')
-        // debugger
-    })
-        .catch((err) => { console.log(err) })
-        .finally(() => { setisLiked(true) })
-}
-
-function hendleDeleteMovies(movieId, setisLiked) {
-  //debugger
-  mainApi.deleteMovies({
-      endpoint: `movies/${movieId}`,
-      methodName: 'DELETE'
-  }).then((data) => { console.log(data) })
-      .catch((err) => { console.log(err) })
-      .finally(() => { setisLiked(false) })
-
-} 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   function handlerOpeningAndClosingBurgerMenu() {
     if (burgerHidden) { setBurgerHidden(false) }
     else { setBurgerHidden(true) }
 
-  }
-
-  function receiveSetFoundMovies(data) {
-    setFoundMovies(data)
   }
 
   return (
@@ -208,12 +157,12 @@ function hendleDeleteMovies(movieId, setisLiked) {
         </Route>
         <ProtectedRouter path='/movies' setFoundMovies={setFoundMovies} checkbox={checkbox} setCheckbox={setCheckbox} inputValue={inputValue} setInputValue={setInputValue}
           foundMovies={foundMovies} loading={loading} setLoading={setLoading} setCurrentUser={setCurrentUser} hendleGetUserInfo={hendleGetUserInfo} hendleGetSavedMovies={hendleGetSavedMovies}
-          setsavedFilms={setsavedFilms} savedFilms={savedFilms} hendleDeleteMovies={hendleDeleteMovies} hendleSaveMovies={hendleSaveMovies} logiedId={loggedIn} component={Movies}
+          setsavedFilms={setsavedFilms} savedFilms={savedFilms} logiedId={loggedIn} component={Movies}
           onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
 
-        <ProtectedRouter path='/saved-movies' checDeleteCard={checDeleteCard}   setChecDeleteCard={setChecDeleteCard}
+        <ProtectedRouter path='/saved-movies' checDeleteCard={checDeleteCard} setChecDeleteCard={setChecDeleteCard}
           loading={loading} setLoading={setLoading} setTitleNotFoundMovies={setTitleNotFoundMovies} titleNotFoundMovies={titleNotFoundMovies}
-          foundMovies={foundMovies} savedFilms={savedFilms} hendleGetSavedMovies={hendleGetSavedMovies} hendleDeleteMovies={hendleDeleteMovies} logiedId={loggedIn}
+          foundMovies={foundMovies} savedFilms={savedFilms} hendleGetSavedMovies={hendleGetSavedMovies} logiedId={loggedIn}
           component={SavedMovies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
 
         <ProtectedRouter path='/profile' onHendleEditProfile={hendleEditProfile} logiedId={loggedIn} component={Profile} onHendleAccountLogout={hendleAccountLogout}
