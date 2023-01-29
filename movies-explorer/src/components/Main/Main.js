@@ -12,7 +12,7 @@ import Footer from '../Sandbox/Footer/Footer';
 function Main(props) {
     return (
         <>
-            <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} />
+            <Header loggedIn={props.loggedIn} onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} />
             <main className="main-page">
                 <Promo /> 
                 <NavTab />

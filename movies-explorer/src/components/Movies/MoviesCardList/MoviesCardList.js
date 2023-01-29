@@ -1,58 +1,6 @@
-import React, { useState, useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ elementNumber, hendleMoreVideos, hendleGetSavedMovies, savedFilms, cards, titleNothingFound, titleNotFoundMovies, moreButtonState, setMoreButtonState }) {
-    // const [elementNumber, setElementNumber] = useState(6)
-    // const [screenSize, setDimension] = useState(window.innerWidth);
-    // const getDimension = () => { setDimension(window.innerWidth) };
-
-    // //Обновляет счётчик карточек для рендера в зависимости от масштаба окна 
-    // function hendleMoreVideos() {
-    //     debugger
-    //     if (screenSize < 643) {
-    //          setElementNumber(elementNumber + 5)
-    //          debugger
-    //          }
-    //     else if (screenSize < 760) { 
-    //         setElementNumber(elementNumber + 8)
-    //         debugger
-    //      }
-    //     else {
-    //          setElementNumber(elementNumber + 12) 
-    //          debugger
-    //         }
-
-    // }
-
-    // //Для корректного отображения/скрытия кнопки "Ещё" при отсутствии карточек
-    // useEffect(() => {
-        
-    //     if (cards.length < elementNumber) { 
-    //         setMoreButtonState(true) 
-    //         debugger
-    //     }
-    // }, [elementNumber, cards.length])
-
-    // //Для различного числа рендора карточек в зависимости от масштаба окна
-    // useEffect(() => {
-    //     debugger
-    //     if (screenSize < 643) {
-    //          setElementNumber(5) 
-    //          debugger
-    //         }
-    //     else if (screenSize < 760) {
-    //          setElementNumber(8) 
-    //          debugger
-    //         }
-    //     else { 
-    //         setElementNumber(12)
-    //         debugger
-    //      }
-    //     window.addEventListener('resize', getDimension);
-    //     return (() => {
-    //          window.removeEventListener('resize', getDimension);
-    //          })
-    // }, [screenSize])
+function MoviesCardList({ elementNumber, hendleMoreVideos, hendleGetSavedMovies, savedFilms, cards, titleNothingFound, titleNotFoundMovies, moreButtonState }) {
 
     return (
         <section className="movies-cardList__section" >

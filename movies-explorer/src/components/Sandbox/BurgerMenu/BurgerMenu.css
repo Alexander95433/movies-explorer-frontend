@@ -68,11 +68,17 @@
     text-decoration: none;
     padding-bottom: 5px;
     cursor: pointer;
+    transition: .1s linear;
+
+}
+.burger-menu__link_active{
+    border-bottom: solid 2px #FFFFFF;
 
 }
 
 .burger-menu__link:hover {
-    border-bottom: solid 2px #FFFFFF;
+    opacity: .5;
+    transition: .1s linear;
 
 }
 

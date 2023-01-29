@@ -2,9 +2,8 @@ import React from 'react';
 import AuthForm from '../AuthForm/AuthForm';
 import useForm from '../../Hooks/useForm';
 
-function Login({onErrorMessage, handleAuthorization }) {
+function Login({onErrorMessage, hendleGetUserInfo, hendleGetSavedMovies, handleAuthorization }) {
     const { errors, isValid, resetForm, values, passwordError, handleChange } = useForm();
-
     React.useEffect(() => {
         resetForm()
     }, []);
@@ -19,8 +18,11 @@ function Login({onErrorMessage, handleAuthorization }) {
             methodName: 'POST',
             body: { email, password }
         })
-    }
 
+        // hendleGetUserInfo()
+        // hendleGetSavedMovies()
+    }
+  
 
     return (
         <main className="authentication__background">

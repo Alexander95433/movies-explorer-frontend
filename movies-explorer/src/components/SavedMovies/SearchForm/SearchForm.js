@@ -15,7 +15,8 @@ function SearchForm({ checDeleteCard, foundSavedMovies, setLoading, setFoundSave
     const resultRastIssueSaved = JSON.parse(localStorage.getItem('resultRastIssueSved'))
 
     useEffect(() => {
-        if (!checkboxState) {
+        if (queryStore === null) { setFoundSavedMovies(savedMovies) }
+        else if (!checkboxState) {
             if (queryStore.length > 0) {
                 filter(savedMovies, savedMovies, checkboxState, queryStore)
                 searchHandler(checkboxState, queryStore)
@@ -34,20 +35,20 @@ function SearchForm({ checDeleteCard, foundSavedMovies, setLoading, setFoundSave
     }, [foundSavedMovies,])
 
     useEffect(() => {
-        if (!checkboxState) { }
-        else {
-            if (queryStore.length === 0) {
-                localStorage.setItem('movieSearchResultSaved', JSON.stringify([]));
-                setFoundSavedMovies(savedMovies)
-                if (!checkboxState) {
-                    filter(savedMovies, savedMovies, checkboxState, inputValue)
-                    setFoundSavedMovies(movieFilteredhResult)
-                } else {
-                    localStorage.setItem('movieFilteredhResultSaved', JSON.stringify([]))
-                    setFoundSavedMovies(movieSearchResult && savedMovies)
-                }
+        if (queryStore === null) { return }
+        else if (!checkboxState) { }
+        else if (inputValue.length === 0) {
+            localStorage.setItem('movieSearchResultSaved', JSON.stringify([]));
+            setFoundSavedMovies(savedMovies)
+            if (!checkboxState) {
+                filter(savedMovies, savedMovies, checkboxState, inputValue)
+                setFoundSavedMovies(movieFilteredhResult)
+            } else {
+                localStorage.setItem('movieFilteredhResultSaved', JSON.stringify([]))
+                setFoundSavedMovies(movieSearchResult && savedMovies)
             }
         }
+
     }, [inputValue, checkboxState, queryStore])
 
     function hendleCheckbox() {
@@ -89,7 +90,8 @@ function SearchForm({ checDeleteCard, foundSavedMovies, setLoading, setFoundSave
 
     function searchHandler(stateCheckbox, query) {
         const movieFilteredhResult = JSON.parse(localStorage.getItem('movieFilteredhResultSaved'))
-        if (!stateCheckbox) {
+        if (query === null) { setFoundSavedMovies(savedMovies) }
+        else if (!stateCheckbox) {
             let filtered = movieSearchHandler(movieFilteredhResult, query);
             localStorage.setItem('movieSearchResultSaved', JSON.stringify(filtered));
             setFoundSavedMovies(filtered);
@@ -101,7 +103,13 @@ function SearchForm({ checDeleteCard, foundSavedMovies, setLoading, setFoundSave
     }
 
     const filter = (resultSearchFilms, savedFilms, stateCheckbox, input) => {
-        if (input.length > 0) {
+        const queryStore = localStorage.getItem('querySaved')
+        if (resultSearchFilms === null) {
+            const filtered = searchFilter(savedFilms, stateCheckbox)
+            localStorage.setItem('movieFilteredhResultSaved', JSON.stringify(filtered));
+            setFoundSavedMovies(filtered);
+        }
+        else if (queryStore.length > 0) {
             const filtered = searchFilter(resultSearchFilms, stateCheckbox)
             localStorage.setItem('movieFilteredhResultSaved', JSON.stringify(filtered));
             setFoundSavedMovies(filtered);

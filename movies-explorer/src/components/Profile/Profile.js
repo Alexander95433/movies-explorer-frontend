@@ -31,9 +31,7 @@ function Profile(props) {
             } else {
                 setClassBurder('profile__border_focus')
                 setErrorText('')
-
             }
-
         }
         if (eventTargetInput === 'email') {
 
@@ -45,7 +43,6 @@ function Profile(props) {
                 setClassBurder('profile__border_focus')
                 setErrorText('')
             }
-
         }
     }, [errors, eventTargetInput])
 
@@ -74,6 +71,8 @@ function Profile(props) {
             setErrorText('')
         }
     }
+
+   
     return (
         <>
             <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} loggedIn={props.loggedIn} />

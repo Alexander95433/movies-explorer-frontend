@@ -20,17 +20,29 @@ function Movies(props) {
     const [elementNumber, setElementNumber] = useState(6)
     const [screenSize, setDimension] = useState(window.innerWidth);
     const getDimension = () => { setDimension(window.innerWidth) };
+    console.log(checkboxState)
 
     useEffect(() => {
-        props.setCheckbox(checkboxState)
-        if (movieSearchResult.length === 0 && movieFilteredhResult.length === 0) {
-            hendleGetMovies()
-        } else {
-            props.setFoundMovies(resultRastIssue)
+        if (checkboxState === null) {
+            localStorage.setItem('shorts', props.checkbox)
         }
-        props.setLoading(false)
-        props.setInputValue(queryStore)
-        setTitleNotFoundMovies(true)
+        else {
+            props.setCheckbox(checkboxState)
+            if (movieSearchResult === null) {
+                props.hendleGetUserInfo()
+                hendleGetMovies()
+                props.hendleGetSavedMovies()
+
+            }
+            else if (movieSearchResult.length === 0 && movieFilteredhResult.length === 0) {
+                hendleGetMovies()
+            } else {
+                props.setFoundMovies(resultRastIssue)
+            }
+            props.setLoading(false)
+            props.setInputValue(queryStore)
+            setTitleNotFoundMovies(true)
+        }
     }, [])
 
     // Для отображения или сакрытия кнопки Ещё

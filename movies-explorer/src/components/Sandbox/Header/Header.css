@@ -1,3 +1,4 @@
+ 
 .header__background {
     width: 100%;
     height: 74px;
@@ -26,10 +27,17 @@
     font-weight: 500;
 }
 
+
 .header__icon {
     width: 38px;
     height: 38px;
     margin-left: 70px;
+    transition: .2s linear;
+}
+
+.header__icon:hover {
+   opacity: .7;
+   transition: .2s linear;
 }
 
 .header__authentication {
@@ -83,6 +91,7 @@
     color: #FFFFFF;
 }
 
+ 
 .header__link-box-movies:first-child {
     margin-right: 20px;
 }
@@ -101,6 +110,11 @@
     line-height: 12px;
     color: #FFFFFF;
 }
+
+.header__link-movies_active {
+    opacity: .5;
+}
+
 
 .header__movies-icon-box {
     display: flex;
