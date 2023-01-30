@@ -8,14 +8,16 @@ function SavedMovies(props) {
     const checkboxState = JSON.parse(localStorage.getItem('shortSaved'))
     const queryStore = localStorage.getItem('querySaved')
     const [foundSavedMovies, setFoundSavedMovies] = useState([]);
-    const [checkboxSaved, setCheckboxSaved] = useState(checkboxState || false)
+    const [checkboxSaved, setCheckboxSaved] = useState(true)
     const [inputValueSaved, setInputValueSaved] = useState('');
     const [titleNothingFound, setTitleNothingFound] = useState(true);
 
     useEffect(() => {
+        if(checkboxState === null){
+            setCheckboxSaved(true)
+        } else{
         setCheckboxSaved(checkboxState)
-        props.setLoading(false)
-        setInputValueSaved(queryStore)
+        setInputValueSaved(queryStore)}
     }, [])
 
     useEffect(() => {

@@ -13,6 +13,7 @@ import Login from '../Authentication/Login/Login';
 import NotFoundPage from '../Sandbox/NotFoundPage/NotFoundPage';
 import ProtectedRouter from '../Sandbox/ProtectedRouter/ProtectedRoute ';
 import mainApi from '../../utils/MainApi';
+import { moviesApi } from "../../utils/Api"
 
 function App() {
   let history = useHistory();
@@ -22,21 +23,56 @@ function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [errorMessage, setErrorMessage] = useState('')
   const [savedFilms, setsavedFilms] = useState([])
-  const [checkbox, setCheckbox] = useState(false)
+  const [checkbox, setCheckbox] = useState(true)
   const [inputValue, setInputValue] = useState('');
   const [foundMovies, setFoundMovies] = useState([]);
   const [titleNotFoundMovies, setTitleNotFoundMovies] = useState(true)
   const [checDeleteCard, setChecDeleteCard] = useState(false)
-
+  const resultRastIssue = JSON.parse(localStorage.getItem('resultRastIssue'))
+   
+  // useEffect(() => {
+  //   handleTokenCheck()
+  // }, [loggedIn])
 
   useEffect(() => {
     handleTokenCheck()
-    if (loggedIn) { hendleGetUserInfo() }
+    if(loggedIn){
+     
+    Promise.all([mainApi.detUserInfo({
+      endpoint: 'users/me',
+      methodName: 'GET',
+    }), mainApi.getSavedMovies({
+      endpoint: 'movies',
+      methodName: 'GET',
+    }), moviesApi.getAllMovies()])
+      .then((([dataUser, dataCards, dataFilmsFromServer]) => {
+        // debugger
+        localStorage.setItem('user', JSON.stringify(dataUser))
+        setCurrentUser(dataUser)
+
+        const userData = JSON.parse(localStorage.getItem('user'))
+        // debugger
+        let mySavedFilms = []
+        dataCards.forEach((savedFilm) => {
+          if (savedFilm.owner === userData._id) {
+            mySavedFilms.push(savedFilm)
+            localStorage.setItem('savedMovies', JSON.stringify(mySavedFilms));
+            setsavedFilms(mySavedFilms)
+          };
+        })
+        // debugger
+        setFoundMovies(dataFilmsFromServer)
+            localStorage.setItem('movies', JSON.stringify(dataFilmsFromServer));
+         
+      }))
+      .catch(err => console.log(`Ошибка: ${err}`))
+      .finally(() => {
+        setTitleNotFoundMovies(true)
+        setLoading(false)
+      })
+    }
   }, [loggedIn])
 
-  useEffect(() => {
-    hendleGetSavedMovies()
-  }, [])
 
   function handleRegister(data) {
     mainApi.register(data)
@@ -56,15 +92,20 @@ function App() {
         if (data.token) {
           setErrorMessage('')
           localStorage.setItem('jwt', data.token)
-          setLoggedIn(true)
+         setLoggedIn(true)
           history.push('movies');
         } else { return }
       }).catch((err) => {
         setErrorMessage('Не не правильная почта или пароль')
         console.log(`Ошибка входа в систему: ${err}`)
-      })
+      }) 
+      .finally(() => {
+          hendleGetUserInfo()
+          hendleGetSavedMovies()
+          setLoading(true)
+         
+       })
   }
-
 
   function hendleAccountLogout() {
     mainApi.accountLogout({
@@ -74,7 +115,7 @@ function App() {
       .catch(err => console.log(err))
       .finally(() => {
         setLoggedIn(false)
-        
+
         localStorage.removeItem('jwt')
         localStorage.clear();
         history.push('/');
@@ -90,7 +131,7 @@ function App() {
         methodName: 'GET',
       }).then((res) => {
         if (res) {
-          setLoggedIn(true);
+         setLoggedIn(true);
           history.push('movies');
         }
       }).catch((err) => { console.log(`Ошибка проверки токена: ${err}`) })
@@ -119,6 +160,8 @@ function App() {
       .finally(() => { hendleGetUserInfo() })
   }
 
+ 
+
   function hendleGetSavedMovies() {
     let mySavedFilms = []
     mainApi.getSavedMovies({
@@ -126,11 +169,11 @@ function App() {
       methodName: 'GET',
     }).then((data) => {
       const userData = JSON.parse(localStorage.getItem('user'))
-      
+      // debugger
       data.forEach((savedFilm) => {
         if (savedFilm.owner === userData._id) {
           mySavedFilms.push(savedFilm)
-          
+
           localStorage.setItem('savedMovies', JSON.stringify(mySavedFilms));
           setsavedFilms(mySavedFilms)
         };
@@ -159,7 +202,7 @@ function App() {
         <Route exact path='/'>
           <Main logiedId={loggedIn} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
         </Route>
-        <ProtectedRouter path='/movies' setFoundMovies={setFoundMovies} checkbox={checkbox} setCheckbox={setCheckbox} inputValue={inputValue} setInputValue={setInputValue}
+        <ProtectedRouter path='/movies'  setLoggedIn={setLoggedIn} setFoundMovies={setFoundMovies} checkbox={checkbox} setCheckbox={setCheckbox} inputValue={inputValue} setInputValue={setInputValue}
           foundMovies={foundMovies} loading={loading} setLoading={setLoading} setCurrentUser={setCurrentUser} hendleGetUserInfo={hendleGetUserInfo} hendleGetSavedMovies={hendleGetSavedMovies}
           setsavedFilms={setsavedFilms} savedFilms={savedFilms} loggedIn={loggedIn} component={Movies}
           onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />

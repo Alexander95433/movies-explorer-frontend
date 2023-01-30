@@ -118,7 +118,7 @@ function SearchForm({ checDeleteCard, foundSavedMovies, setLoading, setFoundSave
             localStorage.setItem('movieFilteredhResultSaved', JSON.stringify(filtered));
             setFoundSavedMovies(filtered);
         }
-        setLoading(false);
+        //setLoading(false);
     };
 
     return (

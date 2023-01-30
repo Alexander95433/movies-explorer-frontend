@@ -15,7 +15,6 @@ function SearchForm({ controlNumberFilms, foundMovies, setLoading, setFoundMovie
     const [plaseholderText, setPlaseholderText] = useState('Фильм');
     const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
 
-    console.log(movieFilteredhResult)
     useEffect(() => {
         localStorage.setItem('resultRastIssue', JSON.stringify(foundMovies));
     }, [foundMovies])
@@ -43,13 +42,13 @@ function SearchForm({ controlNumberFilms, foundMovies, setLoading, setFoundMovie
     function hendleCheckbox() {
         // debugger
         if (!checkboxState) {
-            // debugger
+            //  debugger
             setCheckbox(true)
             localStorage.setItem('shorts', true)
             console.log(checkbox, 'from checkbox')
             searchHandler(true, queryStore)
         } else {
-            // debugger
+            //  debugger
             setCheckbox(false)
             localStorage.setItem('shorts', false)
             localStorage.setItem('movieFilteredhResult', JSON.stringify([]));
@@ -119,7 +118,7 @@ function SearchForm({ controlNumberFilms, foundMovies, setLoading, setFoundMovie
             setFoundMovies(filtered);
             // debugger
         }
-        setLoading(false);
+        //setLoading(false);
     };
 
     return (

@@ -5,6 +5,7 @@ import Preloader from "./Preloader/Preloader";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import Footer from '../Sandbox/Footer/Footer';
 import { moviesApi } from "../../utils/Api"
+import mainApi from "../../utils/MainApi";
 
 function Movies(props) {
     const moviesFromServer = JSON.parse(localStorage.getItem('movies'));
@@ -20,30 +21,37 @@ function Movies(props) {
     const [elementNumber, setElementNumber] = useState(6)
     const [screenSize, setDimension] = useState(window.innerWidth);
     const getDimension = () => { setDimension(window.innerWidth) };
-    console.log(checkboxState)
 
     useEffect(() => {
+        // hendleGetMovies()
+        // debugger
         if (checkboxState === null) {
-            localStorage.setItem('shorts', props.checkbox)
+            localStorage.setItem('shorts', true)
         }
+        // if (movieSearchResult === null) {
+        //     props.setFoundMovies(props.foundMovies)
+        //     debugger
+        // } 
         else {
+            debugger
             props.setCheckbox(checkboxState)
-            if (movieSearchResult === null) {
-                props.hendleGetUserInfo()
-                hendleGetMovies()
-                props.hendleGetSavedMovies()
 
-            }
-            else if (movieSearchResult.length === 0 && movieFilteredhResult.length === 0) {
-                hendleGetMovies()
-            } else {
+            //  if (movieSearchResult.length === 0 && movieFilteredhResult.length === 0) {
+            //     //hendleGetMovies()
+            //     // debugger
+            // }
+            if (resultRastIssue.length > 0) {
                 props.setFoundMovies(resultRastIssue)
+                // debugger
             }
-            props.setLoading(false)
             props.setInputValue(queryStore)
+            // debugger
             setTitleNotFoundMovies(true)
         }
-    }, [])
+
+    }
+
+        , [])
 
     // Для отображения или сакрытия кнопки Ещё
     useEffect(() => {
@@ -92,7 +100,6 @@ function Movies(props) {
                 setTitleNotFoundMovies(false)
                 console.log(err)
             })
-            .finally(() => props.setLoading(false))
     }
 
     return (
