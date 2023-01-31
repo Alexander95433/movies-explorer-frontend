@@ -4,54 +4,26 @@ import SearchForm from "./SearchForm/SearchForm";
 import Preloader from "./Preloader/Preloader";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import Footer from '../Sandbox/Footer/Footer';
-import { moviesApi } from "../../utils/Api"
-import mainApi from "../../utils/MainApi";
 
 function Movies(props) {
     const moviesFromServer = JSON.parse(localStorage.getItem('movies'));
-    const movieSearchResult = JSON.parse(localStorage.getItem('movieSearchResult'))
     const checkboxState = JSON.parse(localStorage.getItem('shorts'))
-    const movieFilteredhResult = JSON.parse(localStorage.getItem('movieFilteredhResult'))
     const queryStore = localStorage.getItem('query')
-    const resultRastIssue = JSON.parse(localStorage.getItem('resultRastIssue'))
     const [moreButtonState, setMoreButtonState] = useState(false);
     const [titleNothingFound, setTitleNothingFound] = useState(true);
     const [titleNotFoundMovies, setTitleNotFoundMovies] = useState(true)
-
     const [elementNumber, setElementNumber] = useState(6)
     const [screenSize, setDimension] = useState(window.innerWidth);
     const getDimension = () => { setDimension(window.innerWidth) };
 
     useEffect(() => {
-        // hendleGetMovies()
-        // debugger
-        if (checkboxState === null) {
-            localStorage.setItem('shorts', true)
-        }
-        // if (movieSearchResult === null) {
-        //     props.setFoundMovies(props.foundMovies)
-        //     debugger
-        // } 
+        if (checkboxState === null) { localStorage.setItem('shorts', true) }
         else {
-            debugger
             props.setCheckbox(checkboxState)
-
-            //  if (movieSearchResult.length === 0 && movieFilteredhResult.length === 0) {
-            //     //hendleGetMovies()
-            //     // debugger
-            // }
-            if (resultRastIssue.length > 0) {
-                props.setFoundMovies(resultRastIssue)
-                // debugger
-            }
             props.setInputValue(queryStore)
-            // debugger
             setTitleNotFoundMovies(true)
         }
-
-    }
-
-        , [])
+    }, [])
 
     // Для отображения или сакрытия кнопки Ещё
     useEffect(() => {
@@ -88,18 +60,6 @@ function Movies(props) {
         else { setElementNumber(12) }
         window.addEventListener('resize', getDimension);
         return (() => { window.removeEventListener('resize', getDimension); })
-    }
-
-    function hendleGetMovies() {
-        moviesApi.getAllMovies()
-            .then((movies) => {
-                props.setFoundMovies(movies)
-                localStorage.setItem('movies', JSON.stringify(movies));
-                setTitleNotFoundMovies(true)
-            }).catch((err) => {
-                setTitleNotFoundMovies(false)
-                console.log(err)
-            })
     }
 
     return (

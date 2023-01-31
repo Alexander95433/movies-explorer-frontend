@@ -15,6 +15,7 @@ function SavedMovies(props) {
     useEffect(() => {
         if(checkboxState === null){
             setCheckboxSaved(true)
+            localStorage.setItem('shortSaved', true)
         } else{
         setCheckboxSaved(checkboxState)
         setInputValueSaved(queryStore)}
@@ -24,7 +25,6 @@ function SavedMovies(props) {
         if (foundSavedMovies.length === 0) { setTitleNothingFound(false) }
         else { setTitleNothingFound(true) }
     }, [foundSavedMovies])
-
     return (
         <>
             <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} loggedIn={props.loggedIn} />

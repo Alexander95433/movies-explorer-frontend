@@ -2,7 +2,6 @@ import React from "react";
 import MoviesCard from '../../Movies/MoviesCard/MoviesCard';
 
 function MoviesCardList({checDeleteCard, setChecDeleteCard, savedMovies, titleNothingFound, titleNotFoundMovies, savedFilms, hendleGetSavedMovies }) {
-
     return (
         <section className="movies-cardList__section">
             <h3 className={`movies-cardList__not-found-title ${!titleNotFoundMovies ? 'movies-cardList__not-found-title_loading-error' : ''}`} hidden={titleNothingFound}>{

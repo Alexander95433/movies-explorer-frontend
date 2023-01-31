@@ -20,7 +20,7 @@ function Header(props) {
                          <img className='header__movies-icon' src={accountIcon} alt='Ярлык аккаунта' /></div></NavLink>
                     </li>
                 </nav>}
-                <button className={`header__burger-button ${props.onBurgerHidden ? '' : 'header__burger-button_close'}`} type='button' onClick={props.onBurgerButton} />
+                {props.loggedIn ? <button className={`header__burger-button ${props.onBurgerHidden ? '' : 'header__burger-button_close'}`} type='button' onClick={props.onBurgerButton}/> : ''}
             
             
         </header>

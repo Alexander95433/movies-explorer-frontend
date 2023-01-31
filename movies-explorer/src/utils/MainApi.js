@@ -38,7 +38,6 @@ class MainApi {
     };
 
     accountLogout(data) {
-        debugger
         return this._request(data)
     };
 
