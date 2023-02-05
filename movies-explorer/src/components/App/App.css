@@ -13,6 +13,10 @@ body {
     color: #FFFFFF;
     background-color: #202020;
 }
+.protected-router__preloader-wrapper {
+  height: 100vh;
+  display: flex;
+}
 
 @import url(../Sandbox/BurgerMenu/BurgerMenu.css);
 /*Header*/

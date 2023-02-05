@@ -17,7 +17,9 @@ import { moviesApi } from "../../utils/Api"
 
 function App() {
   let history = useHistory();
-  const [loggedIn, setLoggedIn] = React.useState(false)
+  const [loggedIn, setLoggedIn] = useState(false)
+
+
   const [loading, setLoading] = useState(true);
   const [burgerHidden, setBurgerHidden] = useState(true);
   const [currentUser, setCurrentUser] = useState({})
@@ -30,33 +32,26 @@ function App() {
   const [checDeleteCard, setChecDeleteCard] = useState(false)
   const resultRastIssue = JSON.parse(localStorage.getItem('resultRastIssue'))
 
-// Немного дополнил функциональность базового задания. На мой взгляд страница до осуществления поиска выглядит не завершенной если блок с карточками пуст.
-// Иногда хочется полистать ленту и выбрать что нибудь из уже имеющегося. Поэтому я вывел весь массив с карточками на страницу с фильмами. (кнопка "Ещё присутствует")
-// Так же после осуществления поиска можно очистить строку, после этого сработает новый рендер и вновь выведется массив со всеми карточками для удобства пользователя. (в зависимости от статуса чекбокса)
-// Надеюсь мои дополнения не будут критическими для приёмки. Данная функциональность мне нравится. Спасибо
-
   useEffect(() => {
     handleTokenCheck()
     if (loggedIn) {
-      Promise.all([mainApi.detUserInfo({
-        endpoint: 'users/me',
-        methodName: 'GET',
-      }), mainApi.getSavedMovies({
-        endpoint: 'movies',
-        methodName: 'GET',
-      }), moviesApi.getAllMovies()])
+      Promise.all([mainApi.detUserInfo({ endpoint: 'users/me', methodName: 'GET', }),
+      mainApi.getSavedMovies({ endpoint: 'movies', methodName: 'GET', }),
+      moviesApi.getAllMovies()])
         .then((([dataUser, dataCards, dataFilmsFromServer]) => {
           localStorage.setItem('user', JSON.stringify(dataUser))
           setCurrentUser(dataUser)
           const userData = JSON.parse(localStorage.getItem('user'))
           let mySavedFilms = []
+          // debugger
           dataCards.forEach((savedFilm) => {
             if (savedFilm.owner === userData._id) {
               mySavedFilms.push(savedFilm)
-              localStorage.setItem('savedMovies', JSON.stringify(mySavedFilms));
               setsavedFilms(mySavedFilms)
             };
           })
+          localStorage.setItem('savedMovies', JSON.stringify(mySavedFilms));
+          // debugger
           if (resultRastIssue) { setFoundMovies(resultRastIssue) }
           else { setFoundMovies(dataFilmsFromServer) }
           localStorage.setItem('movies', JSON.stringify(dataFilmsFromServer));
@@ -65,31 +60,36 @@ function App() {
         .finally(() => {
           setTitleNotFoundMovies(true)
           setLoading(false)
+          // debugger
         })
     }
   }, [loggedIn])
 
 
   function handleRegister(data) {
+    const { name, email, password } = data.body
     mainApi.register(data)
       .then((data) => {
         setErrorMessage('')
-        history.push('signin')
+        setLoggedIn(true)
       }).catch((err) => {
         console.log(`Ошибка регистрации: ${err}`)
         setErrorMessage('Пользователь с такой почтой уже существует')
-        console.log(errorMessage)
       })
+      .finally(() => {
+        handleAuthorization({ body: { email, password }, endpoint: 'signin', methodName: 'POST' })
+      }
+      )
   }
 
   function handleAuthorization(data) {
     mainApi.authorization(data)
       .then((data) => {
         if (data.token) {
+          setLoggedIn(true)
           setErrorMessage('')
           localStorage.setItem('jwt', data.token)
-          setLoggedIn(true)
-          history.push('movies');
+          history.push('/movies');
         } else { return }
       }).catch((err) => {
         setErrorMessage('Не не правильная почта или пароль')
@@ -110,10 +110,10 @@ function App() {
     }).then(data => console.log(data))
       .catch(err => console.log(err))
       .finally(() => {
-        setLoggedIn(false)
-
         localStorage.removeItem('jwt')
         localStorage.clear();
+        debugger
+        setLoggedIn(false)
         history.push('/');
       })
 
@@ -121,17 +121,21 @@ function App() {
 
   function handleTokenCheck() {
     const jwt = localStorage.getItem('jwt')
-    if (jwt) {
+    if(jwt){
       mainApi.checkToken({
         endpoint: 'users/me',
         methodName: 'GET',
       }).then((res) => {
-        if (res) {
-          setLoggedIn(true);
-          history.push('movies');
-        }
-      }).catch((err) => { console.log(`Ошибка проверки токена: ${err}`) })
-    }
+        setLoggedIn(true);
+        
+        // if (res) {
+        //   setLoggedIn(true);
+        // }
+      }).catch((err) => {
+       // setLoggedIn(false);
+        console.log(`Ошибка проверки токена: ${err}`)
+      }) 
+    } else {setLoading(false)}
   }
 
   function hendleGetUserInfo() {
@@ -177,7 +181,6 @@ function App() {
       console.log(err)
     })
   }
-
   function handlerOpeningAndClosingBurgerMenu() {
     if (burgerHidden) { setBurgerHidden(false) }
     else { setBurgerHidden(true) }
@@ -186,17 +189,18 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
+        
+      
       <Switch>
-        <Route path='/signin'>
-          <Login onErrorMessage={errorMessage} handleAuthorization={handleAuthorization} hendleGetUserInfo={hendleGetUserInfo} hendleGetSavedMovies={hendleGetSavedMovies} />
-        </Route>
-        <Route path='/signup'>
-          <Register onErrorMessage={errorMessage} handleRegister={handleRegister} />
-        </Route>
+      
         <Route exact path='/'>
-          <Main logiedId={loggedIn} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
+          <Main loggedIn={loggedIn} setLoading={setLoading} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
         </Route>
-        <ProtectedRouter path='/movies' setLoggedIn={setLoggedIn} setFoundMovies={setFoundMovies} checkbox={checkbox} setCheckbox={setCheckbox} inputValue={inputValue} setInputValue={setInputValue}
+        
+        <ProtectedRouter path='/signup' loading={loading} loggedIn={!loggedIn} component={Register} onErrorMessage={errorMessage} handleRegister={handleRegister} />
+        <ProtectedRouter path='/signin' loading={loading} loggedIn={!loggedIn} component={Login} onErrorMessage={errorMessage} handleAuthorization={handleAuthorization} />
+       
+        <ProtectedRouter path='/movies' setFoundMovies={setFoundMovies} checkbox={checkbox} setCheckbox={setCheckbox} inputValue={inputValue} setInputValue={setInputValue}
           foundMovies={foundMovies} loading={loading} setLoading={setLoading} setCurrentUser={setCurrentUser} hendleGetUserInfo={hendleGetUserInfo} hendleGetSavedMovies={hendleGetSavedMovies}
           setsavedFilms={setsavedFilms} savedFilms={savedFilms} loggedIn={loggedIn} component={Movies}
           onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
@@ -206,12 +210,13 @@ function App() {
           foundMovies={foundMovies} savedFilms={savedFilms} hendleGetSavedMovies={hendleGetSavedMovies} loggedIn={loggedIn}
           component={SavedMovies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
 
-        <ProtectedRouter path='/profile' onHendleEditProfile={hendleEditProfile} loggedIn={loggedIn} component={Profile} onHendleAccountLogout={hendleAccountLogout}
-          onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
+        <ProtectedRouter path='/profile' loading={loading} onHendleEditProfile={hendleEditProfile} loggedIn={loggedIn} component={Profile} onHendleAccountLogout={hendleAccountLogout}
+          onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} /> 
+      
         <Route path='*'>
           <NotFoundPage />
         </Route>
-      </Switch>
+         </Switch>  
       {/* <ProtectedRouter loggedIn={loggedIn} component={BurgerMenu} onBurgerHidden={burgerHidden} onHendleClickClose={handlerOpeningAndClosingBurgerMenu}  /> */}
       <BurgerMenu onBurgerHidden={burgerHidden} onHendleClickClose={handlerOpeningAndClosingBurgerMenu} />
     </CurrentUserContext.Provider>

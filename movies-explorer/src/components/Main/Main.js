@@ -7,12 +7,17 @@ import Techs from "./Techs/Techs";
 import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
 import Footer from '../Sandbox/Footer/Footer';
+import React from 'react';
 
 
 function Main(props) {
+    // React.useEffect(() => {
+    //     debugger
+    //     props.setLoading(false)
+    // },[])
     return (
         <>
-            <Header loggedIn={props.loggedIn} onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} />
+             <Header loggedIn={props.loggedIn} onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} /> 
             <main className="main-page">
                 <Promo /> 
                 <NavTab />
@@ -21,7 +26,7 @@ function Main(props) {
                 <AboutMe />
                 <Portfolio />
             </main>
-            <Footer />
+             <Footer /> 
         </>
 
     );

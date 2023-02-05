@@ -15,9 +15,10 @@ function Movies(props) {
     const [elementNumber, setElementNumber] = useState(6)
     const [screenSize, setDimension] = useState(window.innerWidth);
     const getDimension = () => { setDimension(window.innerWidth) };
-
     useEffect(() => {
+        const savedMoviess = JSON.parse(localStorage.getItem('savedMovies'));
         if (checkboxState === null) { localStorage.setItem('shorts', true) }
+        else if (savedMoviess === null) { localStorage.setItem('savedMovies', JSON.stringify([])); }
         else {
             props.setCheckbox(checkboxState)
             props.setInputValue(queryStore)

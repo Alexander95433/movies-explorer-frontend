@@ -6,76 +6,31 @@ import { movieSearchHandler, searchFilter } from '../../../utils/Functions';
 function SearchForm({ checDeleteCard, foundSavedMovies, setLoading, setFoundSavedMovies, checkbox, setCheckbox, inputValue, setInputValue }) {
 
     const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
-    const movieSearchResult = JSON.parse(localStorage.getItem('movieSearchResultSaved'))
-    const checkboxState = JSON.parse(localStorage.getItem('shortSaved'))
-    const queryStore = localStorage.getItem('querySaved')
-    const movieFilteredhResult = JSON.parse(localStorage.getItem('movieFilteredhResultSaved'))
+    const [movieFilteredhResult, setmovieFilteredhResult] = useState([])
+    const [movieSearchResult, setmovieSearchResult] = useState([])
     const [errorClass, setErrorClass] = useState(true)
     const [plaseholderText, setPlaseholderText] = useState('Фильм');
-    const resultRastIssueSaved = JSON.parse(localStorage.getItem('resultRastIssueSved'))
 
     useEffect(() => {
-        if (queryStore === null) { setFoundSavedMovies(savedMovies) }
-        else if (!checkboxState) {
-            if (queryStore.length > 0) {
-                filter(savedMovies, savedMovies, checkboxState, queryStore)
-                searchHandler(checkboxState, queryStore)
-                setFoundSavedMovies(resultRastIssueSaved)
-            } else {
-                filter(savedMovies, savedMovies, checkboxState, queryStore)
-                setFoundSavedMovies(resultRastIssueSaved)
-            }
-        } else {
-            searchHandler(true, queryStore)
-        }
-    }, [checDeleteCard])
-
-    useEffect(() => {
-        localStorage.setItem('resultRastIssueSved', JSON.stringify(foundSavedMovies));
-    }, [foundSavedMovies,])
-
-    useEffect(() => {
-        if (queryStore === null) {
-            if (!checkboxState) {
-                filter(savedMovies, savedMovies, checkboxState, inputValue)
-                if(movieFilteredhResult) {setFoundSavedMovies(movieFilteredhResult)}
-                else {setFoundSavedMovies(savedMovies)}
-            } else {
-                localStorage.setItem('movieFilteredhResultSaved', JSON.stringify([]))
-                setFoundSavedMovies(movieSearchResult || savedMovies)
-            }
-            return
-        }
-        else if (!checkboxState) {
-        }
-        else if (inputValue.length === 0) {
-            localStorage.setItem('movieSearchResultSaved', JSON.stringify([]));
-            setFoundSavedMovies(savedMovies)
-            if (!checkboxState) {
-                filter(savedMovies, savedMovies, checkboxState, inputValue)
-                setFoundSavedMovies(movieFilteredhResult)
-            } else {
-                localStorage.setItem('movieFilteredhResultSaved', JSON.stringify([]))
-                setFoundSavedMovies(movieSearchResult && savedMovies)
-            }
-        }
-    }, [inputValue, checkboxState, queryStore])
+        setFoundSavedMovies(movieFilteredhResult)
+    }, [])
 
     function hendleCheckbox() {
-        if (!checkboxState) {
+        if (!checkbox) {
             setCheckbox(true)
-            localStorage.setItem('shortSaved', true)
-            localStorage.setItem('movieFilteredhResultSaved', JSON.stringify([]));
-            searchHandler(true, queryStore)
+            setmovieFilteredhResult([])
+            debugger
+            searchHandler(true, inputValue)
         } else {
+            //debugger
             setCheckbox(false)
-            localStorage.setItem('shortSaved', false)
-            filter(movieSearchResult, savedMovies, checkboxState, inputValue)
+            filter(movieSearchResult, savedMovies, true, inputValue)
         }
     }
 
     function hendleSubmit(event) {
         event.preventDefault()
+        debugger
         if (!inputValue) {
             setErrorClass(false)
             setPlaseholderText('');
@@ -83,44 +38,41 @@ function SearchForm({ checDeleteCard, foundSavedMovies, setLoading, setFoundSave
         }
         setErrorClass(true)
         setPlaseholderText('Фильм')
-        localStorage.setItem('querySaved', inputValue);
-        searchHandler(checkboxState, inputValue)
+        searchHandler(checkbox, inputValue)
     }
 
     function handleInput(e) {
         setInputValue(e.target.value);
         if (e.target.value.length === 0) {
-            localStorage.setItem('movieSearchResultSaved', JSON.stringify([]));
-            localStorage.setItem('querySaved', '');
-            filter(movieSearchResult, savedMovies, true, e.target.value)
+            debugger
+            filter(movieSearchResult, savedMovies, !checkbox, e.target.value)
         }
     }
 
     function searchHandler(stateCheckbox, query) {
-        const movieFilteredhResult = JSON.parse(localStorage.getItem('movieFilteredhResultSaved'))
+
         if (query === null) { setFoundSavedMovies(savedMovies) }
         else if (!stateCheckbox) { searchScriptHandler(movieFilteredhResult, query) }
         else { searchScriptHandler(savedMovies, query) }
     }
 
     const filter = (resultSearchFilms, savedFilms, stateCheckbox, input) => {
-        const queryStore = localStorage.getItem('querySaved')
         if (resultSearchFilms === null) { filteringScriptHandler(savedFilms, stateCheckbox) }
-        else if (queryStore === null) { return }
-        else if (queryStore.length > 0) { filteringScriptHandler(resultSearchFilms, stateCheckbox) }
+        else if (input === null) { return }
+        else if (input.length > 0) { filteringScriptHandler(resultSearchFilms, stateCheckbox) }
         else { filteringScriptHandler(savedFilms, stateCheckbox) }
 
     };
 
     function filteringScriptHandler(films, statusCheckbox) {
         const filtered = searchFilter(films, statusCheckbox)
-        localStorage.setItem('movieFilteredhResultSaved', JSON.stringify(filtered));
+        setmovieFilteredhResult(filtered)
         setFoundSavedMovies(filtered);
     }
 
     function searchScriptHandler(films, query) {
         let filtered = movieSearchHandler(films, query);
-        localStorage.setItem('movieSearchResultSaved', JSON.stringify(filtered));
+        setmovieSearchResult(filtered)
         setFoundSavedMovies(filtered);
     }
 

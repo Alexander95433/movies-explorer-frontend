@@ -5,21 +5,16 @@ import MoviesCardList from '../SavedMovies/MoviesCardList/MoviesCardList';
 import Footer from '../Sandbox/Footer/Footer';
 
 function SavedMovies(props) {
-    const checkboxState = JSON.parse(localStorage.getItem('shortSaved'))
-    const queryStore = localStorage.getItem('querySaved')
+    const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
     const [foundSavedMovies, setFoundSavedMovies] = useState([]);
     const [checkboxSaved, setCheckboxSaved] = useState(true)
     const [inputValueSaved, setInputValueSaved] = useState('');
     const [titleNothingFound, setTitleNothingFound] = useState(true);
 
     useEffect(() => {
-        if(checkboxState === null){
-            setCheckboxSaved(true)
-            localStorage.setItem('shortSaved', true)
-        } else{
-        setCheckboxSaved(checkboxState)
-        setInputValueSaved(queryStore)}
-    }, [])
+        setFoundSavedMovies(savedMovies)
+    }
+    , [])
 
     useEffect(() => {
         if (foundSavedMovies.length === 0) { setTitleNothingFound(false) }
@@ -33,7 +28,7 @@ function SavedMovies(props) {
                     checkbox={checkboxSaved} setCheckbox={setCheckboxSaved} setFoundSavedMovies={setFoundSavedMovies}
                     inputValue={inputValueSaved} setInputValue={setInputValueSaved} foundSavedMovies={foundSavedMovies} />
                 <MoviesCardList titleNothingFound={titleNothingFound} titleNotFoundMovies={props.titleNotFoundMovies} hendleGetSavedMovies={props.hendleGetSavedMovies} 
-                savedFilms={props.savedFilms} savedMovies={foundSavedMovies} checDeleteCard={props.checDeleteCard}    setChecDeleteCard={props.setChecDeleteCard}/>
+                savedFilms={props.savedFilms} savedMovies={foundSavedMovies} checDeleteCard={props.checDeleteCard}  setChecDeleteCard={props.setChecDeleteCard}/>
             </main>
             <Footer />
         </>

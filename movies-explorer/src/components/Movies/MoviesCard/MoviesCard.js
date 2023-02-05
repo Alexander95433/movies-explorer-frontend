@@ -15,6 +15,7 @@ function MoviesCard(props) {
         const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
         if (location.pathname === '/saved-movies') { setSavedId(props.card._id) }
         if (location.pathname === '/movies') {
+            
             savedMovies.forEach((savedFilm) => {
                 if (savedFilm.nameRU === props.card.nameRU && savedFilm.description === props.card.description) {
                     setisLiked(true)

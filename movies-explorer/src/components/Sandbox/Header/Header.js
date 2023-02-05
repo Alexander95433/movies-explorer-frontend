@@ -1,8 +1,11 @@
+import React from 'react';
 import { Link, NavLink} from 'react-router-dom';
 import headerIcon from '../../../image/header-icon2.svg'
 import accountIcon from '../../../image/movies-header-icon-account2.svg'
 
 function Header(props) {
+  
+    
     return (
         <header className={!props.loggedIn ? 'header__background' : 'header__background-movies'  } >
             <Link to='/'><img className='header__icon' src={headerIcon} alt='Иконка заголовка' /></Link>
