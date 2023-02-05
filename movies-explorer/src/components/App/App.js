@@ -149,16 +149,21 @@ function App() {
       .catch((err) => { console.log(err) })
   }
 
-  function hendleEditProfile(data) {
+  function hendleEditProfile(data, setSpanSuccessfully, setSpanButtonSubmitText) {
+    debugger
     mainApi.patchUserInfo(data)
       .then((res) => {
         setCurrentUser(res.data)
         localStorage.setItem('user', JSON.stringify(res.data))
-        console.log(currentUser)
+        setSpanButtonSubmitText('Изменение данных прошло успешно :)')
+        setSpanSuccessfully(false)
       })
-      .catch((err) => { console.log(err) })
-      .finally(() => { hendleGetUserInfo() })
-  }
+      .catch((err) => { 
+        setSpanButtonSubmitText('Что-то пошло не так :(')
+        setSpanSuccessfully(false)
+        console.log(err) })
+      .finally(() => {  hendleGetUserInfo() }) 
+    }
 
 
 

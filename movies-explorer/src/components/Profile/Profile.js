@@ -5,21 +5,37 @@ import { CurrentUserContext } from '../Sandbox/CurrentUserContext/CurrentUserCon
 
 
 function Profile(props) {
-    const { errors, resetForm, values, handleChange, setValues } = useForm();
+    const { errors, isValid, resetForm, values, handleChange, setValues } = useForm();
     const currentUser = React.useContext(CurrentUserContext);
     const [inputFocus, setInputFocus] = useState(false)
     const [classBurder, setClassBurder] = useState('')
     const [eventTargetInput, setEventTargetInput] = useState('')
-    const [errorText, setErrorText] = useState(' ')
+    const [errorText, setErrorText] = useState('')
 
-    
+    const [disabledButtonEditProfile, setDisabledButtonEditProfile] = useState(true)
+    const [spanButtonSubmit, setSpanButtonSubmit] = useState(true)
+    const [spanButtonSubmitText, setSpanButtonSubmitText] = useState(' ')
+
+
+useEffect(() => {
+    if(values.name){
+    if(isValid) {
+        if(currentUser.name === values.name && currentUser.email === values.email) {
+            setDisabledButtonEditProfile(true)
+        }else {
+            setDisabledButtonEditProfile(false)
+        }
+    }
+}
+},[values, currentUser])
+
     useEffect(() => {
         resetForm()
         setValues(currentUser)
     }, [])
 
-    useEffect(() => {
-    }, [currentUser])
+    // useEffect(() => {
+    // }, [currentUser])
 
     useEffect(() => {
         if (eventTargetInput === 'name') {
@@ -46,6 +62,8 @@ function Profile(props) {
         }
     }, [errors, eventTargetInput])
 
+    function hendkeTimeoutSpan () { setSpanButtonSubmit(true) }
+
     function hendleSubmit(evt) {
         evt.preventDefault()
         const { name, email, password } = values
@@ -53,8 +71,9 @@ function Profile(props) {
             endpoint: 'users/me',
             methodName: 'PATCH',
             body: { name, email, password }
-        })
-        
+        }, setSpanButtonSubmit, setSpanButtonSubmitText)
+
+        setTimeout(hendkeTimeoutSpan , 3000);
     };
 
     function hendleOnInputFocus(e) {
@@ -72,6 +91,7 @@ function Profile(props) {
         }
     }
 
+    console.log(errorText)
    
     return (
         <>
@@ -90,13 +110,14 @@ function Profile(props) {
                             <span className='profile__span-error' hidden={inputFocus ? false : true}>{errorText}</span>
 
                             <label className={`profile__label profile__label_email ${errors.email ? 'profile__text_error' : ''}`} >E-mail</label>
-                            <input className={`profile__input ${errors.email ? 'profile__text_error' : ''} ${errorText.length > 0 ? 'profile__input_email' : ''}`} id='inputEmail' type="email" name="email"
+                            <input className={`profile__input ${errors.email ? 'profile__text_error' : ''} ${errorText.length > 0  ? 'profile__input_email' : ''}`} id='inputEmail' type="email" name="email"
                                 onFocus={hendleOnInputFocus} onBlur={hendleOfInputFocuss} onChange={handleChange} value={values.email || ''} minLength='6'
                                 maxLength="30" pattern="^[\w]+@[a-zA-Z]+\.[a-zA-Z]{1,3}$" required></input>
 
                         </fieldset>
                         <div className="profile__button-box">
-                            <button className="profile__button-edit" type="submit" onClick={hendleSubmit}>Редактировать</button>
+                            <span className={`profile__button-span ${!spanButtonSubmit ?'profile__button-span_wisable' : ''}`}> {spanButtonSubmitText}</span>
+                            <button className="profile__button-edit" type="submit" onClick={hendleSubmit} disabled={disabledButtonEditProfile}>Редактировать</button>
                             <button className="profile__button-exit" type="button" onClick={props.onHendleAccountLogout}>Выйти из аккаунта</button>
                         </div>
                     </form>

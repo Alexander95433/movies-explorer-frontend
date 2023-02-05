@@ -91,6 +91,19 @@
     color: #EE3465;
 }
 
+.profile__button-span {
+    opacity: 0;
+    color: #3ddc84;
+    position: relative;
+    top: 184px;
+    transition: 3s linear;
+}
+
+.profile__button-span_wisable {
+    transition: 2s linear;
+    opacity: 1;
+}
+
 
 .profile__button-edit {
     width: max-content;
@@ -111,6 +124,11 @@
 .profile__button-edit:hover {
     opacity: .5;
     transition: .2s linear;
+}
+
+.profile__button-edit:disabled {
+    opacity: .2;
+    cursor: auto;
 }
 
 .profile__button-box {
