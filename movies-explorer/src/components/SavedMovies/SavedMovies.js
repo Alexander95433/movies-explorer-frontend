@@ -11,6 +11,11 @@ function SavedMovies(props) {
     const [inputValueSaved, setInputValueSaved] = useState('');
     const [titleNothingFound, setTitleNothingFound] = useState(true);
 
+    
+    // useEffect(() => {
+    //     setFoundSavedMovies(savedMovies)
+    // },[savedMovies])
+
     useEffect(() => {
         setFoundSavedMovies(savedMovies)
     }

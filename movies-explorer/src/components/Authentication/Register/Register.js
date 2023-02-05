@@ -2,14 +2,25 @@ import React from 'react';
 import AuthForm from '../AuthForm/AuthForm';
 import useForm from '../../Hooks/useForm';
 
-function Register({ onErrorMessage, handleRegister }) {
+function Register({ disableButton, setDisableButton, onErrorMessage, handleRegister }) {
     const { errors, isValid, resetForm, values, passwordError, handleChange } = useForm();
+    const [disableButtonResult, setDisableButtonResult] = React.useState(false)
+
+
+    React.useEffect(() => {
+        if (!disableButton) {
+            if (isValid) { setDisableButtonResult(false) }
+            else { setDisableButtonResult(true) }
+        } else { setDisableButtonResult(true) }
+    }, [isValid, disableButton])
+
     React.useEffect(() => {
         resetForm()
     }, []);
 
     function hendleSubmit(evt) {
         evt.preventDefault()
+        setDisableButton(true)
         const { name, email, password } = values
 
         handleRegister({
@@ -23,7 +34,7 @@ function Register({ onErrorMessage, handleRegister }) {
     return (
         <main className="authentication__background">
             <section>
-                <AuthForm onErrorMessage={onErrorMessage} passwordError={passwordError} onError={errors} onValid={isValid} onValues={values} handleChange={handleChange}
+                <AuthForm disableButtonResult={disableButtonResult} onErrorMessage={onErrorMessage} passwordError={passwordError} onError={errors} onValid={isValid} onValues={values} handleChange={handleChange}
                     hendleSubmit={hendleSubmit} onButtonText={'Зарегистрироваться'} onSubtitleLink={'Уже зарегистрированы?'}
                     onTextLink={' Войти'} onRouteLink={'/signin'}>
                     <label className="auth-form__label" htmlFor='inputName'>Имя</label>

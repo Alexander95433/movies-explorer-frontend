@@ -4,7 +4,7 @@ import { formaTtime } from '../../../utils/Functions';
 import { deleteSavedFilmsFromLocalStorege } from '../../../utils/Functions'
 import mainApi from '../../../utils/MainApi';
 
-function MoviesCard(props) {
+function MoviesCard(props) { 
     const location = useLocation();
     const [visible, setVisible] = useState(false);
     const [isLiked, setisLiked] = useState(false);
@@ -79,10 +79,20 @@ function MoviesCard(props) {
     };
 
     function handleDeleteButtonCard(evt) {
-        hendleDeleteMovies(savedId)
+         
+        
+
         deleteSavedFilmsFromLocalStorege({ card: props.card })
+        hendleDeleteMovies(savedId)
         if (props.checDeleteCard) { props.setChecDeleteCard(false) }
         else { props.setChecDeleteCard(true) }
+
+        if (location.pathname === '/saved-movies') {
+            let elem = document.getElementById(props.id);
+            elem.remove()
+        }
+        
+        
     };
 
     function visableDeleteButtonOn() { setVisible(false) };
@@ -90,30 +100,35 @@ function MoviesCard(props) {
     function visableDeleteButtonOf() { setVisible(true) };
 
     return (
-        <article className='monies-card__element' onMouseEnter={visableDeleteButtonOf} onMouseLeave={visableDeleteButtonOn}>
-            <Switch>
-                <Route exact path={'/movies'}>
-                    <a href={props.card.trailerLink} target='_blank'> <img className='monies-card__image' src={`https://api.nomoreparties.co/${props.card.image.url}`} alt='Обложка фильма' /></a>
-                    <div className='monies-card__subtitle-box'>
-                        <h3 className='monies-card__title'>{props.card.nameRU}</h3>
-                        <button disabled={disabledButtomLike} onClick={hendleLikeButtonCard} className={`monies-card__button-like-of ${isLiked && 'monies-card__button-like_on'}`} />
-                    </div>
-                    <p className='monies-card__time'>{formaTtime(props.card.duration)}</p>
-                </Route>
-                <Route path={'/saved-movies'}>
-                    <a href={props.card.trailerLink} target='_blank'> <img className='monies-card__image' src={props.card.image} alt='Обложка фильма' /></a>
-                    <div className='monies-card__subtitle-box'>
-                        <h3 className='monies-card__title'>{props.card.nameRU}</h3>
-                        <button onClick={handleDeleteButtonCard} className={`monies-card__delete-card ${!visible ? '' : 'monies-card__delete-card_active '}`} />
-                    </div>
-                    <p className='monies-card__time'>{formaTtime(props.card.duration)}</p>
-
-                </Route>
-            </Switch>
-        </article>
+        <Switch>
+            <Route exact path={'/movies'}>
+            <article className='monies-card__element' onMouseEnter={visableDeleteButtonOf} onMouseLeave={visableDeleteButtonOn}>
+                <a href={props.card.trailerLink} target='_blank'> <img className='monies-card__image' src={`https://api.nomoreparties.co/${props.card.image.url}`} alt='Обложка фильма' /></a>
+                <div className='monies-card__subtitle-box'>
+                    <h3 className='monies-card__title'>{props.card.nameRU}</h3>
+                    <button disabled={disabledButtomLike} type='button' onClick={hendleLikeButtonCard} className={`monies-card__button-like-of ${isLiked && 'monies-card__button-like_on'}`} />
+                </div>
+                <p className='monies-card__time'>{formaTtime(props.card.duration)}</p>
+                </article> 
+            </Route>
+            <Route path={'/saved-movies'}>
+            <article id={props.id} className='monies-card__element' onMouseEnter={visableDeleteButtonOf} onMouseLeave={visableDeleteButtonOn}>
+                <a href={props.card.trailerLink} target='_blank'> <img className='monies-card__image' src={props.card.image} alt='Обложка фильма' /></a>
+                <div className='monies-card__subtitle-box'>
+                    <h3 className='monies-card__title'>{props.card.nameRU}</h3>
+                    <button onClick={handleDeleteButtonCard} type='button' className={`monies-card__delete-card ${!visible ? '' : 'monies-card__delete-card_active '}`} />
+                </div>
+                <p className='monies-card__time'>{formaTtime(props.card.duration)}</p>
+                </article> 
+            </Route>
+        </Switch>
+      
 
 
     );
 };
 
 export default MoviesCard;
+
+
+

@@ -157,6 +157,11 @@
     transition: .2s linear;
 }
 
+.profile__button-exit:disabled {
+    opacity: .2;
+    cursor: auto;
+}
+
 @media screen and (max-width: 520px) {
 
     .profile__form {

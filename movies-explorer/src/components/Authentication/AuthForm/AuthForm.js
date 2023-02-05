@@ -1,6 +1,6 @@
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import imageGreenCircle from '../../../image/header-icon2.svg'
-// import useForm from '../../Hooks/useForm';
 
 function AuthForm(props) {
     const location = useLocation();
@@ -26,7 +26,7 @@ function AuthForm(props) {
 
                 <div className={`auth-form__button-box ${location.pathname !== '/signup' ? 'auth-form__button-box_login' : ''}`}>
                     <span className='auth-form__button-span'>{props.onErrorMessage} </span>
-                    <button className='auth-form__button' onClick={props.hendleSubmit} type="submit" disabled={!props.onValid ? true : false}>{props.onButtonText}</button>
+                    <button className='auth-form__button' onClick={props.hendleSubmit} type="submit" disabled={props.disableButtonResult}>{props.onButtonText}</button>
                     <p className='auth-form__subtitle-link'>{props.onSubtitleLink}<Link className='auth-form__link' to={props.onRouteLink}>{props.onTextLink}</Link></p>
                 </div>
             </fieldset>

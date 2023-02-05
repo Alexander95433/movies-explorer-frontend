@@ -12,7 +12,7 @@ function Profile(props) {
     const [eventTargetInput, setEventTargetInput] = useState('')
     const [errorText, setErrorText] = useState('')
 
-    const [disabledButtonEditProfile, setDisabledButtonEditProfile] = useState(true)
+    //const [disabledButtonEditProfile, setDisabledButtonEditProfile] = useState(true)
     const [spanButtonSubmit, setSpanButtonSubmit] = useState(true)
     const [spanButtonSubmitText, setSpanButtonSubmitText] = useState(' ')
 
@@ -21,9 +21,11 @@ useEffect(() => {
     if(values.name){
     if(isValid) {
         if(currentUser.name === values.name && currentUser.email === values.email) {
-            setDisabledButtonEditProfile(true)
+            //setDisabledButtonEditProfile(true)
+            props.setDisableButton(true)
         }else {
-            setDisabledButtonEditProfile(false)
+            //setDisabledButtonEditProfile(false)
+            props.setDisableButton(false)
         }
     }
 }
@@ -33,9 +35,6 @@ useEffect(() => {
         resetForm()
         setValues(currentUser)
     }, [])
-
-    // useEffect(() => {
-    // }, [currentUser])
 
     useEffect(() => {
         if (eventTargetInput === 'name') {
@@ -65,6 +64,8 @@ useEffect(() => {
     function hendkeTimeoutSpan () { setSpanButtonSubmit(true) }
 
     function hendleSubmit(evt) {
+        //setDisabledButtonEditProfile(true)
+        props.setDisableButton(true)
         evt.preventDefault()
         const { name, email, password } = values
         props.onHendleEditProfile({
@@ -72,7 +73,8 @@ useEffect(() => {
             methodName: 'PATCH',
             body: { name, email, password }
         }, setSpanButtonSubmit, setSpanButtonSubmitText)
-
+        //setDisabledButtonEditProfile(false)
+        props.setDisableButton(false)
         setTimeout(hendkeTimeoutSpan , 3000);
     };
 
@@ -90,8 +92,6 @@ useEffect(() => {
             setErrorText('')
         }
     }
-
-    console.log(errorText)
    
     return (
         <>
@@ -117,8 +117,8 @@ useEffect(() => {
                         </fieldset>
                         <div className="profile__button-box">
                             <span className={`profile__button-span ${!spanButtonSubmit ?'profile__button-span_wisable' : ''}`}> {spanButtonSubmitText}</span>
-                            <button className="profile__button-edit" type="submit" onClick={hendleSubmit} disabled={disabledButtonEditProfile}>Редактировать</button>
-                            <button className="profile__button-exit" type="button" onClick={props.onHendleAccountLogout}>Выйти из аккаунта</button>
+                            <button className="profile__button-edit" type="submit" onClick={hendleSubmit} disabled={props.disableButton}>Редактировать</button>
+                            <button className="profile__button-exit" type="button" onClick={props.onHendleAccountLogout} disabled={props.disableButton}>Выйти из аккаунта</button>
                         </div>
                     </form>
                 </section>

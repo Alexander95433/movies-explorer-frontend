@@ -12,25 +12,34 @@ function SearchForm({ checDeleteCard, foundSavedMovies, setLoading, setFoundSave
     const [plaseholderText, setPlaseholderText] = useState('Фильм');
 
     useEffect(() => {
-        setFoundSavedMovies(movieFilteredhResult)
-    }, [])
+        setFoundSavedMovies(movieFilteredhResult) 
 
+        // if(movieFilteredhResult.length > 0){
+
+        // setFoundSavedMovies(movieFilteredhResult)}
+        // else if (movieFilteredhResult.length <= 0) {
+
+        //     setFoundSavedMovies(savedMovies)
+        // }
+    }, [])
+    
     function hendleCheckbox() {
         if (!checkbox) {
             setCheckbox(true)
             setmovieFilteredhResult([])
-            debugger
+            
             searchHandler(true, inputValue)
         } else {
             //debugger
             setCheckbox(false)
+            debugger
             filter(movieSearchResult, savedMovies, true, inputValue)
         }
     }
 
     function hendleSubmit(event) {
         event.preventDefault()
-        debugger
+        
         if (!inputValue) {
             setErrorClass(false)
             setPlaseholderText('');
@@ -44,7 +53,6 @@ function SearchForm({ checDeleteCard, foundSavedMovies, setLoading, setFoundSave
     function handleInput(e) {
         setInputValue(e.target.value);
         if (e.target.value.length === 0) {
-            debugger
             filter(movieSearchResult, savedMovies, !checkbox, e.target.value)
         }
     }

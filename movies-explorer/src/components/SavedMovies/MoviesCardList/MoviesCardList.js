@@ -7,7 +7,7 @@ function MoviesCardList({checDeleteCard, setChecDeleteCard, savedMovies, titleNo
             <h3 className={`movies-cardList__not-found-title ${!titleNotFoundMovies ? 'movies-cardList__not-found-title_loading-error' : ''}`} hidden={titleNothingFound}>{
                 titleNotFoundMovies ? 'Ничего не найдено' : 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'}</h3>
             <div className="movies-cardList__elements-box">
-                {savedMovies.map((savedMovie) => (<MoviesCard key={savedMovie._id} checDeleteCard={checDeleteCard}  
+                {savedMovies.map((savedMovie) => (<MoviesCard key={savedMovie._id} id={savedMovie._id} checDeleteCard={checDeleteCard}  
                 setChecDeleteCard={setChecDeleteCard} hendleGetSavedMovies={hendleGetSavedMovies} savedFilms={savedFilms} card={savedMovie}  />))}
             </div>
         </section>
