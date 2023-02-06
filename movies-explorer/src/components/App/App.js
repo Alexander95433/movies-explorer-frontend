@@ -29,7 +29,6 @@ function App() {
   const [inputValue, setInputValue] = useState('');
   const [foundMovies, setFoundMovies] = useState([]);
   const [titleNotFoundMovies, setTitleNotFoundMovies] = useState(true)
-  const [checDeleteCard, setChecDeleteCard] = useState(false)
   const resultRastIssue = JSON.parse(localStorage.getItem('resultRastIssue'))
   const [disableButton, setDisableButton] = React.useState(false)
 
@@ -218,13 +217,12 @@ function App() {
           setsavedFilms={setsavedFilms} savedFilms={savedFilms} loggedIn={loggedIn} component={Movies}
           onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
  
-        <ProtectedRouter path='/saved-movies' checDeleteCard={checDeleteCard} setChecDeleteCard={setChecDeleteCard}
-          loading={loading} setLoading={setLoading} setTitleNotFoundMovies={setTitleNotFoundMovies} titleNotFoundMovies={titleNotFoundMovies}
+        <ProtectedRouter path='/saved-movies' loading={loading} setLoading={setLoading} setTitleNotFoundMovies={setTitleNotFoundMovies} titleNotFoundMovies={titleNotFoundMovies}
           foundMovies={foundMovies} savedFilms={savedFilms} hendleGetSavedMovies={hendleGetSavedMovies} loggedIn={loggedIn}
           component={SavedMovies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
 
-        <ProtectedRouter path='/profile' loading={loading} disableButton={disableButton} setDisableButton={setDisableButton} onHendleEditProfile={hendleEditProfile} loggedIn={loggedIn} component={Profile} onHendleAccountLogout={hendleAccountLogout}
-          onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
+        <ProtectedRouter path='/profile' loading={loading} disableButton={disableButton} setDisableButton={setDisableButton} onHendleEditProfile={hendleEditProfile} 
+        loggedIn={loggedIn} component={Profile} onHendleAccountLogout={hendleAccountLogout} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
 
         <Route path='*'>
           <NotFoundPage />

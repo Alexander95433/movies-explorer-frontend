@@ -4,18 +4,20 @@ import { formaTtime } from '../../../utils/Functions';
 import { deleteSavedFilmsFromLocalStorege } from '../../../utils/Functions'
 import mainApi from '../../../utils/MainApi';
 
-function MoviesCard(props) { 
+function MoviesCard(props) {
+    const cardRef = React.useRef()
     const location = useLocation();
     const [visible, setVisible] = useState(false);
     const [isLiked, setisLiked] = useState(false);
     const [disabledButtomLike, setDisabledButtomLike] = useState(false);
     const [savedId, setSavedId] = useState('');
 
+
     useEffect(() => {
         const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
         if (location.pathname === '/saved-movies') { setSavedId(props.card._id) }
         if (location.pathname === '/movies') {
-            
+
             savedMovies.forEach((savedFilm) => {
                 if (savedFilm.nameRU === props.card.nameRU && savedFilm.description === props.card.description) {
                     setisLiked(true)
@@ -46,8 +48,7 @@ function MoviesCard(props) {
             let savedMoviess = JSON.parse(localStorage.getItem('savedMovies'));
             savedMoviess.push(res);
             localStorage.setItem('savedMovies', JSON.stringify(savedMoviess))
-        })
-            .catch((err) => { console.log(err) })
+        }).catch((err) => { console.log(err) })
             .finally(() => {
                 setisLiked(true)
                 setDisabledButtomLike(false)
@@ -63,6 +64,8 @@ function MoviesCard(props) {
             .finally(() => {
                 setisLiked(false)
                 setDisabledButtomLike(false)
+
+
             })
     }
 
@@ -78,57 +81,56 @@ function MoviesCard(props) {
         } else { hendleSaveMoviess(props.card) }
     };
 
+
     function handleDeleteButtonCard(evt) {
          
-        
-
-        deleteSavedFilmsFromLocalStorege({ card: props.card })
         hendleDeleteMovies(savedId)
-        if (props.checDeleteCard) { props.setChecDeleteCard(false) }
-        else { props.setChecDeleteCard(true) }
-
-        if (location.pathname === '/saved-movies') {
-            let elem = document.getElementById(props.id);
-            elem.remove()
+        deleteSavedFilmsFromLocalStorege({ card: props.card })
+        cardRef.current.setAttribute("style", "display: none");
+        const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+        debugger
+        if(savedMovies <= 0) {
+            props.setTitleNotFoundMovies(true)
+            props.setTitleNothingFound(false)
+        }else {
+            props.setTitleNotFoundMovies(true)
+            props.setTitleNothingFound(true)
         }
-        
-        
     };
 
     function visableDeleteButtonOn() { setVisible(false) };
-
     function visableDeleteButtonOf() { setVisible(true) };
 
     return (
         <Switch>
             <Route exact path={'/movies'}>
-            <article className='monies-card__element' onMouseEnter={visableDeleteButtonOf} onMouseLeave={visableDeleteButtonOn}>
-                <a href={props.card.trailerLink} target='_blank'> <img className='monies-card__image' src={`https://api.nomoreparties.co/${props.card.image.url}`} alt='Обложка фильма' /></a>
-                <div className='monies-card__subtitle-box'>
-                    <h3 className='monies-card__title'>{props.card.nameRU}</h3>
-                    <button disabled={disabledButtomLike} type='button' onClick={hendleLikeButtonCard} className={`monies-card__button-like-of ${isLiked && 'monies-card__button-like_on'}`} />
-                </div>
-                <p className='monies-card__time'>{formaTtime(props.card.duration)}</p>
-                </article> 
+                <article ref={cardRef} className='monies-card__element' onMouseEnter={visableDeleteButtonOf} onMouseLeave={visableDeleteButtonOn}>
+                    <a href={props.card.trailerLink} target='_blank'> <img className='monies-card__image' src={`https://api.nomoreparties.co/${props.card.image.url}`} alt='Обложка фильма' /></a>
+                    <div className='monies-card__subtitle-box'>
+                        <h3 className='monies-card__title'>{props.card.nameRU}</h3>
+                        <button disabled={disabledButtomLike} type='button' onClick={hendleLikeButtonCard} className={`monies-card__button-like-of ${isLiked && 'monies-card__button-like_on'}`} />
+                    </div>
+                    <p className='monies-card__time'>{formaTtime(props.card.duration)}</p>
+                </article>
             </Route>
             <Route path={'/saved-movies'}>
-            <article id={props.id} className='monies-card__element' onMouseEnter={visableDeleteButtonOf} onMouseLeave={visableDeleteButtonOn}>
-                <a href={props.card.trailerLink} target='_blank'> <img className='monies-card__image' src={props.card.image} alt='Обложка фильма' /></a>
-                <div className='monies-card__subtitle-box'>
-                    <h3 className='monies-card__title'>{props.card.nameRU}</h3>
-                    <button onClick={handleDeleteButtonCard} type='button' className={`monies-card__delete-card ${!visible ? '' : 'monies-card__delete-card_active '}`} />
-                </div>
-                <p className='monies-card__time'>{formaTtime(props.card.duration)}</p>
-                </article> 
+
+                <article ref={cardRef} id={props.id} className='monies-card__element' onMouseEnter={visableDeleteButtonOf} onMouseLeave={visableDeleteButtonOn}>
+                    <a href={props.card.trailerLink} target='_blank'> <img className='monies-card__image' src={props.card.image} alt='Обложка фильма' /></a>
+                    <div className='monies-card__subtitle-box'>
+                        <h3 className='monies-card__title'>{props.card.nameRU}</h3>
+                        <button onClick={handleDeleteButtonCard} type='button' className={`monies-card__delete-card ${!visible ? '' : 'monies-card__delete-card_active '}`} />
+                    </div>
+                    <p className='monies-card__time'>{formaTtime(props.card.duration)}</p>
+                </article>
+
             </Route>
         </Switch>
-      
+
 
 
     );
 };
 
 export default MoviesCard;
-
-
 

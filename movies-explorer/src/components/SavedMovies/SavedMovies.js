@@ -11,29 +11,27 @@ function SavedMovies(props) {
     const [inputValueSaved, setInputValueSaved] = useState('');
     const [titleNothingFound, setTitleNothingFound] = useState(true);
 
-    
-    // useEffect(() => {
-    //     setFoundSavedMovies(savedMovies)
-    // },[savedMovies])
-
     useEffect(() => {
         setFoundSavedMovies(savedMovies)
     }
     , [])
 
     useEffect(() => {
-        if (foundSavedMovies.length === 0) { setTitleNothingFound(false) }
+        if (foundSavedMovies.length === 0) {setTitleNothingFound(false) }
         else { setTitleNothingFound(true) }
     }, [foundSavedMovies])
+
+
+       
     return (
         <>
             <Header onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} loggedIn={props.loggedIn} />
             <main className='saved-movies__page'>
-                <SearchForm  loading={props.loading} setLoading={props.setLoading} checDeleteCard={props.checDeleteCard}
+                <SearchForm  loading={props.loading} setLoading={props.setLoading}
                     checkbox={checkboxSaved} setCheckbox={setCheckboxSaved} setFoundSavedMovies={setFoundSavedMovies}
                     inputValue={inputValueSaved} setInputValue={setInputValueSaved} foundSavedMovies={foundSavedMovies} />
-                <MoviesCardList titleNothingFound={titleNothingFound} titleNotFoundMovies={props.titleNotFoundMovies} hendleGetSavedMovies={props.hendleGetSavedMovies} 
-                savedFilms={props.savedFilms} savedMovies={foundSavedMovies} checDeleteCard={props.checDeleteCard}  setChecDeleteCard={props.setChecDeleteCard}/>
+                <MoviesCardList setTitleNotFoundMovies={props.setTitleNotFoundMovies} setTitleNothingFound={setTitleNothingFound} titleNotFoundMovies={props.titleNotFoundMovies} titleNothingFound={titleNothingFound}  hendleGetSavedMovies={props.hendleGetSavedMovies} 
+                savedFilms={props.savedFilms} savedMovies={foundSavedMovies}  />
             </main>
             <Footer />
         </>

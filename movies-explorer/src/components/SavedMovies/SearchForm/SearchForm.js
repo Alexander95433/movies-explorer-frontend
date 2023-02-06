@@ -3,7 +3,7 @@ import buttonIcon from '../../../image/movies__dutton-icon2.svg'
 import FilterCheckbox from '../../Movies/FilterCheckbox/FilterCheckbox'
 import { movieSearchHandler, searchFilter } from '../../../utils/Functions';
 
-function SearchForm({ checDeleteCard, foundSavedMovies, setLoading, setFoundSavedMovies, checkbox, setCheckbox, inputValue, setInputValue }) {
+function SearchForm({ setFoundSavedMovies, checkbox, setCheckbox, inputValue, setInputValue }) {
 
     const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
     const [movieFilteredhResult, setmovieFilteredhResult] = useState([])
@@ -11,35 +11,25 @@ function SearchForm({ checDeleteCard, foundSavedMovies, setLoading, setFoundSave
     const [errorClass, setErrorClass] = useState(true)
     const [plaseholderText, setPlaseholderText] = useState('Фильм');
 
-    useEffect(() => {
-        setFoundSavedMovies(movieFilteredhResult) 
+    useEffect(() => { setFoundSavedMovies(movieFilteredhResult) }, [])
 
-        // if(movieFilteredhResult.length > 0){
 
-        // setFoundSavedMovies(movieFilteredhResult)}
-        // else if (movieFilteredhResult.length <= 0) {
 
-        //     setFoundSavedMovies(savedMovies)
-        // }
-    }, [])
-    
+            
     function hendleCheckbox() {
         if (!checkbox) {
             setCheckbox(true)
             setmovieFilteredhResult([])
-            
             searchHandler(true, inputValue)
         } else {
-            //debugger
             setCheckbox(false)
-            debugger
             filter(movieSearchResult, savedMovies, true, inputValue)
         }
     }
 
     function hendleSubmit(event) {
         event.preventDefault()
-        
+
         if (!inputValue) {
             setErrorClass(false)
             setPlaseholderText('');
@@ -83,6 +73,7 @@ function SearchForm({ checDeleteCard, foundSavedMovies, setLoading, setFoundSave
         setmovieSearchResult(filtered)
         setFoundSavedMovies(filtered);
     }
+
 
     return (
         <section className='search-form__form-wrapper'>
