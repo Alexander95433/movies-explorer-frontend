@@ -1,5 +1,5 @@
+import React from 'react';
 import Header from '../Sandbox/Header/Header';
-
 import Promo from "./Promo/Promo";
 import NavTab from "./NavTab/NavTab";
 import AboutProject from "./AboutProject/AboutProject";
@@ -7,7 +7,7 @@ import Techs from "./Techs/Techs";
 import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
 import Footer from '../Sandbox/Footer/Footer';
-import React from 'react';
+import Preloader from '../Movies/Preloader/Preloader';
 
 
 function Main(props) {
@@ -18,6 +18,7 @@ function Main(props) {
     return (
         <>
              <Header loggedIn={props.loggedIn} onBurgerHidden={props.onBurgerMenu} onBurgerButton={props.onHendleButtonBurgerMenu} /> 
+             {props.loading ? <Preloader /> :
             <main className="main-page">
                 <Promo /> 
                 <NavTab />
@@ -25,7 +26,7 @@ function Main(props) {
                 <Techs />
                 <AboutMe />
                 <Portfolio />
-            </main>
+            </main> }
              <Footer /> 
         </>
 

@@ -18,12 +18,10 @@ import { moviesApi } from "../../utils/Api"
 function App() {
   let history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false)
-
-
   const [loading, setLoading] = useState(true);
   const [burgerHidden, setBurgerHidden] = useState(true);
   const [currentUser, setCurrentUser] = useState({})
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState(false)
   const [savedFilms, setsavedFilms] = useState([])
   const [checkbox, setCheckbox] = useState(true)
   const [inputValue, setInputValue] = useState('');
@@ -35,10 +33,12 @@ function App() {
   useEffect(() => {
     handleTokenCheck()
     if (loggedIn) {
-      Promise.all([mainApi.detUserInfo({ endpoint: 'users/me', methodName: 'GET', }),
-      mainApi.getSavedMovies({ endpoint: 'movies', methodName: 'GET', }),
-      moviesApi.getAllMovies()])
-        .then((([dataUser, dataCards, dataFilmsFromServer]) => {
+      Promise.all([
+        moviesApi.getAllMovies(),
+        mainApi.getSavedMovies({ endpoint: 'movies', methodName: 'GET',}),
+        mainApi.detUserInfo({ endpoint: 'users/me', methodName: 'GET', })
+      ])
+        .then((([dataFilmsFromServer, dataCards, dataUser]) => {
           localStorage.setItem('user', JSON.stringify(dataUser))
           setCurrentUser(dataUser)
           const userData = JSON.parse(localStorage.getItem('user'))
@@ -70,42 +70,53 @@ function App() {
     const { name, email, password } = data.body
     mainApi.register(data)
       .then((data) => {
-        setErrorMessage('')
-        setLoggedIn(true)
+        setLoading(true)
+        setErrorMessage(false)
+        setDisableButton(false)
+        handleAuthorization({ body: { email, password }, endpoint: 'signin', methodName: 'POST' })
       }).catch((err) => {
+
+        setLoading(false)
         console.log(`Ошибка регистрации: ${err}`)
-        setErrorMessage('Пользователь с такой почтой уже существует')
+        setErrorMessage(true)
+        setTimeout(hendkeTimeoutSpan, 3000);
       })
       .finally(() => {
         setDisableButton(false)
-        handleAuthorization({ body: { email, password }, endpoint: 'signin', methodName: 'POST' })
       }
       )
   }
 
   function handleAuthorization(data) {
+    setDisableButton(true)
     mainApi.authorization(data)
       .then((data) => {
         if (data.token) {
+          setLoading(true)
           setLoggedIn(true)
-          setErrorMessage('')
+          setErrorMessage(false)
           localStorage.setItem('jwt', data.token)
           history.push('/movies');
+          setDisableButton(false)
         } else { return }
       }).catch((err) => {
-        setErrorMessage('Не не правильная почта или пароль')
+        setLoading(false)
+        setErrorMessage(true)
+        setTimeout(hendkeTimeoutSpan, 3000);
         console.log(`Ошибка входа в систему: ${err}`)
+        setDisableButton(false)
       })
       .finally(() => {
-        setDisableButton(false)
         hendleGetUserInfo()
         hendleGetSavedMovies()
-        setLoading(true)
+
 
       })
   }
 
+
   function hendleAccountLogout() {
+    setLoading(true)
     setDisableButton(true)
     mainApi.accountLogout({
       endpoint: 'signout',
@@ -121,6 +132,14 @@ function App() {
         localStorage.clear();
         setLoggedIn(false)
         history.push('/');
+        setLoading(false)
+
+        setCurrentUser({})
+        setsavedFilms([])
+        setFoundMovies([])
+        setCheckbox(true)
+        setErrorMessage(false)
+        setInputValue('')
       })
 
   }
@@ -148,15 +167,16 @@ function App() {
       localStorage.setItem('user', JSON.stringify(user))
     })
       .catch((err) => {
-        alert('Произошла ошибка')
         console.log(err)
       })
   }
 
-  function hendleEditProfile(data, setSpanSuccessfully, setSpanButtonSubmitText) {
+  function hendleEditProfile(data, setSpanSuccessfully, setSpanButtonSubmitText, setDisabledButtonEditProfile) {
+    setDisabledButtonEditProfile(true)
     mainApi.patchUserInfo(data)
       .then((res) => {
-        setCurrentUser(res.data)
+        
+        //setCurrentUser(res.data)
         localStorage.setItem('user', JSON.stringify(res.data))
         setSpanButtonSubmitText('Изменение данных прошло успешно :)')
         setSpanSuccessfully(false)
@@ -166,7 +186,8 @@ function App() {
         setSpanSuccessfully(false)
         console.log(err)
       })
-      .finally(() => { hendleGetUserInfo() })
+      .finally(() => { 
+        hendleGetUserInfo() })
   }
 
 
@@ -188,7 +209,6 @@ function App() {
       setTitleNotFoundMovies(true)
     }).catch((err) => {
       console.log(err)
-      alert('Произошла ошибка, повторите запрос позднее')
     })
   }
   function handlerOpeningAndClosingBurgerMenu() {
@@ -196,7 +216,7 @@ function App() {
     else { setBurgerHidden(true) }
 
   }
-
+  function hendkeTimeoutSpan() { setErrorMessage(false) }
   return (
     <CurrentUserContext.Provider value={currentUser}>
 
@@ -207,22 +227,22 @@ function App() {
           <Main loggedIn={loggedIn} setLoading={setLoading} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
         </Route>
 
-        <ProtectedRouter path='/signup' loading={loading} loggedIn={!loggedIn} component={Register} disableButton={disableButton} setDisableButton={setDisableButton}
-         onErrorMessage={errorMessage} handleRegister={handleRegister} />
-        <ProtectedRouter path='/signin' loading={loading} loggedIn={!loggedIn} component={Login} disableButton={disableButton} setDisableButton={setDisableButton}
-         onErrorMessage={errorMessage} handleAuthorization={handleAuthorization} />
+        <ProtectedRouter path='/signup' loading={loading} setLoading={setLoading} loggedIn={!loggedIn} component={Register} disableButton={disableButton} setDisableButton={setDisableButton}
+          onErrorMessageState={errorMessage} handleRegister={handleRegister} />
+        <ProtectedRouter path='/signin' loading={loading} setLoading={setLoading} loggedIn={!loggedIn} component={Login} disableButton={disableButton} setDisableButton={setDisableButton}
+          onErrorMessageState={errorMessage} handleAuthorization={handleAuthorization} />
 
-        <ProtectedRouter path='/movies' setFoundMovies={setFoundMovies} checkbox={checkbox} setCheckbox={setCheckbox} inputValue={inputValue} setInputValue={setInputValue}
+        <ProtectedRouter path='/movies' clearData setFoundMovies={setFoundMovies} checkbox={checkbox} setCheckbox={setCheckbox} inputValue={inputValue} setInputValue={setInputValue}
           foundMovies={foundMovies} loading={loading} setLoading={setLoading} setCurrentUser={setCurrentUser} hendleGetUserInfo={hendleGetUserInfo} hendleGetSavedMovies={hendleGetSavedMovies}
           setsavedFilms={setsavedFilms} savedFilms={savedFilms} loggedIn={loggedIn} component={Movies}
           onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
- 
+
         <ProtectedRouter path='/saved-movies' loading={loading} setLoading={setLoading} setTitleNotFoundMovies={setTitleNotFoundMovies} titleNotFoundMovies={titleNotFoundMovies}
           foundMovies={foundMovies} savedFilms={savedFilms} hendleGetSavedMovies={hendleGetSavedMovies} loggedIn={loggedIn}
           component={SavedMovies} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
 
-        <ProtectedRouter path='/profile' loading={loading} disableButton={disableButton} setDisableButton={setDisableButton} onHendleEditProfile={hendleEditProfile} 
-        loggedIn={loggedIn} component={Profile} onHendleAccountLogout={hendleAccountLogout} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
+        <ProtectedRouter path='/profile' loading={loading} disableButton={disableButton} setDisableButton={setDisableButton} onHendleEditProfile={hendleEditProfile}
+          loggedIn={loggedIn} component={Profile} onHendleAccountLogout={hendleAccountLogout} onBurgerMenu={burgerHidden} onHendleButtonBurgerMenu={handlerOpeningAndClosingBurgerMenu} />
 
         <Route path='*'>
           <NotFoundPage />
@@ -235,3 +255,5 @@ function App() {
 }
 
 export default App;
+
+

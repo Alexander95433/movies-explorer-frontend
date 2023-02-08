@@ -52,6 +52,13 @@
     color: #FFFFFF;
 }
 
+.auth-form__input:disabled {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: #EE3465;
+}
+
 .auth-form__input:focus {
     border-bottom: solid 1px #3ddc84;
 }
@@ -92,11 +99,20 @@
     padding-top: 221px;
 }
 
+
 .auth-form__button-span {
     color: #EE3465;
     font-weight: 400;
     font-size: 14px;
-    line-height: 17px;}
+    line-height: 17px;
+    opacity: 0;
+    transition: 3s linear;
+}
+
+.auth-form__button-span_visable {
+    opacity: 1;
+    transition: .2s linear;
+}
 
 .auth-form__button {
     width: 100%;

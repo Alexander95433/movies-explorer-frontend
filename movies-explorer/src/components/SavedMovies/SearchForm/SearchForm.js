@@ -3,47 +3,47 @@ import buttonIcon from '../../../image/movies__dutton-icon2.svg'
 import FilterCheckbox from '../../Movies/FilterCheckbox/FilterCheckbox'
 import { movieSearchHandler, searchFilter } from '../../../utils/Functions';
 
-function SearchForm({ setFoundSavedMovies, checkbox, setCheckbox, inputValue, setInputValue }) {
+function SearchForm({checkboxSaved, setCheckboxSaved, movieFilteredhResult, setmovieFilteredhResult, setFoundSavedMovies}) {
 
     const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
-    const [movieFilteredhResult, setmovieFilteredhResult] = useState([])
+    // const [movieFilteredhResult, setmovieFilteredhResult] = useState([])
     const [movieSearchResult, setmovieSearchResult] = useState([])
     const [errorClass, setErrorClass] = useState(true)
     const [plaseholderText, setPlaseholderText] = useState('Фильм');
+    // const [checkboxSaved, setCheckboxSaved] = useState(true)
+    const [inputValueSaved, setInputValueSaved] = useState('');
 
-    useEffect(() => { setFoundSavedMovies(movieFilteredhResult) }, [])
+    useEffect(() => { 
+        setFoundSavedMovies(movieFilteredhResult) }, [])
 
-
-
-            
     function hendleCheckbox() {
-        if (!checkbox) {
-            setCheckbox(true)
+        if (!checkboxSaved) {
+            setCheckboxSaved(true)
             setmovieFilteredhResult([])
-            searchHandler(true, inputValue)
+            searchHandler(true, inputValueSaved)
         } else {
-            setCheckbox(false)
-            filter(movieSearchResult, savedMovies, true, inputValue)
+            setCheckboxSaved(false)
+            filter(movieSearchResult, savedMovies, true, inputValueSaved)
         }
     }
 
     function hendleSubmit(event) {
         event.preventDefault()
 
-        if (!inputValue) {
+        if (!inputValueSaved) {
             setErrorClass(false)
             setPlaseholderText('');
             return
         }
         setErrorClass(true)
         setPlaseholderText('Фильм')
-        searchHandler(checkbox, inputValue)
+        searchHandler(checkboxSaved, inputValueSaved)
     }
 
     function handleInput(e) {
-        setInputValue(e.target.value);
+        setInputValueSaved(e.target.value);
         if (e.target.value.length === 0) {
-            filter(movieSearchResult, savedMovies, !checkbox, e.target.value)
+            filter(movieSearchResult, savedMovies, !checkboxSaved, e.target.value)
         }
     }
 
@@ -81,11 +81,11 @@ function SearchForm({ setFoundSavedMovies, checkbox, setCheckbox, inputValue, se
                 <fieldset className='search-form__fildset'>
                     <div className='search-form__input-wrapper'>
                         <input className={`search-form__input ${!errorClass ? 'search-form__input-error' : ''}`} placeholder={plaseholderText}
-                            id="inputSearchMovieId" name="inputSearchMovieName" type="text" onChange={handleInput} value={inputValue || ''} required />
+                            id="inputSearchMovieId" name="inputSearchMovieName" type="text" onChange={handleInput} value={inputValueSaved || ''} required />
                         <span className="search-form_error-span" hidden={errorClass}>Нужно ввести ключевое слово</span>
                         <button onClick={hendleSubmit} className='search-form__button' type="submit"><img className='search-form__button-icon' src={buttonIcon} alt='Кнопка поиска' /></button>
                     </div>
-                    <FilterCheckbox checkbox={checkbox} hendleCheckbox={hendleCheckbox} />
+                    <FilterCheckbox checkbox={checkboxSaved} hendleCheckbox={hendleCheckbox} />
                 </fieldset>
             </form>
         </section>

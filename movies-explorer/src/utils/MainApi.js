@@ -25,7 +25,6 @@ class MainApi {
     }
 
     register(data) {
-        debugger
         return this._request(data)
     };
 

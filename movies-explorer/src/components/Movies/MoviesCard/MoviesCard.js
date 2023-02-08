@@ -83,12 +83,12 @@ function MoviesCard(props) {
 
 
     function handleDeleteButtonCard(evt) {
-         
+       // const savedMoviess = JSON.parse(localStorage.getItem('savedMovies'));
         hendleDeleteMovies(savedId)
         deleteSavedFilmsFromLocalStorege({ card: props.card })
         cardRef.current.setAttribute("style", "display: none");
         const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
-        debugger
+        //props.ff(savedMoviess, props.card)
         if(savedMovies <= 0) {
             props.setTitleNotFoundMovies(true)
             props.setTitleNothingFound(false)

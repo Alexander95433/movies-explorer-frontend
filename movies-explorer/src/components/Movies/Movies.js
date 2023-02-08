@@ -15,6 +15,7 @@ function Movies(props) {
     const [elementNumber, setElementNumber] = useState(6)
     const [screenSize, setDimension] = useState(window.innerWidth);
     const getDimension = () => { setDimension(window.innerWidth) };
+    
     useEffect(() => {
         const savedMoviess = JSON.parse(localStorage.getItem('savedMovies'));
         if (checkboxState === null) { localStorage.setItem('shorts', true) }
@@ -72,10 +73,9 @@ function Movies(props) {
                     inputValue={props.inputValue} setInputValue={props.setInputValue} foundMovies={props.foundMovies} />
 
                 {props.loading ? <Preloader /> :
-                    <MoviesCardList hendleMoreVideos={hendleMoreVideos} elementNumber={elementNumber} hendleGetSavedMovies={props.hendleGetSavedMovies} savedFilms={props.savedFilms}
-                        cards={props.foundMovies}
-                        moviesFromServer={moviesFromServer} titleNothingFound={titleNothingFound} titleNotFoundMovies={titleNotFoundMovies}
-                        moreButtonState={moreButtonState} setMoreButtonState={setMoreButtonState} />}
+                    <MoviesCardList hendleMoreVideos={hendleMoreVideos} elementNumber={elementNumber} hendleGetSavedMovies={props.hendleGetSavedMovies} 
+                    savedFilms={props.savedFilms} cards={props.foundMovies} moviesFromServer={moviesFromServer} titleNothingFound={titleNothingFound} 
+                    titleNotFoundMovies={titleNotFoundMovies} moreButtonState={moreButtonState} setMoreButtonState={setMoreButtonState} />}
             </main>
             <Footer />
         </>
