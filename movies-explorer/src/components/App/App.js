@@ -190,8 +190,6 @@ function App() {
         hendleGetUserInfo() })
   }
 
-
-
   function hendleGetSavedMovies() {
     let mySavedFilms = []
     mainApi.getSavedMovies({

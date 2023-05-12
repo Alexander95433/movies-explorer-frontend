@@ -66,7 +66,7 @@ class MainApi {
 
 const mainApi = new MainApi({
     // host: 'http://localhost:3000/',
-    host: 'https://api-movies-explorer-alkom.nomoredomains.club/',
+    host: 'http://localhost:4000/',
     headers: { 'Content-Type': 'application/json; charset=utf-8' },
 })
 
